@@ -1,0 +1,697 @@
+[spell]
+{
+  b interface = true;
+	[t:button,n:button_spellbook_close]
+	{
+	  f alpha = 1.000000;
+	  b common_control = true;
+		common_template = x;
+	  x draw_order = 0x00000033;
+		rect = 910,2,929,18;
+		rollover_help = spellbook_exit;
+		texture = b_gui_cmn_button_x_up;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+		[messages]
+		{
+			onbuttonpress = notify(spell_close);
+		}
+	}
+	[t:dialog_box,n:dialog_box_active_slots]
+	{
+	  f alpha = 1.000000;
+	  b common_control = true;
+		common_template = cpbox;
+		consumable = true;
+	  x draw_order = 0x00000030;
+		rect = 775,31,931,128;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:dialog_box,n:dialog_box_spellbook_header]
+	{
+	  f alpha = 1.000000;
+	  b common_control = true;
+		common_template = cpbox;
+		consumable = true;
+	  x draw_order = 0x00000010;
+		rect = 775,0,931,32;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:dialog_box,n:dialog_box_spells_main]
+	{
+	  f alpha = 1.000000;
+	  b common_control = true;
+		common_template = cpbox;
+		consumable = true;
+	  x draw_order = 0x00000001;
+		rect = 775,126,935,449;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:itemslot,n:spell_item_1]
+	{
+		accept_input = false;
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x000000c1;
+		group = spell_slot_1;
+		rect = 912,47,928,79;
+		slot_type = ;
+		slot_type = spell;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:itemslot,n:spell_item_10]
+	{
+		accept_input = false;
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x000000e3;
+		group = spell_slot_10;
+		rect = 912,351,928,383;
+		slot_type = ;
+		slot_type = spell;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:itemslot,n:spell_item_11]
+	{
+		accept_input = false;
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x000000e4;
+		group = spell_slot_11;
+		rect = 912,383,928,415;
+		slot_type = ;
+		slot_type = spell;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:itemslot,n:spell_item_12]
+	{
+		accept_input = false;
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x000000c2;
+		group = spell_slot_12;
+		rect = 912,415,928,447;
+		slot_type = ;
+		slot_type = spell;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:itemslot,n:spell_item_2]
+	{
+		accept_input = false;
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x000000a9;
+		group = spell_slot_2;
+		rect = 912,95,928,127;
+		slot_type = ;
+		slot_type = spell;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:itemslot,n:spell_item_3]
+	{
+		accept_input = false;
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x000000dc;
+		group = spell_slot_3;
+		rect = 912,127,928,159;
+		slot_type = ;
+		slot_type = spell;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:itemslot,n:spell_item_4]
+	{
+		accept_input = false;
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x000000dd;
+		group = spell_slot_4;
+		rect = 912,159,928,191;
+		slot_type = ;
+		slot_type = spell;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:itemslot,n:spell_item_5]
+	{
+		accept_input = false;
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x000000de;
+		group = spell_slot_5;
+		rect = 912,191,928,223;
+		slot_type = ;
+		slot_type = spell;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:itemslot,n:spell_item_6]
+	{
+		accept_input = false;
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x000000df;
+		group = spell_slot_6;
+		rect = 912,223,928,255;
+		slot_type = ;
+		slot_type = spell;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:itemslot,n:spell_item_7]
+	{
+		accept_input = false;
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x000000e0;
+		group = spell_slot_7;
+		rect = 912,255,928,287;
+		slot_type = ;
+		slot_type = spell;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:itemslot,n:spell_item_8]
+	{
+		accept_input = false;
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x000000e1;
+		group = spell_slot_8;
+		rect = 912,287,928,319;
+		slot_type = ;
+		slot_type = spell;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:itemslot,n:spell_item_9]
+	{
+		accept_input = false;
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x000000e2;
+		group = spell_slot_9;
+		rect = 912,319,928,351;
+		slot_type = ;
+		slot_type = spell;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:infoslot,n:spell_slot_1]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000139;
+		index = 0;
+		rect = 777,46,929,79;
+		slot_type = scroll;
+		texture = b_gui_ig_mnu_sb_box;
+		uvcoords = 0.000000,0.484375,0.589844,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:infoslot,n:spell_slot_10]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x000001e7;
+		index = 9;
+		rect = 777,350,929,383;
+		slot_type = scroll;
+		texture = b_gui_ig_mnu_sb_box;
+		uvcoords = 0.000000,0.484375,0.589844,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:infoslot,n:spell_slot_11]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x000001ee;
+		index = 10;
+		rect = 777,382,929,415;
+		slot_type = scroll;
+		texture = b_gui_ig_mnu_sb_box;
+		uvcoords = 0.000000,0.484375,0.589844,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:infoslot,n:spell_slot_12]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x000001f4;
+		index = 11;
+		rect = 777,414,929,447;
+		slot_type = scroll;
+		texture = b_gui_ig_mnu_sb_box;
+		uvcoords = 0.000000,0.484375,0.589844,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:infoslot,n:spell_slot_2]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x0000018b;
+		index = 1;
+		rect = 777,94,929,126;
+		slot_type = scroll;
+		texture = b_gui_ig_mnu_sb_box;
+		uvcoords = 0.000000,0.500000,0.589844,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:infoslot,n:spell_slot_3]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x0000019a;
+		index = 2;
+		rect = 777,128,929,159;
+		slot_type = scroll;
+		texture = b_gui_ig_mnu_sb_box;
+		uvcoords = 0.000000,0.484375,0.589844,0.968750;
+		wrap_mode = clamp;
+	}
+	[t:infoslot,n:spell_slot_4]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x000001a8;
+		index = 3;
+		rect = 777,158,929,191;
+		slot_type = scroll;
+		texture = b_gui_ig_mnu_sb_box;
+		uvcoords = 0.000000,0.484375,0.589844,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:infoslot,n:spell_slot_5]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x000001b5;
+		index = 4;
+		rect = 777,190,929,223;
+		slot_type = scroll;
+		texture = b_gui_ig_mnu_sb_box;
+		uvcoords = 0.000000,0.484375,0.589844,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:infoslot,n:spell_slot_6]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x000001c1;
+		index = 5;
+		rect = 777,222,929,255;
+		slot_type = scroll;
+		texture = b_gui_ig_mnu_sb_box;
+		uvcoords = 0.000000,0.484375,0.589844,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:infoslot,n:spell_slot_7]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x000001cc;
+		index = 6;
+		rect = 777,254,929,287;
+		slot_type = scroll;
+		texture = b_gui_ig_mnu_sb_box;
+		uvcoords = 0.000000,0.484375,0.589844,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:infoslot,n:spell_slot_8]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x000001d6;
+		index = 7;
+		rect = 777,286,929,319;
+		slot_type = scroll;
+		texture = b_gui_ig_mnu_sb_box;
+		uvcoords = 0.000000,0.484375,0.589844,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:infoslot,n:spell_slot_9]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x000001df;
+		index = 8;
+		rect = 777,318,929,351;
+		slot_type = scroll;
+		texture = b_gui_ig_mnu_sb_box;
+		uvcoords = 0.000000,0.484375,0.589844,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:listener,n:spellbook_listener]
+	{
+	  f alpha = 1.000000;
+	  x draw_order = 0x00000031;
+		pass_through = true;
+		rect = 775,31,931,719;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:text,n:text_active_spell_1]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000067;
+	  x font_color = 0xffffffff;
+	  x font_size = 0x00000000;
+		font_type = b_gui_fnt_12p_copperplate-light;
+		justify = center;
+		rect = 780,33,928,46;
+		text = "Active Spell 1";
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+		rollover_help = active_spell_1;
+	}
+	[t:text,n:text_active_spell_2]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x0000007b;
+	  x font_color = 0xffffffff;
+	  x font_size = 0x00000000;
+		font_type = b_gui_fnt_12p_copperplate-light;
+		justify = center;
+		rect = 780,79,928,93;
+		text = "Active Spell 2";
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+		rollover_help = active_spell_2;
+	}
+	[t:text_box,n:text_box_spell_1]
+	{
+	  f alpha = 1.000000;
+		center_height = true;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000268;
+		fixed_location = true;
+	  x font_color = 0xffffffff;
+		font_type = b_gui_fnt_12p_copperplate-light;
+		group = spell_slot_1;
+	  b has_slider = false;
+		justify = center;
+		justify_y = center;
+	  x max_height = 0xe6e6e6e7;
+	  x max_width = 0xe6e6e6e7;
+		rect = 777,48,909,78;
+	  f scroll_rate = 0.000000;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:text_box,n:text_box_spell_10]
+	{
+	  f alpha = 1.000000;
+		center_height = true;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x0000029e;
+		fixed_location = true;
+	  x font_color = 0xffffffff;
+		font_type = b_gui_fnt_12p_copperplate-light;
+		group = spell_slot_10;
+	  b has_slider = false;
+		justify = center;
+		justify_y = center;
+	  x max_height = 0xe6e6e6e7;
+	  x max_width = 0xe6e6e6e7;
+		rect = 777,351,909,381;
+	  f scroll_rate = 0.000000;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:text_box,n:text_box_spell_11]
+	{
+	  f alpha = 1.000000;
+		center_height = true;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x0000029f;
+		fixed_location = true;
+	  x font_color = 0xffffffff;
+		font_type = b_gui_fnt_12p_copperplate-light;
+		group = spell_slot_11;
+	  b has_slider = false;
+		justify = center;
+		justify_y = center;
+	  x max_height = 0xe6e6e6e7;
+	  x max_width = 0xe6e6e6e7;
+		rect = 777,383,909,413;
+	  f scroll_rate = 0.000000;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:text_box,n:text_box_spell_12]
+	{
+	  f alpha = 1.000000;
+		center_height = true;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x0000026d;
+		fixed_location = true;
+	  x font_color = 0xffffffff;
+		font_type = b_gui_fnt_12p_copperplate-light;
+		group = spell_slot_12;
+	  b has_slider = false;
+		justify = center;
+		justify_y = center;
+	  x max_height = 0xe6e6e6e7;
+	  x max_width = 0xe6e6e6e7;
+		rect = 777,415,909,445;
+	  f scroll_rate = 0.000000;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:text_box,n:text_box_spell_2]
+	{
+	  f alpha = 1.000000;
+		center_height = true;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000269;
+		fixed_location = true;
+	  x font_color = 0xffffffff;
+		font_type = b_gui_fnt_12p_copperplate-light;
+		group = spell_slot_2;
+	  b has_slider = false;
+		justify = center;
+		justify_y = center;
+	  x max_height = 0xe6e6e6e7;
+	  x max_width = 0xe6e6e6e7;
+		rect = 777,96,909,126;
+	  f scroll_rate = 0.000000;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:text_box,n:text_box_spell_3]
+	{
+	  f alpha = 1.000000;
+		center_height = true;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x0000026a;
+		fixed_location = true;
+	  x font_color = 0xffffffff;
+		font_type = b_gui_fnt_12p_copperplate-light;
+		group = spell_slot_3;
+	  b has_slider = false;
+		justify = center;
+		justify_y = center;
+	  x max_height = 0xe6e6e6e7;
+	  x max_width = 0xe6e6e6e7;
+		rect = 777,128,909,158;
+	  f scroll_rate = 0.000000;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:text_box,n:text_box_spell_4]
+	{
+	  f alpha = 1.000000;
+		center_height = true;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x0000026b;
+		fixed_location = true;
+	  x font_color = 0xffffffff;
+		font_type = b_gui_fnt_12p_copperplate-light;
+		group = spell_slot_4;
+	  b has_slider = false;
+		justify = center;
+		justify_y = center;
+	  x max_height = 0xe6e6e6e7;
+	  x max_width = 0xe6e6e6e7;
+		rect = 777,159,909,189;
+	  f scroll_rate = 0.000000;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:text_box,n:text_box_spell_5]
+	{
+	  f alpha = 1.000000;
+		center_height = true;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x0000026c;
+		fixed_location = true;
+	  x font_color = 0xffffffff;
+		font_type = b_gui_fnt_12p_copperplate-light;
+		group = spell_slot_5;
+	  b has_slider = false;
+		justify = center;
+		justify_y = center;
+	  x max_height = 0xe6e6e6e7;
+	  x max_width = 0xe6e6e6e7;
+		rect = 777,191,909,221;
+	  f scroll_rate = 0.000000;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:text_box,n:text_box_spell_6]
+	{
+	  f alpha = 1.000000;
+		center_height = true;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x0000029a;
+		fixed_location = true;
+	  x font_color = 0xffffffff;
+		font_type = b_gui_fnt_12p_copperplate-light;
+		group = spell_slot_6;
+	  b has_slider = false;
+		justify = center;
+		justify_y = center;
+	  x max_height = 0xe6e6e6e7;
+	  x max_width = 0xe6e6e6e7;
+		rect = 777,223,909,253;
+	  f scroll_rate = 0.000000;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:text_box,n:text_box_spell_7]
+	{
+	  f alpha = 1.000000;
+		center_height = true;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x0000029b;
+		fixed_location = true;
+	  x font_color = 0xffffffff;
+		font_type = b_gui_fnt_12p_copperplate-light;
+		group = spell_slot_7;
+	  b has_slider = false;
+		justify = center;
+		justify_y = center;
+	  x max_height = 0xe6e6e6e7;
+	  x max_width = 0xe6e6e6e7;
+		rect = 777,255,909,285;
+	  f scroll_rate = 0.000000;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:text_box,n:text_box_spell_8]
+	{
+	  f alpha = 1.000000;
+		center_height = true;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x0000029c;
+		fixed_location = true;
+	  x font_color = 0xffffffff;
+		font_type = b_gui_fnt_12p_copperplate-light;
+		group = spell_slot_8;
+	  b has_slider = false;
+		justify = center;
+		justify_y = center;
+	  x max_height = 0xe6e6e6e7;
+	  x max_width = 0xe6e6e6e7;
+		rect = 777,287,909,317;
+	  f scroll_rate = 0.000000;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:text_box,n:text_box_spell_9]
+	{
+	  f alpha = 1.000000;
+		center_height = true;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x0000029d;
+		fixed_location = true;
+	  x font_color = 0xffffffff;
+		font_type = b_gui_fnt_12p_copperplate-light;
+		group = spell_slot_9;
+	  b has_slider = false;
+		justify = center;
+		justify_y = center;
+	  x max_height = 0xe6e6e6e7;
+	  x max_width = 0xe6e6e6e7;
+		rect = 777,319,909,349;
+	  f scroll_rate = 0.000000;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:text,n:text_spellbook]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000014;
+	  x font_color = 0xffffffff;
+	  x font_size = 0x00000000;
+		font_type = b_gui_fnt_12p_copperplate-light;
+		justify = center;
+		rect = 781,8,925,22;
+		text = "Spell Book";
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+		rollover_help = spellbook_header;
+	}
+	[t:window,n:window_fix]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x0000021a;
+		rect = 779,125,938,128;
+		texture = b_gui_cmn_cpbox_bot;
+		uvcoords = 0.000000,0.000000,1.000000,0.750000;
+		wrap_mode = clamp;
+	}
+}
