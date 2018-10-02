@@ -76,8 +76,7 @@
 		is_bottom_anchor = true;
 		is_right_anchor = true;
 		rect = 571,425,603,445;
-		right_anchor = 69;
-		rollover_help = collect_loot;
+		right_anchor = 69;		rollover_help = collect_loot;
 		texture = b_gui_ig_mnu_get_loot_up;
 		uvcoords = 0.000000,0.375000,1.000000,1.000000;
 		wrap_mode = clamp;
@@ -487,6 +486,64 @@
 			onrollover = loadtexture(b_gui_ig_mnu_select_hov);
 		}
 	}
+	// TAT 5/7/03 - button for unsummoning creatures of all selected players
+	[t:button,n:button_unsummon_creatures]
+	{
+	  f alpha = 1.000000;
+		bottom_anchor = 168;
+	  b common_control = false;
+		common_template = ;
+		consumable = true;
+		disable_color = 0xff5f5f5f;
+	  x draw_order = 73;
+		group = orders;
+		is_bottom_anchor = true;
+		is_right_anchor = true;
+		rect = 538,332,570,352;
+		right_anchor = 101;
+		rollover_help = button_unsummon_creature;
+		texture = b_gui_ig_mnu_unsummon_creature_up;
+		uvcoords = 0.000000,0.375000,1.000000,1.000000;
+		wrap_mode = clamp;
+		[messages]
+		{
+			onbuttonpress = notify(unsummon_creatures);
+			onlbuttondown = loadtexture(b_gui_ig_mnu_unsummon_creature_dwn);
+			onlbuttonup = loadtexture(b_gui_ig_mnu_unsummon_creature_up);
+			onrolloff = loadtexture(b_gui_ig_mnu_unsummon_creature_up);
+			onrollover = loadtexture(b_gui_ig_mnu_unsummon_creature_hov);
+		}
+	}
+
+	// JCD 6/13/03 - button for untransforming all 
+	[t:button,n:button_untransform_characters]
+	{
+	  f alpha = 1.000000;
+		bottom_anchor = 168;
+	  b common_control = false;
+		common_template = ;
+		consumable = true;
+		disable_color = 0xff5f5f5f;
+	  x draw_order = 73;
+		group = orders;
+		is_bottom_anchor = true;
+		is_right_anchor = true;
+		rect = 505,332,537,352;
+		right_anchor = 133;
+		rollover_help = button_untransform_character;
+		texture = b_gui_ig_mnu_untransform_characters_up;
+		uvcoords = 0.000000,0.375000,1.000000,1.000000;
+		wrap_mode = clamp;
+		[messages]
+		{
+			onbuttonpress = notify(untransform_characters);
+			onlbuttondown = loadtexture(b_gui_ig_mnu_untransform_characters_dwn);
+			onlbuttonup = loadtexture(b_gui_ig_mnu_untransform_characters_up);
+			onrolloff = loadtexture(b_gui_ig_mnu_untransform_characters_up);
+			onrollover = loadtexture(b_gui_ig_mnu_untransform_characters_hov);
+		}
+	}
+	
 	[t:button,n:button_targeting]
 	{
 	  f alpha = 1.000000;

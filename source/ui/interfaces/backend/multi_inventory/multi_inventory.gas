@@ -19,6 +19,8 @@
 		}	
 		rollover_help = button_gold;
 	}
+/////////////
+//BUTTON_GOLD_HUMAN
 	[t:button,n:button_gold_human_1]
 	{
 	  f alpha = 1.000000;
@@ -170,7 +172,8 @@
 		}	
 		rollover_help = button_gold;
 	}
-
+/////////////
+//BUTTON_GOLD_PACKMULE
 	[t:button,n:gold_icon_packmule_1]
 	{
 	  f alpha = 1.000000;
@@ -307,8 +310,147 @@
 		}	
 		rollover_help = button_gold;
 	}
+/////////////
+//BUTTON_GOLD_DSX_PACK_ANIMAL
+	[t:button,n:gold_icon_dsx_pack_animal_1]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000008;
+		group = multi_inventory_dsx_pack_animal_1;
+		rect = 138,8,154,24;
+		texture = b_gui_ig_mnu_ip_gold;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+		[messages]
+		{
+			onbuttonpress = notify(gold_transfer);
+		}	
+		rollover_help = button_gold;
+	}
+	[t:button,n:gold_icon_dsx_pack_animal_2]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000008;
+		group = multi_inventory_dsx_pack_animal_2;
+		rect = 138,8,154,24;
+		texture = b_gui_ig_mnu_ip_gold;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+		[messages]
+		{
+			onbuttonpress = notify(gold_transfer);
+		}	
+		rollover_help = button_gold;
+	}
+	[t:button,n:gold_icon_dsx_pack_animal_3]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000008;
+		group = multi_inventory_dsx_pack_animal_3;
+		rect = 138,8,154,24;
+		texture = b_gui_ig_mnu_ip_gold;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+		[messages]
+		{
+			onbuttonpress = notify(gold_transfer);
+		}	
+		rollover_help = button_gold;
+	}
+	[t:button,n:gold_icon_dsx_pack_animal_4]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000008;
+		group = multi_inventory_dsx_pack_animal_4;
+		rect = 138,8,154,24;
+		texture = b_gui_ig_mnu_ip_gold;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+		[messages]
+		{
+			onbuttonpress = notify(gold_transfer);
+		}	
+		rollover_help = button_gold;
+	}
+	[t:button,n:gold_icon_dsx_pack_animal_5]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000008;
+		group = multi_inventory_dsx_pack_animal_5;
+		rect = 138,8,154,24;
+		texture = b_gui_ig_mnu_ip_gold;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+		[messages]
+		{
+			onbuttonpress = notify(gold_transfer);
+		}	
+		rollover_help = button_gold;
+	}
+	[t:button,n:gold_icon_dsx_pack_animal_6]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000008;
+		group = multi_inventory_dsx_pack_animal_6;
+		rect = 138,8,154,24;
+		texture = b_gui_ig_mnu_ip_gold;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+		[messages]
+		{
+			onbuttonpress = notify(gold_transfer);
+		}	
+		rollover_help = button_gold;
+	}
+	[t:button,n:gold_icon_dsx_pack_animal_7]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000008;
+		group = multi_inventory_dsx_pack_animal_7;
+		rect = 138,8,154,24;
+		texture = b_gui_ig_mnu_ip_gold;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+		[messages]
+		{
+			onbuttonpress = notify(gold_transfer);
+		}	
+		rollover_help = button_gold;
+	}
+	[t:button,n:gold_icon_dsx_pack_animal_8]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000008;
+		group = multi_inventory_dsx_pack_animal_8;
+		rect = 138,8,154,24;
+		texture = b_gui_ig_mnu_ip_gold;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+		[messages]
+		{
+			onbuttonpress = notify(gold_transfer);
+		}	
+		rollover_help = button_gold;
+	}
 
-
+/////////////
+//BUTTON_INVENTORY_EXIT_HUMAN
 	[t:button,n:button_inventory_exit_human_1]
 	{
 	  f alpha = 1.000000;
@@ -453,6 +595,8 @@
 			onbuttonpress = notify(character_exit);
 		}
 	}
+/////////////
+//BUTTON_INVENTORY_EXIT_PACKMULE
 	[t:button,n:button_inventory_exit_packmule_1]
 	{
 	  f alpha = 1.000000;
@@ -597,6 +741,155 @@
 			onbuttonpress = notify(character_exit);
 		}
 	}
+/////////////
+//BUTTON_INVENTORY_EXIT_DSX_PACK_ANIMAL
+	[t:button,n:button_inventory_exit_dsx_pack_animal_1]
+	{
+	  f alpha = 1.000000;
+	  b common_control = true;
+		common_template = x;
+	  x draw_order = 0x00000009;
+		group = multi_inventory_dsx_pack_animal_1;
+		rect = 331,2,347,18;
+		rollover_help = inventory_exit;
+		texture = b_gui_cmn_button_x_up;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+		index = 0;
+		[messages]
+		{
+			onbuttonpress = notify(character_exit);
+		}
+	}
+	[t:button,n:button_inventory_exit_dsx_pack_animal_2]
+	{
+	  f alpha = 1.000000;
+	  b common_control = true;
+		common_template = x;
+	  x draw_order = 0x00000009;
+		group = multi_inventory_dsx_pack_animal_2;
+		rect = 331,2,347,18;
+		rollover_help = inventory_exit;
+		texture = b_gui_cmn_button_x_up;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+		index = 1;
+		[messages]
+		{
+			onbuttonpress = notify(character_exit);
+		}
+	}
+	[t:button,n:button_inventory_exit_dsx_pack_animal_3]
+	{
+	  f alpha = 1.000000;
+	  b common_control = true;
+		common_template = x;
+	  x draw_order = 0x00000009;
+		group = multi_inventory_dsx_pack_animal_3;
+		rect = 331,2,347,18;
+		rollover_help = inventory_exit;
+		texture = b_gui_cmn_button_x_up;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+		index = 2;
+		[messages]
+		{
+			onbuttonpress = notify(character_exit);
+		}
+	}
+	[t:button,n:button_inventory_exit_dsx_pack_animal_4]
+	{
+	  f alpha = 1.000000;
+	  b common_control = true;
+		common_template = x;
+	  x draw_order = 0x00000009;
+		group = multi_inventory_dsx_pack_animal_4;
+		rect = 331,2,347,18;
+		rollover_help = inventory_exit;
+		texture = b_gui_cmn_button_x_up;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+		index = 3;
+		[messages]
+		{
+			onbuttonpress = notify(character_exit);
+		}
+	}
+	[t:button,n:button_inventory_exit_dsx_pack_animal_5]
+	{
+	  f alpha = 1.000000;
+	  b common_control = true;
+		common_template = x;
+	  x draw_order = 0x00000009;
+		group = multi_inventory_dsx_pack_animal_5;
+		rect = 331,2,347,18;
+		rollover_help = inventory_exit;
+		texture = b_gui_cmn_button_x_up;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+		index = 4;
+		[messages]
+		{
+			onbuttonpress = notify(character_exit);
+		}
+	}
+	[t:button,n:button_inventory_exit_dsx_pack_animal_6]
+	{
+	  f alpha = 1.000000;
+	  b common_control = true;
+		common_template = x;
+	  x draw_order = 0x00000009;
+		group = multi_inventory_dsx_pack_animal_6;
+		rect = 331,2,347,18;
+		rollover_help = inventory_exit;
+		texture = b_gui_cmn_button_x_up;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+		index = 5;
+		[messages]
+		{
+			onbuttonpress = notify(character_exit);
+		}
+	}
+	[t:button,n:button_inventory_exit_dsx_pack_animal_7]
+	{
+	  f alpha = 1.000000;
+	  b common_control = true;
+		common_template = x;
+	  x draw_order = 0x00000009;
+		group = multi_inventory_dsx_pack_animal_7;
+		rect = 331,2,347,18;
+		rollover_help = inventory_exit;
+		texture = b_gui_cmn_button_x_up;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+		index = 6;
+		[messages]
+		{
+			onbuttonpress = notify(character_exit);
+		}
+	}
+	[t:button,n:button_inventory_exit_dsx_pack_animal_8]
+	{
+	  f alpha = 1.000000;
+	  b common_control = true;
+		common_template = x;
+	  x draw_order = 0x00000009;
+		group = multi_inventory_dsx_pack_animal_8;
+		rect = 331,2,347,18;
+		rollover_help = inventory_exit;
+		texture = b_gui_cmn_button_x_up;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+		index = 7;
+		[messages]
+		{
+			onbuttonpress = notify(character_exit);
+		}
+	}
+
+/////////////
+//DIALOG_BOX_INV_BG_HUMAN
 	[t:dialog_box,n:dialog_box_inv_bg_human_1]
 	{
 	  f alpha = 1.000000;
@@ -693,6 +986,8 @@
 		uvcoords = 0.000000,0.000000,0.765714,1.000000;
 		wrap_mode = clamp;
 	}
+/////////////
+//DIALOG_BOX_INV_BG_PACKMULE
 	[t:dialog_box,n:dialog_box_inv_bg_packmule_1]
 	{
 	  f alpha = 1.000000;
@@ -789,6 +1084,107 @@
 		uvcoords = 0.000000,0.000000,0.765714,1.000000;
 		wrap_mode = clamp;
 	}
+/////////////
+//DIALOG_BOX_INV_BG_DSX_PACK_ANIMAL
+	[t:dialog_box,n:dialog_box_inv_bg_dsx_pack_animal_1]
+	{
+	  f alpha = 1.000000;
+	  b common_control = true;
+		common_template = cpbox;
+		consumable = true;
+	  x draw_order = 0x00000001;
+		group = multi_inventory_dsx_pack_animal_1;
+		rect = 87,0,349,449;
+		uvcoords = 0.000000,0.000000,0.765714,1.000000;
+		wrap_mode = clamp;
+	}	
+	[t:dialog_box,n:dialog_box_inv_bg_dsx_pack_animal_2]
+	{
+	  f alpha = 1.000000;
+	  b common_control = true;
+		common_template = cpbox;
+		consumable = true;
+	  x draw_order = 0x00000001;
+		group = multi_inventory_dsx_pack_animal_2;
+		rect = 87,0,349,449;
+		uvcoords = 0.000000,0.000000,0.765714,1.000000;
+		wrap_mode = clamp;
+	}	
+	[t:dialog_box,n:dialog_box_inv_bg_dsx_pack_animal_3]
+	{
+	  f alpha = 1.000000;
+	  b common_control = true;
+		common_template = cpbox;
+		consumable = true;
+	  x draw_order = 0x00000001;
+		group = multi_inventory_dsx_pack_animal_3;
+		rect = 87,0,349,449;
+		uvcoords = 0.000000,0.000000,0.765714,1.000000;
+		wrap_mode = clamp;
+	}	
+	[t:dialog_box,n:dialog_box_inv_bg_dsx_pack_animal_4]
+	{
+	  f alpha = 1.000000;
+	  b common_control = true;
+		common_template = cpbox;
+		consumable = true;
+	  x draw_order = 0x00000001;
+		group = multi_inventory_dsx_pack_animal_4;
+		rect = 87,0,349,449;
+		uvcoords = 0.000000,0.000000,0.765714,1.000000;
+		wrap_mode = clamp;
+	}	
+	[t:dialog_box,n:dialog_box_inv_bg_dsx_pack_animal_5]
+	{
+	  f alpha = 1.000000;
+	  b common_control = true;
+		common_template = cpbox;
+		consumable = true;
+	  x draw_order = 0x00000001;
+		group = multi_inventory_dsx_pack_animal_5;
+		rect = 87,0,349,449;
+		uvcoords = 0.000000,0.000000,0.765714,1.000000;
+		wrap_mode = clamp;
+	}	
+	[t:dialog_box,n:dialog_box_inv_bg_dsx_pack_animal_6]
+	{
+	  f alpha = 1.000000;
+	  b common_control = true;
+		common_template = cpbox;
+		consumable = true;
+	  x draw_order = 0x00000001;
+		group = multi_inventory_dsx_pack_animal_6;
+		rect = 87,0,349,449;
+		uvcoords = 0.000000,0.000000,0.765714,1.000000;
+		wrap_mode = clamp;
+	}	
+	[t:dialog_box,n:dialog_box_inv_bg_dsx_pack_animal_7]
+	{
+	  f alpha = 1.000000;
+	  b common_control = true;
+		common_template = cpbox;
+		consumable = true;
+	  x draw_order = 0x00000001;
+		group = multi_inventory_dsx_pack_animal_7;
+		rect = 87,0,349,449;
+		uvcoords = 0.000000,0.000000,0.765714,1.000000;
+		wrap_mode = clamp;
+	}	
+	[t:dialog_box,n:dialog_box_inv_bg_dsx_pack_animal_8]
+	{
+	  f alpha = 1.000000;
+	  b common_control = true;
+		common_template = cpbox;
+		consumable = true;
+	  x draw_order = 0x00000001;
+		group = multi_inventory_dsx_pack_animal_8;
+		rect = 87,0,349,449;
+		uvcoords = 0.000000,0.000000,0.765714,1.000000;
+		wrap_mode = clamp;
+	}	
+
+/////////////
+//GRID_PLACE_HUMAN
 	[t:window,n:grid_place_human_1]
 	{
 	  f alpha = 1.000000;
@@ -877,6 +1273,8 @@
 		uvcoords = 0.000000,-12.031250,4.031250,1.000000;
 		wrap_mode = tiled;
 	}
+/////////////
+//GRID_PLACE_PACKMULE
 	[t:window,n:grid_place_packmule_1]
 	{
 	  f alpha = 1.000000;
@@ -965,7 +1363,99 @@
 		uvcoords = 0.000000,-12.031250,12.031250,1.000000;
 		wrap_mode = tiled;
 	}
+/////////////
+//GRID_PLACE_DSX_PLACE_PACK_ANIMAL
+	[t:window,n:grid_place_dsx_pack_animal_1]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000002;
+		group = multi_inventory_dsx_pack_animal_1;
+		rect = 89,30,346,447;
+		uvcoords = 0.000000,-12.031250,8.031250,1.000000;
+		wrap_mode = tiled;
+	}	
+	[t:window,n:grid_place_dsx_pack_animal_2]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000002;
+		group = multi_inventory_dsx_pack_animal_2;
+		rect = 89,30,346,447;
+		uvcoords = 0.000000,-12.031250,8.031250,1.000000;
+		wrap_mode = tiled;
+	}	
+	[t:window,n:grid_place_dsx_pack_animal_3]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000002;
+		group = multi_inventory_dsx_pack_animal_3;
+		rect = 89,30,346,447;
+		uvcoords = 0.000000,-12.031250,8.031250,1.000000;
+		wrap_mode = tiled;
+	}	
+	[t:window,n:grid_place_dsx_pack_animal_4]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000002;
+		group = multi_inventory_dsx_pack_animal_4;
+		rect = 89,30,346,447;
+		uvcoords = 0.000000,-12.031250,8.031250,1.000000;
+		wrap_mode = tiled;
+	}	
+	[t:window,n:grid_place_dsx_pack_animal_5]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000002;
+		group = multi_inventory_dsx_pack_animal_5;
+		rect = 89,30,346,447;
+		uvcoords = 0.000000,-12.031250,8.031250,1.000000;
+		wrap_mode = tiled;
+	}	
+	[t:window,n:grid_place_dsx_pack_animal_6]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000002;
+		group = multi_inventory_dsx_pack_animal_6;
+		rect = 89,30,346,447;
+		uvcoords = 0.000000,-12.031250,8.031250,1.000000;
+		wrap_mode = tiled;
+	}	
+	[t:window,n:grid_place_dsx_pack_animal_7]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000002;
+		group = multi_inventory_dsx_pack_animal_7;
+		rect = 89,30,346,447;
+		uvcoords = 0.000000,-12.031250,8.031250,1.000000;
+		wrap_mode = tiled;
+	}	
+	[t:window,n:grid_place_dsx_pack_animal_8]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000002;
+		group = multi_inventory_dsx_pack_animal_8;
+		rect = 89,30,346,447;
+		uvcoords = 0.000000,-12.031250,8.031250,1.000000;
+		wrap_mode = tiled;
+	}	
 
+/////////////
+//MULTI_BUTTON_ARRANGE_HUMAN
 	[t:button,n:multi_button_arrange_human_1]
 	{
 	  f alpha = 1.000000;
@@ -1142,7 +1632,8 @@
 			onrollover = loadtexture(b_gui_ig_mnu_ip_arrange_hov);
 		}
 	}
-
+/////////////
+//MULTI_BUTTON_ARRANGE_PACKMULE
 	[t:button,n:multi_button_arrange_packmule_1]
 	{
 	  f alpha = 1.000000;
@@ -1319,7 +1810,188 @@
 			onrollover = loadtexture(b_gui_ig_mnu_ip_arrange_hov);
 		}
 	}
+/////////////
+//MULTI_BUTTON_ARRANGE_DSX_PACK_ANIMAL
+	[t:button,n:button_arrange_dsx_pack_animal_1]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000004;
+		group = multi_inventory_dsx_pack_animal_1;
+		rect = 113,2,137,30;
+		rollover_help = inventory_arrange;
+		texture = b_gui_ig_mnu_ip_arrange_up;
+		uvcoords = 0.000000,0.125000,0.750000,1.000000;
+		wrap_mode = clamp;
+		index = 0;
+		[messages]
+		{
+			onbuttonpress = notify(arrange_inventory);
+			onlbuttondown = loadtexture(b_gui_ig_mnu_ip_arrange_dwn);
+			onlbuttonup = loadtexture(b_gui_ig_mnu_ip_arrange_up);
+			onrolloff = loadtexture(b_gui_ig_mnu_ip_arrange_up);
+			onrollover = loadtexture(b_gui_ig_mnu_ip_arrange_hov);
+		}
+	}
+	[t:button,n:button_arrange_dsx_pack_animal_2]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000004;
+		group = multi_inventory_dsx_pack_animal_2;
+		rect = 113,2,137,30;
+		rollover_help = inventory_arrange;
+		texture = b_gui_ig_mnu_ip_arrange_up;
+		uvcoords = 0.000000,0.125000,0.750000,1.000000;
+		wrap_mode = clamp;
+		index = 1;
+		[messages]
+		{
+			onbuttonpress = notify(arrange_inventory);
+			onlbuttondown = loadtexture(b_gui_ig_mnu_ip_arrange_dwn);
+			onlbuttonup = loadtexture(b_gui_ig_mnu_ip_arrange_up);
+			onrolloff = loadtexture(b_gui_ig_mnu_ip_arrange_up);
+			onrollover = loadtexture(b_gui_ig_mnu_ip_arrange_hov);
+		}
+	}
+	[t:button,n:button_arrange_dsx_pack_animal_3]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000004;
+		group = multi_inventory_dsx_pack_animal_3;
+		rect = 113,2,137,30;
+		rollover_help = inventory_arrange;
+		texture = b_gui_ig_mnu_ip_arrange_up;
+		uvcoords = 0.000000,0.125000,0.750000,1.000000;
+		wrap_mode = clamp;
+		index = 2;
+		[messages]
+		{
+			onbuttonpress = notify(arrange_inventory);
+			onlbuttondown = loadtexture(b_gui_ig_mnu_ip_arrange_dwn);
+			onlbuttonup = loadtexture(b_gui_ig_mnu_ip_arrange_up);
+			onrolloff = loadtexture(b_gui_ig_mnu_ip_arrange_up);
+			onrollover = loadtexture(b_gui_ig_mnu_ip_arrange_hov);
+		}
+	}
+	[t:button,n:button_arrange_dsx_pack_animal_4]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000004;
+		group = multi_inventory_dsx_pack_animal_4;
+		rect = 113,2,137,30;
+		rollover_help = inventory_arrange;
+		texture = b_gui_ig_mnu_ip_arrange_up;
+		uvcoords = 0.000000,0.125000,0.750000,1.000000;
+		wrap_mode = clamp;
+		index = 3;
+		[messages]
+		{
+			onbuttonpress = notify(arrange_inventory);
+			onlbuttondown = loadtexture(b_gui_ig_mnu_ip_arrange_dwn);
+			onlbuttonup = loadtexture(b_gui_ig_mnu_ip_arrange_up);
+			onrolloff = loadtexture(b_gui_ig_mnu_ip_arrange_up);
+			onrollover = loadtexture(b_gui_ig_mnu_ip_arrange_hov);
+		}
+	}
+	[t:button,n:button_arrange_dsx_pack_animal_5]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000004;
+		group = multi_inventory_dsx_pack_animal_5;
+		rect = 113,2,137,30;
+		rollover_help = inventory_arrange;
+		texture = b_gui_ig_mnu_ip_arrange_up;
+		uvcoords = 0.000000,0.125000,0.750000,1.000000;
+		wrap_mode = clamp;
+		index = 4;
+		[messages]
+		{
+			onbuttonpress = notify(arrange_inventory);
+			onlbuttondown = loadtexture(b_gui_ig_mnu_ip_arrange_dwn);
+			onlbuttonup = loadtexture(b_gui_ig_mnu_ip_arrange_up);
+			onrolloff = loadtexture(b_gui_ig_mnu_ip_arrange_up);
+			onrollover = loadtexture(b_gui_ig_mnu_ip_arrange_hov);
+		}
+	}
+	[t:button,n:button_arrange_dsx_pack_animal_6]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000004;
+		group = multi_inventory_dsx_pack_animal_6;
+		rect = 113,2,137,30;
+		rollover_help = inventory_arrange;
+		texture = b_gui_ig_mnu_ip_arrange_up;
+		uvcoords = 0.000000,0.125000,0.750000,1.000000;
+		wrap_mode = clamp;
+		index = 5;
+		[messages]
+		{
+			onbuttonpress = notify(arrange_inventory);
+			onlbuttondown = loadtexture(b_gui_ig_mnu_ip_arrange_dwn);
+			onlbuttonup = loadtexture(b_gui_ig_mnu_ip_arrange_up);
+			onrolloff = loadtexture(b_gui_ig_mnu_ip_arrange_up);
+			onrollover = loadtexture(b_gui_ig_mnu_ip_arrange_hov);
+		}
+	}
+	[t:button,n:button_arrange_dsx_pack_animal_7]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000004;
+		group = multi_inventory_dsx_pack_animal_7;
+		rect = 113,2,137,30;
+		rollover_help = inventory_arrange;
+		texture = b_gui_ig_mnu_ip_arrange_up;
+		uvcoords = 0.000000,0.125000,0.750000,1.000000;
+		wrap_mode = clamp;
+		index = 6;
+		[messages]
+		{
+			onbuttonpress = notify(arrange_inventory);
+			onlbuttondown = loadtexture(b_gui_ig_mnu_ip_arrange_dwn);
+			onlbuttonup = loadtexture(b_gui_ig_mnu_ip_arrange_up);
+			onrolloff = loadtexture(b_gui_ig_mnu_ip_arrange_up);
+			onrollover = loadtexture(b_gui_ig_mnu_ip_arrange_hov);
+		}
+	}
+	[t:button,n:button_arrange_dsx_pack_animal_8]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000004;
+		group = multi_inventory_dsx_pack_animal_8;
+		rect = 113,2,137,30;
+		rollover_help = inventory_arrange;
+		texture = b_gui_ig_mnu_ip_arrange_up;
+		uvcoords = 0.000000,0.125000,0.750000,1.000000;
+		wrap_mode = clamp;
+		index = 7;
+		[messages]
+		{
+			onbuttonpress = notify(arrange_inventory);
+			onlbuttondown = loadtexture(b_gui_ig_mnu_ip_arrange_dwn);
+			onlbuttonup = loadtexture(b_gui_ig_mnu_ip_arrange_up);
+			onrolloff = loadtexture(b_gui_ig_mnu_ip_arrange_up);
+			onrollover = loadtexture(b_gui_ig_mnu_ip_arrange_hov);
+		}
+	}
 
+
+/////////////
+//MULTI_PORTRAIT_HUMAN
 	[t:itemslot,n:multi_portrait_human_1]
 	{
 		allow_input = false;
@@ -1440,6 +2112,8 @@
 		uvcoords = 0.000000,0.125000,0.750000,1.000000;
 		wrap_mode = clamp;
 	}
+/////////////
+//MULTI_PORTRAIT_PACKMULE
 	[t:itemslot,n:multi_portrait_packmule_1]
 	{
 	  f alpha = 1.000000;
@@ -1552,8 +2226,124 @@
 		uvcoords = 0.000000,0.125000,0.750000,1.000000;
 		wrap_mode = clamp;
 	}
+/////////////
+//MULTI_PORTRAIT_DSX_PACK_ANIMAL
+	[t:itemslot,n:multi_portrait_dsx_pack_animal_1]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000004;
+		group = multi_inventory_dsx_pack_animal_1;
+		index = 0;
+		rect = 89,2,113,30;
+		slot_type = picture;
+		texture = b_gui_ig_mnu_ip_arrange_up;
+		uvcoords = 0.000000,0.125000,0.750000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:itemslot,n:multi_portrait_dsx_pack_animal_2]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000004;
+		group = multi_inventory_dsx_pack_animal_2;
+		index = 0;
+		rect = 89,2,113,30;
+		slot_type = picture;
+		texture = b_gui_ig_mnu_ip_arrange_up;
+		uvcoords = 0.000000,0.125000,0.750000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:itemslot,n:multi_portrait_dsx_pack_animal_3]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000004;
+		group = multi_inventory_dsx_pack_animal_3;
+		index = 0;
+		rect = 89,2,113,30;
+		slot_type = picture;
+		texture = b_gui_ig_mnu_ip_arrange_up;
+		uvcoords = 0.000000,0.125000,0.750000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:itemslot,n:multi_portrait_dsx_pack_animal_4]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000004;
+		group = multi_inventory_dsx_pack_animal_4;
+		index = 0;
+		rect = 89,2,113,30;
+		slot_type = picture;
+		texture = b_gui_ig_mnu_ip_arrange_up;
+		uvcoords = 0.000000,0.125000,0.750000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:itemslot,n:multi_portrait_dsx_pack_animal_5]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000004;
+		group = multi_inventory_dsx_pack_animal_5;
+		index = 0;
+		rect = 89,2,113,30;
+		slot_type = picture;
+		texture = b_gui_ig_mnu_ip_arrange_up;
+		uvcoords = 0.000000,0.125000,0.750000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:itemslot,n:multi_portrait_dsx_pack_animal_6]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000004;
+		group = multi_inventory_dsx_pack_animal_6;
+		index = 0;
+		rect = 89,2,113,30;
+		slot_type = picture;
+		texture = b_gui_ig_mnu_ip_arrange_up;
+		uvcoords = 0.000000,0.125000,0.750000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:itemslot,n:multi_portrait_dsx_pack_animal_7]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000004;
+		group = multi_inventory_dsx_pack_animal_7;
+		index = 0;
+		rect = 89,2,113,30;
+		slot_type = picture;
+		texture = b_gui_ig_mnu_ip_arrange_up;
+		uvcoords = 0.000000,0.125000,0.750000,1.000000;
+		wrap_mode = clamp;
+	}
+	[t:itemslot,n:multi_portrait_dsx_pack_animal_8]
+	{
+	  f alpha = 1.000000;
+	  b common_control = false;
+		common_template = ;
+	  x draw_order = 0x00000004;
+		group = multi_inventory_dsx_pack_animal_8;
+		index = 0;
+		rect = 89,2,113,30;
+		slot_type = picture;
+		texture = b_gui_ig_mnu_ip_arrange_up;
+		uvcoords = 0.000000,0.125000,0.750000,1.000000;
+		wrap_mode = clamp;
+	}
 	
 	/*
+/////////////
+//WINDOW_GOLD_BG_HUMAN
 	[t:window,n:window_gold_bg_human_1]
 	{
 	  f alpha = 1.000000;
@@ -1650,6 +2440,8 @@
 		uvcoords = 0.000000,0.125000,0.648438,1.000000;
 		wrap_mode = clamp;
 	}
+/////////////
+//WINDOW_GOLD_BG_PACKMULE
 	[t:window,n:window_gold_bg_packmule_1]
 	{
 	  f alpha = 1.000000;

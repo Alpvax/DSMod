@@ -941,7 +941,7 @@
 		common_control = true;
 		common_template = button_4;		
 		draw_order = 18;
-		rect = 346,76,546,92;
+		rect = 246,76,416,92;
 		uvcoords = 0.000000,0.000000,1.000000,1.000000;
 		wrap_mode = clamp;
 		disable_color = 0x99555555;
@@ -970,9 +970,10 @@
 		common_control = true;
 		common_template = button_4;		
 		draw_order = 18;
-		rect = 556,76,756,92;
+		rect = 426,76,586,92;
 		uvcoords = 0.000000,0.000000,1.000000,1.000000;
 		wrap_mode = clamp;
+		disable_color = 0x99555555;
 		[messages] { onbuttonpress=playsound(s_e_frontend_tiny_button) & notify(staging_import_character); }
 		[t:text,n:staging_character_import_text]
 		{
@@ -985,7 +986,35 @@
 			font_type = b_gui_fnt_12p_copperplate-light;
 			justify = center;
 			rect = 44,200,300,216;
-			text = "Import Character...";
+			text = "Import DS Character...";
+			texture = none;
+			type = text;
+			uvcoords = 0.000000,0.000000,1.000000,1.000000;
+			wrap_mode = clamp;
+		}
+	}
+	[t:button,n:staging_character_dsx_import]
+	{
+		alpha = 1.000000;
+		common_control = true;
+		common_template = button_4;		
+		draw_order = 18;
+		rect = 596,76,756,92;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+		[messages] { onbuttonpress=playsound(s_e_frontend_tiny_button) & notify(staging_import_dsx_character); }
+		[t:text,n:staging_character_dsx_import_text]
+		{
+			alpha = 1.000000;
+			common_control = false;
+			common_template = ;
+			draw_order = 68;
+			font_color = -1;
+			font_size = 12;
+			font_type = b_gui_fnt_12p_copperplate-light;
+			justify = center;
+			rect = 44,200,300,216;
+			text = "Import DS LOA Character...";
 			texture = none;
 			type = text;
 			uvcoords = 0.000000,0.000000,1.000000,1.000000;

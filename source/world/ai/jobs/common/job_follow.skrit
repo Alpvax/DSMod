@@ -46,7 +46,18 @@ float GetFollowDistance$()
 	
 	if( (party$ != NULL) && m_Go$.Inventory.IsPackOnly )
 	{
-		result$ = ( m_FollowDistanceBase$ + ( ( (1.0 - m_Target$.Go.Mind.Comfort) * 3.0 * m_FollowDistanceBase$ ) ) );
+		// TAT 5/9/03 - the new pack animal follows closer than the old one
+		//		We can tell the difference b/c the new one doesn't flee when an enemy gets near
+		if (m_Go$.Mind.OnEnemyEnteredOCZFlee())
+		{
+			// Pack Mule
+			result$ = ( m_FollowDistanceBase$ + ( ( (1.0 - m_Target$.Go.Mind.Comfort) * 3.0 * m_FollowDistanceBase$ ) ) );
+		}
+		else
+		{
+			// New DSX Pack Animal
+			result$ = ( m_FollowDistanceBase$ + ( ( (1.0 - m_Target$.Go.Mind.Comfort) * 1.5 * m_FollowDistanceBase$ ) ) );
+		}
 	}
 	else
 	{

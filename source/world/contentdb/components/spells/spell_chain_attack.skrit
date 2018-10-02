@@ -46,7 +46,7 @@ startup state CastBegin$
 				return;
 			}
 			
-			PackLightning$( dur$ );
+			PackLightning$( dur$, caster$ );
 			
 			if (effect_script$ != "" )
 			{

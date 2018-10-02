@@ -12,6 +12,10 @@
 		
 		gaspowered_fade_in	= 2.0,0.0,1.0;
 		gaspowered_fade_out	= 2.0,1.0,0.0;
+
+		maddoc_fade_in		= 2.0,0.0,1.0;
+		maddoc_fade_out		= 2.0,1.0,0.0;
+
 	}
 
 	[beats]
@@ -19,6 +23,7 @@
 		intro_beat			= 1.0;
 		microsoft_beat		= 1.0;
 		gaspowered_beat		= 1.0;	
+		maddoc_beat		= 1.0;	
 		monolog_beat		= 1.0;	
 		ds_begin_beat		= 5.0;
 		ds_end_beat			= 4.0;	

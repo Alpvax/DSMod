@@ -72,7 +72,7 @@ state Explode$
 		m_Mind$.Clear();
 		if (!Physics.ExplodeGoWithDamage( m_Go$.GetGoid, m_Go$.GetGoid, m_Go$.GetGoid ))
 		{
-			GoDb.SMarkForDeletion( m_Go$.GetGoid );	
+			GoDb.SMarkGoAndChildrenForDeletion( m_Go$.GetGoid );	
 		}
 		m_Job$.MarkForDeletion();
 	}

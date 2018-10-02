@@ -474,6 +474,8 @@
 	[experience_value]			{  type = float;		default = 0;															doc = "Number of experience points awarded if destroyed/killed";  }
 	[gold_value]				{  type = int;			default = 0;					constrain = positive;					doc = "Value of object in gold pieces";  }
 	[force_no_render]			{  type = bool;			default = false;														doc = "Force this object not to render, but do everything else"; }
+	// MRC 7/18/2003 Bug 1258
+	[force_no_render_click]		{  type = bool;			default = false;														doc = "Allow clicking on object when it's not rendering."; }
 
 	internal* = textures;
 	/*
@@ -493,6 +495,9 @@
 	/*
 		$ see docs in world/global/sounds/sounddb.gas.
 	*/
+	
+	// TAT 5/8/03 - this is used just like the voice component, but it's for the player VO system
+	internal* = vo_voice;
 }
 
 
@@ -553,6 +558,8 @@
 	[use_aiming_error]			{  type = bool;  		default = false;  											doc = "Attack will use aditional Error specified by aming_error_range_[x|y]";  }
 	[aiming_error_range_x]		{  type = float;		default = 0.0;		constrain = positive;					doc = "Random range (-x,x) in degrees to perturb aim by to make less accurate"; }
 	[aiming_error_range_y]		{  type = float;		default = 0.0;		constrain = positive;					doc = "Random range (-y,y) in degrees to perturb aim by to make less accurate"; }
+	
+	[use_equipped_experience]	{  type = bool;			default = false;	doc = "When true, damage this does as a weapon will give experience in whichever weapon is selected by the owner"; }
 }
 
 
@@ -920,10 +927,15 @@
 	[grid_width]				{  type = int;						default = 1;		flags = ADVANCED;	constrain = positive_nonzero;	doc = "Width of object's inventory in grid squares";  }
 	[grid_height]				{  type = int;						default = 1;		flags = ADVANCED;	constrain = positive_nonzero;	doc = "Height of object's inventory in grid squares";  }
 	[is_pack_only]				{  type = bool;						default = false;														doc = "Set to true if this object cannot equip anything";  }
+	// MRC 6/5/2003 - Adding support to allow new pack animal to be a bit more agressive.
+	[is_nonaggressive_pack]		{  type = bool;						default = true;															doc = "Is this a nonagressive pack animal?"; }
 	[gold]						{  type = int;						default = 0;							constrain = positive_nonzero;	doc = "How many gold pieces in this inventory";  }
 	[selected_active_location]	{  type = eInventoryLocation;		default = il_active_melee_weapon;										doc = "Which active slot has been selected (by the user from the active box)";  }
 	[spew_equipped_kill_count]	{  type = string;					default = 1,5;															doc = "Comma-delimited list of kill counts for this template that will result in an equipped item spew (rather than simple inventory spew)";  }
 	[drop_at_use_point]			{  type = bool;						default = false;														doc = "When this object drops its contents, will it use a use point ( if any ) for the drop position?"; }
+
+	// MRC 6/19/2003 - Is this a backpack?
+	[is_backpack]				{  type = bool;						default = false;														doc = "Is this a backpack?"; }
 
 	internal* = equipment;
 	/*
@@ -1110,7 +1122,7 @@
 	[command_cast]				{  type = bool;					default = false;											doc = "For spells - Can this spell only be cast explicitly by the user; actor will not auto-cast spell."; }
 	[effect_duration]	   		{  type = string;				default = ;													doc = "Formula specifying how long a spell effect will last"; }
 	[state_name]				{  type = string;				default = ;													doc = "For spells - the name of the state the target will be in if the spell is a success"; }
-	[caster_state_name]			{  type = string;				defautl = ;													doc = "For spells - the name of the state the caster will be in if the spell is a success"; }
+	[caster_state_name]			{  type = string;				default = ;													doc = "For spells - the name of the state the caster will be in if the spell is a success"; }
 	[require_state_check]		{  type = bool;  				default = true;  											doc = "For spells - checks to see if the target actor is already in state_name";  }
 	[does_damage_per_second]	{  type = bool;					default = false;											doc = "For spells - does this spell do damage per second?"; }
 
@@ -1131,7 +1143,13 @@
 	[attack_damage_modifier_min]{  type = string;				default = ;													doc = "Result of this formula is added to the attack damage min";  }
 	[attack_damage_modifier_max]{  type = string;				default = ;													doc = "Result of this formula is added to the attack damage max";  }
 
+    	[hide_damage_in_tooltip] {  type = bool;                 default = false;                                               doc = "Hide the damage range for this spell in the tooltip or not"; }
+    	[updates_on_transformed] {	type = bool;				default = true;					doc = "if true, the spell's effect will play upon a transformed character"; }
+
 	[cast_sub_animation]		{  type = int;					default = 0;												doc = "Storage for what cast animation to use to cast this spell"; }
+
+	[area_radius]				{ type = float;					default = 0;												doc = "Radius of spell around caster"; }
+	[area_effect]				{ type = string;					default = "";												doc = "Effect to display around caster to demonstrate area of effect."; }
 
 	internal* = enchantments;
 	/*
@@ -1343,6 +1361,7 @@
 	//	job definitions
 
 	[jat_brain]											{  type = string;	 			default = jat_none;		doc = "Defines the brain, which is a supervisor job that is always running independently of action jobs."; 	}
+	[jat_approach]										{  type = string;	 			default = jat_none;		doc = "Move near an object"; 	}
 	[jat_attack_object]									{  type = string;	 			default = jat_none;		doc = "Generic attack-an-object action."; 	}
 	[jat_attack_object_melee]							{  type = string;	 			default = jat_none;		doc = "Attack an object with a melee weapon"; 	}
 	[jat_attack_object_ranged]							{  type = string;	 			default = jat_none;		doc = "Attack an object with a ranged weapon"; 	}

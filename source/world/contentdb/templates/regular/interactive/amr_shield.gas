@@ -1,3 +1,12 @@
+////////////////////////////////////////////////
+// COPY OF ORIGINAL DS1 SHIPPING ASSETS
+//
+// Included here ONLY to fix small bugs. Please enter bug
+// fixes below. ONLY MINIMAL CHANGES are allowed to this file,
+// upon pain of death, or pain of pain.
+//
+
+
 [t:template,n:base_shield]
 {
 	doc = "Shield base template";

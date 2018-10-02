@@ -8,7 +8,7 @@
 		* = b_c_pos_a1_pant_006;
 		* = b_c_pos_a1_pant_008;
 		* = b_c_pos_a1_pant_010;
-	    * = b_c_pos_a1_pant_012;
+	    	* = b_c_pos_a1_pant_012;
 		* = b_c_pos_a1_pant_013;
 		* = b_c_pos_a1_pant_015;
 		* = b_c_pos_a1_pant_016;
@@ -30,6 +30,38 @@
 	}
 
 	[skeleton_good]
+	{
+	}
+
+	[halfgiant]
+	{
+		* = include_common;
+	}
+	
+	[utraean_boy]
+	{
+		* = include_common;
+	}
+	
+	[utraean_girl]
+	{
+		* = include_common;
+	}
+	[dsx_mp_farmboy]
+	{
+		* = include_common;
+	}
+	[dsx_mp_farmgirl]
+	{
+		* = include_common;
+	}
+
+	[dsx_mp_dwarf]
+	{
+		* = include_common;
+	}
+
+	[dsx_mp_skeleton]
 	{
 	}
 }

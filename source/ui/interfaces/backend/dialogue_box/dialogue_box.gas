@@ -137,7 +137,7 @@
 			font_type = b_gui_fnt_12p_copperplate-light;
 			justify = center;
 			rect = 220,146,325,161;
-			text = "Buy Packmule";
+			text = "Buy Pack Animal";
 			uvcoords = 0.000000,0.000000,1.000000,1.000000;
 			wrap_mode = clamp;
 		}

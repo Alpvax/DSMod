@@ -2,6 +2,12 @@
 // Documentation
 
 /*
+@@@@@@@@@@@@@@@@@@@@@@@@@@@
+This sounddb was created for DSX on May 8, 2003 by Sonny Boy.
+
+It's basically the DS1 sounddb, with our stuff added at the bottom.
+@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
 
 	EVENT RULES
 
@@ -222,11 +228,13 @@
     crank:       	generic     :lever_end          	:* = s_e_env_crank_metal; // from set 2001-07-10
     crank2:       	generic     :lever_start          	:* = s_e_env_valve_small; // from set 2001-07-10
     crank2:       	generic     :lever_end          	:* = s_e_env_valve_small; // from set 2001-07-10
-	button_metal:  	generic     :lever_start          	:* = s_e_env_button_metal;
+    button_metal:  	generic     :lever_start          	:* = s_e_env_button_metal;
     button_metal:  	generic     :lever_end          	:* = s_e_env_button_metal;
     button_stone:  	generic     :lever_start          	:* = s_e_env_button_stone; //Waiting to be added
     button_stone:  	generic     :lever_end          	:* = s_e_env_button_stone;
-
+    button_caddy:  	generic     :lever_start          	:* = s_e_caddy_jump;
+    button_caddy:  	generic     :lever_end          	:* = s_e_caddy_jump;
+    
 	//Chests
 	steel:      	generic     :chest_open         	:* = s_e_chest_m_open;
 	steel:      	generic     :chest_close        	:* = s_e_chest_m_close;
@@ -300,6 +308,25 @@
 	grate:     		generic     :door_close        		:* = s_e_env_grate_metal;
 	grate_sliding:	generic     :door_open	         	:* = s_e_env_grate_metal_sliding;
 	grate_sliding:	generic     :door_close        		:* = s_e_env_grate_metal_sliding;
+
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+// DSX DSX DSX DSX DSX DSX DSX DSX DSX DSX DSX DSX DSX DSX DSX DSX DSX DSX DSX DSX 
+	gear:		generic     :door_open        		:* = s_e_env_gear_door_open;
+	gear:		generic     :door_close        		:* = s_e_env_gear_door_open;
+	gear:		generic     :door_opened       		:* = s_e_env_gear_door_shut;
+	gear:		generic     :door_closed       		:* = s_e_env_gear_door_shut;
+
+	town_gate_01:	generic     :door_open        		:* = s_e_env_town_gate_01;
+	town_gate_01:	generic     :door_opened       		:* = s_e_env_gear_door_shut;
+
+	town_gate_02:	generic     :door_open        		:* = s_e_env_town_gate_02;
+	town_gate_02:	generic     :door_opened       		:* = s_e_env_gear_door_shut;
+	
+	set_item:      	generic     :chest_open         	:* = s_e_set_item_chest_open;
+	set_item:      	generic     :chest_close        	:* = s_e_chest_m_close;
+
+
 
 
 	//Generators
@@ -693,7 +720,7 @@
 	amb_water_drip:		* = s_e_env_water_drip;						// 2001-05-14 (needs revision)
 	amb_birds:			* = s_e_env_birds;							// from set 2001-07-02
 	amb_birds1:			* = s_e_ambient_bird1;						// from set 2000-02-24
-    amb_birds2:			* = s_e_ambient_bird2;						// from set 2000-02-24
+    	amb_birds2:			* = s_e_ambient_bird2;						// from set 2000-02-24
 	amb_wind_chimes:	* = s_e_env_wind_chimes;					// from set 2001-07-15
 	amb_wind_monotonic:	* = s_e_env_wind_monotonic;					// from set 2001-07-15
 
@@ -720,5 +747,130 @@
    	cos_gen_amp:		* = s_e_nis_chamberstars_generator_amp;
 	gom_elevator_move:	* = s_e_nis_gom_platform_move;
 	gom_elevator_stop:	* = s_e_nis_gom_platform_stop;
+
+
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+// DSX DSX DSX DSX DSX DSX DSX DSX DSX DSX DSX DSX DSX DSX DSX DSX DSX DSX DSX DSX 
+
+	env_hawk_cry_multiple:			* = s_e_env_hawk_cry_multiple;
+	env_hawk_cry_solo:			* = s_e_env_hawk_cry_solo;
+	env_crow_caw_solo:			* = s_e_env_crow_caw_solo;
+	env_wind_gust:				* = s_e_env_wind_gust;
+	env_thunder_crack:			* = s_e_env_thunder_crack;
+	env_thunder_rumble_distant:		* = s_e_env_thunder_rumble_distant;
+	env_rockslide:				* = s_e_env_rocks_fall;
+	env_hassat_lion_roar:			* = s_e_env_hassat_lion_roar;
+	env_hassat_chuff:			* = s_e_env_hassat_chuff;
+	env_hassat_growl_short:			* = s_e_env_hassat_growl_short;
+	env_hassat_growl_long:			* = s_e_env_hassat_growl_long;
+	env_zaurask_talk:			* = s_e_env_zaurask_talk;
+	env_zaurask_call_two_short_bursts:	* = s_e_env_zaurask_call_two_short_bursts;
+	env_zaurask_call_long:			* = s_e_env_zaurask_call_long;
+	env_clock:				* = s_e_env_clock;
+	env_clock_clang:			* = s_e_env_clock_clang;
+	env_call_ice_giant:			* = s_e_env_call_ice_giant;
+	env_call_ice_giant_02:			* = s_e_env_call_ice_giant_02;
+	env_call_ice_giant_03:			* = s_e_env_call_ice_giant_03;
+	env_gas_flame:				* = s_e_env_gas_flame;
+	env_water_flow:				* = s_e_env_water_flow;
+	s_e_env_chimes:				* = s_e_env_chimes;
+	s_e_env_bird_chatting:			* = s_e_env_bird_chatting;
+	s_e_env_bird_chatting_2:			* = s_e_env_bird_chatting_2;
+	s_e_env_bird_calling:			* = s_e_env_bird_calling;
+	s_e_env_loon_call:			* = s_e_env_loon_call;
+	s_e_env_monkey_call:			* = s_e_env_monkey_call;
+	s_e_env_jungle_thing:			* = s_e_env_jungle_thing;
+	s_e_env_jungle_thing_2:			* = s_e_env_jungle_thing_2;
+	s_e_env_jungle_thing_3:			* = s_e_env_jungle_thing_3;
+	s_e_env_jungle_thing_4:			* = s_e_env_jungle_thing_4;
+	s_e_env_jungle_thing_2:			* = s_e_env_jungle_thing_5;
+	s_e_env_jungle_thing_3:			* = s_e_env_jungle_thing_6;
+	env_utraean_torch_light:		* = s_e_env_utraean_torch_light;
+	env_utraean_floating_statue:		* = s_e_env_utraean_floating_statue;
+	env_clock_gears:			* = s_e_env_clock_gears;
+	env_frog:				* = s_e_env_frog;
+	env_frog_2:				* = s_e_env_frog_2;
+	env_creepy_04:				* = s_e_env_creepy_04;
+	env_horror:				* = s_e_env_horror;
+	env_break_container_wood:		* = s_e_env_break_container_wood;
+	env_grind_loop:				* = s_e_env_grind_loop;
+	env_clock_slow_down:			* = s_e_env_clock_slow_down;
+	env_clock_slow_down:				priority = always;
+	env_loop_wind:				* = s_e_env_loop_wind;
+	env_loop_fire:				* = s_e_env_loop_fire;
+	env_loop_earth:				* = s_e_env_loop_earth;
+	env_loop_water:				* = s_e_env_loop_water;
+	grind_and_gears:			* = s_e_grind_and_gears;
+	grind_and_gears:				priority = always;
+	timing:					* = s_e_timing;
+	timing:						priority = always;
+	env_healing_well:			* = s_e_env_healing_well;
+	grind_NIS_01:				* = s_e_grind_NIS_01;
+	grind_NIS_02:				* = s_e_grind_NIS_02;
+	
+	///////////////////////////////////////////////////////////////////////////
+
+	// Ambient Sounds
+	amb_jungle_1:		* = s_e_ambient_jungle_1;
+	amb_jungle_2:		* = s_e_ambient_jungle_2;
+	amb_crows:		* = s_e_ambient_crows;
+	ambient_clock:		* = s_e_ambient_clock;
+	ambient_wind_frozen_lake:	* = s_e_ambient_wind_frozen_lake;
+	ambient_wind_mines:	* = s_e_ambient_wind_mines;
+	ambient_clock_gears:	* = s_e_ambient_clock_gears;
+	ambient_grind_loop:	* = s_e_env_grind_loop;
+	ambient_zaurask_loop:	* = s_e_ambient_zaurask_loop;
+	env_drip_high:             	* = s_e_env_water_drip_high;
+		
+	//Misc. Sounds, for NIS, taunts, etc...
+	a1_queen_01:	* = s_v_a1_queen_01;
+	a1_queen_02: 	* = s_v_a1_queen_02;
+	a1_queen_03:  	* = s_v_a1_queen_03;
+	a1_queen_04: 	* = s_v_a1_queen_04;
+	a1_queen_05: 	* = s_v_a1_queen_05;
+	a4_cicatrix_01:	* = s_v_a4_cicatrix_01;
+	a4_cicatrix_02:	* = s_v_a4_cicatrix_02;
+	a4_cicatrix_03:	* = s_v_a4_cicatrix_03;
+	a4_cicatrix_04:	* = s_v_a4_cicatrix_04;
+	a4_cicatrix_05:	* = s_v_a4_cicatrix_05;
+	a1_syrd_yell:	* = s_v_a1_syrd_yell;
+	a3_hassat_taunt_01:	* = s_v_a3_hassat_taunt_01;
+	a3_hassat_taunt_02:	* = s_v_a3_hassat_taunt_02;
+	a3_hassat_taunt_03:	* = s_v_a3_hassat_taunt_03;
+	a3_hassat_taunt_04:	* = s_v_a3_hassat_taunt_04;
+	a3_hassat_taunt_05:	* = s_v_a3_hassat_taunt_05;
+	a5_HUB_01:	* = s_v_a5_HUB_01;
+	a5_HUB_02:	* = s_v_a5_HUB_02;
+	a5_HUB_03:	* = s_v_a5_HUB_03;
+	a5_HUB_04:	* = s_v_a5_HUB_04;
+	a5_HUB_05:	* = s_v_a5_HUB_05;
+	a5_HUB_06:	* = s_v_a5_HUB_06;
+	a5_HUB_07:	* = s_v_a5_HUB_07;
+	a5_HUB_08:	* = s_v_a5_HUB_08;
+	a8_nossirom_01:	* = s_v_a8_nossirom_01;
+	a9_shadow_taunt_01:	* = s_v_a9_shadow_taunt_01;
+	a9_shadow_taunt_02:	* = s_v_a9_shadow_taunt_02;
+	a9_shadow_taunt_03:	* = s_v_a9_shadow_taunt_03;
+	a9_shadow_taunt_04:	* = s_v_a9_shadow_taunt_04;
+	a2_troll_taunt_01:	* = s_v_a2_troll_taunt_01;
+	a2_troll_taunt_02:	* = s_v_a2_troll_taunt_02;
+	a3_shadow_taunt_01:	* = s_v_a3_shadow_taunt_01;
+	set_item:		* = s_e_set_item;
+	a7_droc_frenzy:		* = s_e_a7_droc_frenzy;
+	die_krakbone:		* = s_e_die_krakbone;
+	call_krakbone:		* = s_e_call_krakbone;
+	queen_die:		* = s_e_die_lost_queen;
+	queen_tail_die:		* = s_e_die_lost_queen_tail;
+	nis_call_boss_rune_guardian:	* = s_e_nis_call_boss_rune_guardian;
+	rune_call_01:		* = s_e_rune_call_01;
+	rune_call_02:		* = s_e_rune_call_02;
+	grind_01:		* = s_e_grind_01;
+	grind_02:		* = s_e_grind_02;
+	grind_03:		* = s_e_grind_03;
+	grind_04:		* = s_e_grind_04;
+	yeah_baby:		* = s_m_d_k_theme;
+
+	//Chests
 }
 

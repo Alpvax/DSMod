@@ -874,7 +874,9 @@ state Thinking$
 			report.report( "aiskrit", "Thinking$ - WE_ENEMY_ENTERED_OUTER_COMFORT_ZONE\n" );
 		}
 
-		if( m_Mind$.OnEnemyEnteredOCZFlee )
+		// JCD 9/10/03
+		// we don't want enraged pack animals to flee
+		if( m_Mind$.OnEnemyEnteredOCZFlee && !m_Go$.Actor.HasGenericState("animal_enraged") )
 		{
 			TryFlee$( MakeGoid( m_Mind$.HandlingMessage.Data1 ).Go );
 		}
@@ -1263,7 +1265,9 @@ state Thinking$
 			return;
 		}
 
-		if( m_Mind$.AliveEnemiesVisible() && m_Mind$.OnEnemyEnteredOCZFlee )
+		// JCD 9/10/03
+		// we don't want pack animals that are enraged to flee.
+		if( m_Mind$.AliveEnemiesVisible() && m_Mind$.OnEnemyEnteredOCZFlee && !m_Go$.actor.HasGenericState("animal_enraged"))
 		{
 			if( m_Go$.IsHuded )
 			{
@@ -1529,7 +1533,9 @@ state Attacking$
 			report.report( "aiskrit", "Attacking$ - WE_ENEMY_ENTERED_OUTER_COMFORT_ZONE\n" );
 		}
 
-		if( m_Mind$.OnEnemyEnteredOCZFlee )
+		// JCD 9/10/03
+		// we don't want enraged pack animals to flee
+		if( m_Mind$.OnEnemyEnteredOCZFlee && !m_Go$.actor.HasGenericState("animal_enraged"))
 		{
 			TryFlee$( MakeGoid( m_Mind$.HandlingMessage.Data1 ).Go );
 		}
@@ -1668,10 +1674,15 @@ state Attacking$
 
 		Go victim$ = m_Mind$.EngagedObject.Go;
 		Go newAttacker$ = MakeGoid( m_Mind$.HandlingMessage.Data1 ).Go;
-
-		if( ( victim$ != NULL ) && ( newAttacker$ != NULL ) )
+	
+		// TRJ - 6/5/03 - added check to make sure the actor is alive.  caused problems when an actor was killed
+		// by someone who wasn't the person they were attacking and they died before they had a chance to reach the
+		// person they were going for.  did you get that?
+		if( ( victim$ != NULL ) && ( newAttacker$ != NULL ) && !IsDead(m_Go$.Aspect.GetLifeState()) )
 		{
-			if( victim$.HasActor && newAttacker$.HasActor )
+			// JCD 9/9/03
+			// have to make sure both have minds.
+			if( victim$.HasActor && newAttacker$.HasActor && victim$.HasMind && newAttacker$.HasMind )
 			{
 				////////////////////////////////////////
 				//	respond if the if we're being damaged by a melee attacker

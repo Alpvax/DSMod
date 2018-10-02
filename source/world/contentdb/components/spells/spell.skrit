@@ -151,7 +151,6 @@ startup state Active$
 {
 	Trigger OnGoHandleMessage$( WE_CONSTRUCTED )
 	{
-//		report.generic("constructed\n");
 		if( owner.Go.IsOmni )
 		{
 //			report.generic("Omni Spell going into inactive state\n");
@@ -161,8 +160,6 @@ startup state Active$
 
 	Trigger OnGoHandleMessage$( WE_ENTERED_WORLD )
 	{
-//		report.generic("entered world\n");
-
 		if( !IsCastSpell$ )
 		{
 			SetState Done$;
@@ -203,10 +200,30 @@ startup state Active$
 		int numofevents$ = Caster$.Go.Aspect.AspectHandle.Blender.GetNumberOfEvents(ANIMEVENT_ATTACH_AMMO);
 		if (numofevents$ == 0) 
 		{
-			goid target$ = Caster$.Go.Follower.CurrentOrientTarget;
+			goid engaged$ = Caster$.Go.Mind.EngagedObject;
+			goid target$;
+
+			// MRC 7/16/2003 Be more thorough about determining the target
+			// for this spell.  Instead of just getting the orient target of
+			// the caster, try it's mind first.  Then default to itself.
+			// Originally, it only got the orient target, which meant that
+			// WE_REQ_CAST_CHARGE never fired for creatures that cannot turn to
+			// follow targets.  (Like big bosses.)
+			if( engaged$.IsValid )
+			{
+				target$ = engaged$;
+			}
+			else if( Caster$.Go.Follower.IsOrientModeDefined )
+			{
+				target$ = Caster$.Go.Follower.CurrentOrientTarget;
+			}
+			else
+			{
+				target$ = Caster$;
+			}
+			
 			if( target$.IsValid )
 			{
-//				report.generic("charge!!\n");
 				PostWorldMessage( WE_REQ_CAST_CHARGE, Caster$, owner.Goid, MakeInt( target$ ), 0 );
 			}
 		}
@@ -299,7 +316,28 @@ startup state Active$
 	{
 		if( Caster$.IsValid )
 		{
-			goid target$ = Caster$.Go.Follower.CurrentOrientTarget;
+			goid engaged$ = Caster$.Go.Mind.EngagedObject;
+			goid target$;
+
+			// MRC 7/16/2003 Be more thorough about determining the target
+			// for this spell.  Instead of just getting the orient target of
+			// the caster, try it's mind first.  Then default to itself.
+			// Originally, it only got the orient target, which meant that
+			// WE_REQ_CAST_CHARGE never fired for creatures that cannot turn to
+			// follow targets.  (Like big bosses.)
+			if( engaged$.IsValid )
+			{
+				target$ = engaged$;
+			}
+			else if( Caster$.Go.Follower.IsOrientModeDefined )
+			{
+				target$ = Caster$.Go.Follower.CurrentOrientTarget;
+			}
+			else
+			{
+				target$ = Caster$;
+			}
+
 			if( target$.IsValid )
 			{
 //				report.generic("attaching?!!\n");

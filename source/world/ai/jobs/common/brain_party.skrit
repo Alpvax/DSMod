@@ -885,66 +885,120 @@ bool TryChannelMana$( GopColl Chanelling_members$ )
 	return false;
 }
 
+// JCD 5/21/2003
+////////////////////////////////////////
+// function TrySupportCreateMonsterList
+// this function will create a list of all the monsters which are attacking our party/team
+bool TrySupportCreateMonsterList$( GopColl alive_members$ )
+{
+	// clear out the temp variables we need to create our list
+	m_Party$.TempGopCollA.Clear;		// holds the list of attacking monsters upon function return
+	m_Party$.TempGopCollB.Clear;		// contains unuseful info upon function return
+	m_Party$.TempGopCollC.Clear;		// contains unuseful info upon function return
+
+	// used to determine whether query was succesful
+	bool queryResult$;
+
+	
+	// TAT 4/22/2003 - what if our teammate is under attack, but not fighting?
+	//		Don't change computer behavior
+	if (m_Go$.Player.Controller == PC_COMPUTER)
+	{
+		queryResult$ = AIQuery.Get( m_Go$, QT_FIGHTING, alive_members$, m_Party$.TempGopCollC );
+	}
+	
+	else
+	{
+		// humans - look for teammates under attack 
+		//		checking all alive teammates, not just ALIVE_CONSCIOUS ones 
+		//			- if they're unconscious, still want to help
+
+		m_Mind$.TempQtColl1.Clear;
+		m_Mind$.TempQtColl1.Add( QT_UNDERATTACK  );
+		m_Mind$.TempQtColl1.Add( QT_ALIVE );
+		queryResult$ = AIQuery.Get( m_Go$, m_Mind$.TempQtColl1, m_Go$.Children, m_Party$.TempGopCollC );
+	}
+
+	// if the query was succesful
+	// fill TempGopCollA with monsters which are attacking our party members
+	if ( queryResult$ )
+	{	
+		int ih$ = 0;
+		int ihend$ = m_Party$.TempGopCollC.Size();
+		Go partyMember$ = NULL;
+		// iterate through our attacked players
+		while( ih$ != ihend$ )
+		{
+			// grab an attacked party member
+			partyMember$ = m_Party$.TempGopCollC.Get( ih$ );
+			// grab party member's attackers and stick them into temp list B
+			partyMember$.Mind.GetEngagedMeEnemies(m_Party$.TempGopCollB);
+
+			// add enemies attacking partyMember into temp list A
+			int jh$ = 0;
+			int jhend$ = m_Party$.TempGopCollB.Size();
+			while( jh$ != jhend$ )
+			{
+				m_Party$.TempGopCollA.Add(m_Party$.TempGopCollB.Get( jh$ ) );	
+				jh$ += 1;
+			}
+
+			// clear out our temp list which holds attackers
+			m_Party$.TempGopCollB.Clear();
+
+			ih$ += 1;
+		}
+		// if no monsters were found attacking us...
+		if( m_Party$.TempGopCollA.Size() < 1 )
+		{
+			return( false );
+		}
+	}
+	// our query was unsuccesful
+	else
+	{
+		return( false );
+	}
+
+	// our list of monsters was succesfully filled
+	return( true );
+}
+
 ////////////////////////////////////////
 //	function TrySupport
-//	find a party member in trouble, and try to help him out.
+// JCD 5/21/2003
+//	functionality -- 
+//  1. create a list of all monsters which are attacking our party/team members
+//  2. create a list of all idle party/team members
+//  3. iterate idle friends choosing the closest monster for them to attack
 
 bool TrySupport$( GopColl alive_members$ )
 {
-	m_Party$.TempGopCollB.Clear;
-	m_Party$.TempGopCollC.Clear;
-	Go member$ = NULL;
-	
-	m_Party$.TempQtColl1.Add( QT_LIFE_LOW );
-	
-	////////////////////////////////////////
-	//	get the fighting actor who is most in trouble
-	
-	if( AIQuery.Get( m_Go$, QT_FIGHTING, alive_members$, m_Party$.TempGopCollC ) )
-	{
-		// if we have anyone with low life then try to help out the most hurt character.
-		
-		if( AIQuery.Get( m_Go$, QT_LIFE_LOW, m_Party$.TempGopCollC, m_Party$.TempGopCollB ) )
-		{
-			report.reportf( "aiskrit", "'%s' -  zurb1\n",m_Go$.TemplateName );
 
-			if( !AIQuery.GetMin( m_Go$, QT_SURVIVAL_FACTOR, m_Party$.TempGopCollB, m_Party$.TempGopCollC ) )
-			{
-				report.reportf( "aiskrit", "'%s' -  can't find weakest member\n",m_Go$.TemplateName );
-				return( false );
-			}
-			
-		}
-		member$ = m_Party$.TempGopCollC.Get( 0 );
-	}
+	// clear out the temp variables we are going to use to create our monster list
+	m_Mind$.TempQtColl1.Clear();
 	
-	if( member$ == NULL )
+	// create the list of monsters that are attacking us
+	// note : TempGopCollA has needed info in it after TrySupportCreateMonsterList is called and shouldn't be cleared!
+	if( !TrySupportCreateMonsterList$(alive_members$) )
 	{
-		report.reportf( "aiskrit", "'%s' -  can't find member being attacked\n",m_Go$.TemplateName );
+		report.reportf( "aiskrit", "'%s' -  can't find monsters attacking our players\n",m_Go$.TemplateName );
 		return( false );
 	}
-	
-	report.reportf( "aiskrit", "'%s' -  found weakest member '%s', goid 0x%08x\n", m_Go$.TemplateName, member$.TemplateName, member$.Goid );
 
-	// Get the enemy that our friend thinks is the best one to attack.	
-	Go focusEnemy$ = member$.Mind.GetBestFocusEnemy();; 
-	
-	m_Party$.TempGopCollA.Clear;
-	m_Party$.TempGopCollB.Clear;
-	
-	if( focusEnemy$ == NULL )
-	{
-		report.reportf( "aiskrit", "'%s' -  can't find attacking enemy\n",m_Go$.TemplateName );
-		return( false );
-	}
+	report.reportf( "aiskrit", "'%s' -  found monsters attacking our party\n", m_Go$.TemplateName );
 
 	////////////////////////////////////////
 	//	find idle members to help
+
+	// clear out temp variables which we need to use
 	m_Mind$.TempQtColl1.Clear;
+	m_Party$.TempGopCollB.Clear;	// will contain all idle concious party members
+
 	m_Mind$.TempQtColl1.Add( QT_IDLE  );
 	m_Mind$.TempQtColl1.Add( QT_ALIVE_CONSCIOUS );
 	
-	if( !AIQuery.Get( m_Go$, m_Mind$.TempQtColl1, m_Go$.Children, m_Party$.TempGopCollA ) )
+	if( !AIQuery.Get( m_Go$, m_Mind$.TempQtColl1, m_Go$.Children, m_Party$.TempGopCollB ) )
 	{
 		report.reportf( "aiskrit", "'%s' -  can't find idle member\n",m_Go$.TemplateName );
 		return( false );
@@ -953,7 +1007,7 @@ bool TrySupport$( GopColl alive_members$ )
 	Go helper$ = NULL;
 	bool helped$ = false;
 	int ih$ = 0;
-	int ihend$ = m_Party$.TempGopCollA.Size();
+	int ihend$ = m_Party$.TempGopCollB.Size();
 
 	report.reportf( "aiskrit", "'%s' - picking helpers\n",m_Go$.TemplateName );
 
@@ -966,112 +1020,107 @@ bool TrySupport$( GopColl alive_members$ )
 		followMode$ = UIPartyManager.FollowMode;
 	]]
 	
+	// iterate through our idle alive concious party members
 	while( ih$ != ihend$ )
 	{
-		helper$ = m_Party$.TempGopCollA.Get( ih$ );
-		
-		// check to see if this party member wants to help
-		if( !helper$.Mind.ActorAutoDefendsOthers || ( helper$.Mind.MovementOrders == MO_HOLD ) )
-		{
-			ih$ += 1;
-			continue;
-		}
-		
-		// we want to try to attack someone standing right on top of us first
-		// attack our best focus to avoid people running around all willy nilly
-		
-		if( !helper$.Inventory.IsRangedWeaponSelected && !helper$.Inventory.IsSpellSelected )
-		{
-			Go target$ = helper$.Mind.GetBestFocusEnemy();
-			
-			if( target$ != NULL )
-			{
-				if( helper$.Mind.IsInMeleeEngageRange( target$ ) )
-				{
-					if( TryRespondToAttack$( helper$, target$ ) )
-					{
-						report.reportf( "aiskrit", "'%s' -  Trying to attack someone near me instead of running around\n",m_Go$.TemplateName );
-						helped$ = true;
-						ih$ += 1;
-						continue;
-					}
-				}
-			}
-		}
-			
-		// can we see the action?
-		if ( !followMode$ && ( helper$.Mind.SightRange < helper$.Mind.GetDistance( member$ ) ) )
-		{
-			report.reportf( "aiskrit", "'%s' -  wanted to help but wasn't close enough.\n",m_Go$.TemplateName );
-			ih$ += 1;
-			continue;
-		}
-		
-		///////////////////////////////////////////////////////////////////////////////////////////////
-		// we can respond to melee attackers with anyone, but only ranged attackers with ranged friends.
-		// but anyone can respond if the enemy is close enough.
-
-		if(	!MayRespondToAttack$( helper$, focusEnemy$ ) )
-		{
-			ih$ += 1;
-			continue;
-		}
-
-		bool enemyVeryCloseToWeakling$ = member$.Mind.InnerComfortZoneRange > member$.Mind.GetDistance( focusEnemy$ );
-
-		// don't help members who are engaged in log-ranged combat if we're melee
-		if(	!enemyVeryCloseToWeakling$
-			&& ( ( focusEnemy$.Inventory.IsRangedWeaponSelected || focusEnemy$.Inventory.IsSpellSelected )
-				&& ( !helper$.Inventory.IsRangedWeaponSelected 
-					&& !helper$.Inventory.IsSpellSelected ) ) )
-		{
-			ih$ += 1;
-			continue;
-		}
-
-		if( focusEnemy$ != NULL && helper$ != NULL )
-		{
-			report.reportf( "aiskrit", "'%s' -  %s is helping a friend under attack (1).\n",m_Go$.TemplateName, helper$.TemplateName );
-			helper$.Mind.SDoJob( MakeJobReq( JAT_ATTACK_OBJECT, JQ_ACTION, QP_FRONT, AO_PARTY, focusEnemy$.Goid ) );
-			helped$ = true;
-			ih$ += 1;
-			continue;
-		}
-		
-		///////////////////////////////////////////////////////////////////////////////////////////////
-		// if we couldn't attack what our weakest friend was getting attacked by then lets try to attack what he is attacking.
-
-		Go tempEnemy$ = member$.Mind.EngagedObject.Go;
 		helper$ = m_Party$.TempGopCollB.Get( ih$ );
-			
-		if( tempEnemy$ == NULL )
+
+		// check to see if this party member wants to help 
+
+		if( !helper$.Mind.ActorAutoDefendsOthers		|| 
+		    ( helper$.Mind.MovementOrders == MO_HOLD )  ||	// must have -- move freely or engage for movement
+			!( helper$.Mind.CombatOrders == CO_FREE )   ||	// must have -- attack freely for combat
+			( helper$.Inventory.IsPackOnly() == TRUE ) )	// if pack animal -- don't help
 		{
 			ih$ += 1;
 			continue;
 		}
-		
+
+		// must have -- melee/ranged weapon, or offensive spell
+		// just check for spell since other options are acceptable
 		if( helper$.Inventory.IsSpellSelected )
 		{
-			if ( GetStrongestAutoAttackSpell$( helper$, tempEnemy$ ) == NULL )
+			if( !helper$.Inventory.SelectedSpell.GetMagic().IsOffensive() )
 			{
 				ih$ += 1;
 				continue;
 			}
 		}
-		
-		if(		( member$.Mind.EngagedObject.IsValid )
-			 && ( followMode$ 
-			 || ( ( !member$.Inventory.IsRangedWeaponSelected && !member$.Inventory.IsSpellSelected )
-			   && ( MayRespondToAttack$( m_Party$.TempGopCollB.Get( ih$ ), tempEnemy$ ) ) ) ) )
+
+		// choose which enemy this helper should attack based off of proximity
+		Go focusEnemy$;
+		// TAT - use new func for humans
+		if (m_Go$.Player.Controller == PC_COMPUTER)
 		{
-			if( ( member$ != NULL ) && 
-				( helper$ != NULL ) &&
-				AIQuery.Is( m_Go$, member$, QT_FIGHTING) )
+			focusEnemy$ = helper$.Mind.GetBestFocusEnemy(); 
+		}
+		else
+		{
+			// this will find the best enemy from the previously filled list
+			#only( game )
+			[[
+			focusEnemy$ = helper$.Mind.GetBestSupportEnemy(m_Party$.TempGopCollA);
+			]]
+		}
+		
+
+
+		if( focusEnemy$ == NULL )
+		{
+			report.reportf( "aiskrit", "'%s' -  can't find attacking enemy\n",m_Go$.TemplateName );
+			ih$ += 1;
+			continue;
+		}
+
+		// TAT 4/22/2003 - this checks to make sure the friend is within range before trying to help
+		//		we don't really care about range - so I'm taking out the check
+		//		NOTE: this might cause a problem if we try to help someone who we can't reach, because
+		//		we have none-overlapping frustums
+
+		// still check for computer guys
+		if (helper$.Player.Controller == PC_COMPUTER)
+		{
+			// can we see the action?
+			if ( !followMode$ && ( helper$.Mind.SightRange < helper$.Mind.GetDistance( focusEnemy$ ) ) )
 			{
-				report.reportf( "aiskrit", "'%s' -  %s is helping a friend under attack (2).\n",m_Go$.TemplateName, helper$.TemplateName );		
-				helper$.Mind.SDoJob( MakeJobReq( JAT_ATTACK_OBJECT, JQ_ACTION, QP_FRONT, AO_PARTY, tempEnemy$.goid ) );
+				report.reportf( "aiskrit", "'%s' -  wanted to help but wasn't close enough.\n",m_Go$.TemplateName );
+				ih$ += 1;
+				continue;
+			}
+		}
+
+		// JCD 5/4/03
+		// @TODO we may want to add a check here to see whether helper can path to focus enemy
+
+		
+		if( focusEnemy$ != NULL && helper$ != NULL )
+		{
+
+			// if helper is not melee we may have to move within range instead of just giving attack command
+			if( helper$.Inventory.IsRangedWeaponSelected || helper$.Inventory.IsSpellSelected )
+			{
+				// if we have LOS just give job JAT_ATTACK_OBJECT instead of JAT_APPROACH
+				if( helper$.Mind.IsLosClear(focusEnemy$) )
+				{
+					report.reportf( "aiskrit", "'%s' -  %s is helping a friend under attack (2).\n",m_Go$.TemplateName, helper$.TemplateName );
+					helper$.Mind.SDoJob( MakeJobReq( JAT_ATTACK_OBJECT, JQ_ACTION, QP_FRONT, AO_PARTY, focusEnemy$.Goid ) );
+				}
+				// if we don't have LOS then we are going to need to move to a closer range
+				else
+				{
+					report.reportf( "aiskrit", "'%s' - %s is moving to an enemy attacking a friend.\n", m_Go$.TemplateName, helper$.TemplateName );
+					helper$.Mind.RSApproach(focusEnemy$, 3, QP_FRONT, AO_PARTY, false);
+				}
+			}
+			// otherwise we are melee, so just give the attack object order
+			else
+			{
+				report.reportf( "aiskrit", "'%s' -  %s is helping a friend under attack (1).\n",m_Go$.TemplateName, helper$.TemplateName );
+				helper$.Mind.SDoJob( MakeJobReq( JAT_ATTACK_OBJECT, JQ_ACTION, QP_FRONT, AO_PARTY, focusEnemy$.Goid ) );
 			}
 			helped$ = true;
+			ih$ += 1;
+			continue;
 		}
 
 		ih$ += 1;
@@ -1521,6 +1570,49 @@ bool ThinkOffense$()
 	return( false );
 }
 
+/*
+// JCD
+////////////////////////////////////////
+//	function GetEnemyAttackingAlly
+//	returns an enemy that is attacking an ally
+
+Go  GetEnemyAttackingAlly$()
+{
+	Go temp$ = NULL;
+	if( num_alive_members_in_party$ > 0 )
+	{
+		// fill the collection with all alive friends
+		AIQuery.Get( m_Go$, QT_ALIVE_CONSCIOUS, m_Go$.Children, m_Party$.TempGopCollA );
+
+		int ih$ = 0;
+		int ihend$ = m_Party$.TempGopCollA.Size();
+
+		while( ih$ != ihend$ )
+		{
+			Go partyMember$ = m_Party$.TempGopCollA.Get( ih$ );
+			m_Mind$.TempGopColl1.Clear;
+			partyMember$.Mind.GetEngagedMeEnemies( m_Mind$.TempGopColl1 );
+			int i$ = 0;
+			int iend$ = m_Mind$.TempGopColl1.size;
+			while( i$ < iend$ )
+			{
+				if( temp$ == NULL )
+				{
+					temp$ = m_Mind$.TempGopColl1.Get( i$ );
+				}
+				if( partyMember$.Mind.IsFriend(temp$) )
+				{
+					temp$ = NULL;
+				}
+				i$ = i$ + 1;
+			}
+			ih$ = ih$ + 1;
+		}
+	}
+	return temp$;
+}
+*/
+
 /////////////////////
 // Certain actions can only happen a few times before they need to recharge, Timer 1 corresponds to resurection.
 
@@ -1587,6 +1679,31 @@ Trigger OnTimer$( 11 )
 state Thinking$
 {
 	float update$ = 0.1;
+
+	/*
+	// JCD
+	trigger OnTimer$( 15 )
+	{
+		// $$$ temp
+		Report.Genericf( "Hit Jay's timer for %s\n", m_Go$.TemplateName );
+		This.CreateTimer( 15 , 4 );
+
+		// TAT - only do this if we're idle
+		if ( !m_Mind$.AmBusy() )
+		{
+			Report.Genericf( "Idle for %s\n", m_Go$.TemplateName);
+
+			Go enemyTarget$;
+			enemyTarget$ = GetEnemyAttackingAlly$();
+			if( enemyTarget$ != NULL )
+			{
+				// $$$ temp
+				Report.Genericf( "Found an enemy - %s -  for %s\n", enemyTarget$.TemplateName, m_Go$.TemplateName );
+				//m_Mind$.SDoJob( MakeJobReq( JAT_ATTACK_OBJECT, JQ_ACTION, QP_FRONT, AO_PARTY, enemyTarget$.Goid ) );
+			}
+		}
+	}
+	*/
 	
 	////////////////////////////////////////
 	//	process messages sent to party members
@@ -1742,5 +1859,13 @@ state Thinking$
 	{
 		update$ = m_Mind$.SensorScanPeriod;
 		m_Job$.SetTimer( m_Mind$.SensorScanPeriod );
+
+		/*
+		// TAT - only create this timer for humans
+		if (m_Go$.Children.Get( 0 ).Player.Controller != PC_COMPUTER)
+		{
+			This.CreateTimer( 15 , 5 );	// JCD
+		}
+		*/
 	}
 }

@@ -29,7 +29,7 @@ owner = GoSkritComponent;
 
 //////////////////////////////////////////////////////////////////////////////
 
-event OnGoHandleMessage$( eWorldEvent e$, WorldMessage msg$ )
+event OnGoHandleMessage$( eWorldEvent e$, WorldMessage /*msg$*/ )
 {
 	if ( StringTool.IsEmpty( bool_variable$ ) )
 	{

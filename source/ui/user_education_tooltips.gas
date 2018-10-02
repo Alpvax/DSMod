@@ -25,6 +25,7 @@
 		item_spell_book_active_slot	= "Drag to Inventory to remove from Spell Book";
 		item_store					= "Drag to Inventory to purchase. Ctrl+click to quickly buy and sell.";
 		item_spellbook				= "Drag to Equipment Panel to equip or right-click to read";
+        	item_backpack               = "Right-click to open";
 		
 		// paperdoll
 		item_paperdoll_rollover				= "Drag to Inventory to unequip";
@@ -44,6 +45,10 @@
 		left_potion			= "Left-click to use";
 		left_creature		= "Left-click to attack";
 		left_ground_item	= "Left-click to pick up item";
+		
+		// JCD 6/30/03 -- rollover help while in transformed state
+		left_transformed_ground_item	= "Can not pick up items while transformed";
+		talk_transformed		= "Can not talk while transformed";
 
 		lore_book			= "Right-click to read";
 		
@@ -191,6 +196,9 @@
 		active_spell_2 = "Currently available spell appearing in slot 4 on Weapons Panel";
 		spellbook_header = "Currently selected Spell Book (highlighted in gray)";
 
+		// MRC 7/21/2003 Backpack
+		backpack_exit = "Close Backpack";
+
 		// Mega Map
 		map_exit = "Close Megamap";
 
@@ -198,9 +206,10 @@
 		toggle_inventory = "Open or close Inventory and Character Attributes. (Hotkey: <inventory>)";
 		active_item = "Weapon or spell you are currently using";
 
+
 		// Dialogue Box
 		accept = "Accept this person's offer to join your party";
-		buy_packmule = "Buy a packmule";
+		buy_packmule = "Buy a pack animal";
 		close_dialogue = "Close this dialogue window";
 		shop = "View this merchant's inventory";
 		decline = "Decline this person's offer to join your party";
@@ -230,5 +239,16 @@
 		trade_source = "Place items in this window to offer them in trade.";
 		trade_accept = "Accept this trade";
 		trade_cancel = "Cancel trade; items and gold will return to your Inventory.";
+
+		// DSX stuff
+		button_unsummon_creature = "Unsummon creatures for all selected party members (Hotkey: <unsummon_critter>).";
+		button_untransform_character = "Untransform selected party members (Hotkey: <untransform_actor>).";
+		button_redistribute_potions = "Redistribute health and mana potions amongst the party (Hotkey: <redistribute_potions>).";
+		button_world_map = "Open World Map (Hotkey: <toggle_world_map>)";
+		worldmap_exit = "Close World Map";
+
+        // MRC 6/11/2003 Rollover help for the Sell all button.
+     	button_auto_sell = "Click to automatically sell items from the inventory.";
+		button_auto_sell_list = "Click and hold to choose from a list of auto sell options.";
 	}
 }

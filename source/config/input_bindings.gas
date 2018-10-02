@@ -91,6 +91,7 @@
 			[party_heal_magic_with_potions] { screen_name = "Drink Mana Potion";			input = key_m; 											}
 	
 			[attack]                        { screen_name = "Force Attack";					input = key_a;       					   				}
+			[attack_area]			{ screen_name = "Attack Area";					input = key_shift;			qualifiers = shift | key_down | key_up;		}
 			[cast]                          { screen_name = "Force Cast Spell";				input = key_c;             					   			}
 			[guard]                         { screen_name = "Guard Character";				input = key_g;       					   				}
 			[move]                          { screen_name = "Move";							input = key_none;       				   				}
@@ -204,20 +205,26 @@
 	
 			[toggle_item_labels]			{ screen_name = "Item Labels";					input = key_alt;		qualifiers = alt | key_up;		}
 			[toggle_mini_map]        		{ screen_name = "MegaMap";						input = key_tab;										}
+			[toggle_world_map]        		{ screen_name = "World Map";						input = key_tab;	qualifiers = shift;			}
 			[toggle_status_bars]     		{ screen_name = "Health/Mana Bars";      		input = key_x;          								}
 	
 			[toggle_gui_edit_box]			{ screen_name = "Chat Window";			   		input = key_return;										}
 			[toggle_gui_edit_box_team]		{ screen_name = "Chat Window (Send to Team)";	input = key_return;		qualifiers = shift;				}
-			[toggle_gui_edit_box_everyone]	{ screen_name = "Chat Window (Send to All)";    input = key_return;		qualifiers = control;			}
+			[toggle_gui_edit_box_everyone]		{ screen_name = "Chat Window (Send to All)";    input = key_return;		qualifiers = control;			}
 			[expert_gui_mode]        		{ screen_name = "Minimize/Maximize Weapons Panel"; input = key_w;          								}
-			[toggle_quest_log]				{ screen_name = "Journal";	      				input = key_j;											}
-			[collect_loot]					{ screen_name = "Collect Loot";		      		input = key_z;											}
-			[chat_history_up]				{ screen_name = "Chat History: Scroll Up";		input = key_pageup;										}
-			[chat_history_down]				{ screen_name = "Chat History: Scroll Down";	input = key_pagedown;									}
+			[toggle_quest_log]			{ screen_name = "Journal";	      				input = key_j;											}
+			[collect_loot]				{ screen_name = "Collect Loot";		      		input = key_z;											}
+			[chat_history_up]			{ screen_name = "Chat History: Scroll Up";		input = key_pageup;										}
+			[chat_history_down]			{ screen_name = "Chat History: Scroll Down";	input = key_pagedown;									}
 			[chat_history_clear]			{ screen_name = "Chat History: Clear History";	input = key_end;										}
-			[chat_history_lock]				{ screen_name = "Chat History: Lock Toggle";	input = key_scrolllock;									}
+			[chat_history_lock]			{ screen_name = "Chat History: Lock Toggle";	input = key_scrolllock;									}
 	
-			[disband_selected]				{ screen_name = "Disband Selected Members";		input = key_d;			 qualifiers = control;			}
+			[disband_selected]			{ screen_name = "Disband Selected Members";		input = key_d;			 qualifiers = control;				}
+
+			[unsummon_critter]			{ screen_name = "Unsummon party creatures"; 		input = key_u;									}
+			[untransform_actor]			{ screen_name = "Untransform party members";		input = key_y;									}
+
+			[redistribute_potions]			{ screen_name = "Redistribute potions";			input = key_r;									}
 		}
 
 		//////////////////////////////////////////////////////////////////////////////

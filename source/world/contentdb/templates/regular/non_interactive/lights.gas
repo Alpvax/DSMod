@@ -1,18 +1,75 @@
-[t:template,n:brazier_glb_brass_01]
+[t:template,n:base_light]
 {
 	category_name = "lighting";
-	doc = "brazier";
-	specializes = non_interactive_blocking;
+	doc = "base_light";
+	specializes = non_interactive;
 	[aspect]
 	{
 		lodfi_lower = 0;
 		lodfi_upper = 0;
+	}
+	[light_flicker_lightweight]
+	{
+		duration = 0;
+		flicker_frequency_max = 12;
+		flicker_frequency_min = 10;
+		magnitude = 0.15;
+	}
+}
+[t:template,n:base_lamp_ice]
+{
+	category_name = "lighting";
+	doc = "base_lamp_ice";
+	specializes = base_light;
+	[aspect]
+	{
+		scale_base = 2;
+		[textures]
+		{
+			0 = b_i_ice_lamp-posts;
+		}
+	}
+	[common]
+	{
+		screen_name = "Lamp";
+	}
+}
+[t:template,n:base_fire_glb_pit_gom]
+{
+	category_name = "lighting";
+	doc = "base_firepot_evil";
+	specializes = base_light;
+	[aspect]
+	{
+		does_block_path = true;
+		model = m_i_glb_gom-fire-pit;
+		[textures]
+		{
+			0 = b_i_glb_gom-fire-pit;
+		}
+	}
+}
+[t:template,n:base_brazier_glb]
+{
+	category_name = "lighting";
+	doc = "base_brazier";
+	specializes = base_light;
+	[aspect]
+	{
+//		display_cost = 0.5771575;
+		does_block_path = true;
 		model = m_i_glb_brazier-01;
 		[textures]
 		{
 			0 = b_i_glb_brazier-01;
 		}
 	}
+}
+[t:template,n:brazier_glb_brass_01]
+{
+	category_name = "lighting";
+	doc = "brazier";
+	specializes = base_brazier_glb;
 	[common]
 	{
 		[template_triggers]
@@ -24,23 +81,101 @@
 			}
 		}
 	}
-	[light_flicker_lightweight]
+}
+[t:template,n:brazier_glb_golden_01]
+{
+	category_name = "lighting";
+	doc = "brazier_gold_flame";
+	specializes = base_brazier_glb;
+	[common]
 	{
-		duration = 0;
-		flicker_frequency_max = 12;
-		flicker_frequency_min = 10;
-		magnitude = 0.15;
+		[template_triggers]
+		{
+			[*]
+			{
+				action* = call_sfx_script("brazier_fire_golden");
+				condition* = receive_world_message("WE_ENTERED_WORLD");
+			}
+		}
 	}
 }
+
+[t:template,n:brazier_glb_golden_02]
+{
+	category_name = "lighting";
+	doc = "brazier_gold_flame_activate";
+	specializes = base_brazier_glb;
+	[aspect]
+  	{
+  		lodfi_lower = -1;
+  		lodfi_upper = -1;
+  	}
+  	[common]
+	{
+		auto_expiration_class = immediate;
+		forced_expiration_class = immediate;
+	}
+	[generic_emitter_act]
+  	{
+  		other_effect = "brazier_fire_golden";
+  	}
+  	[light_enable]
+	{
+		initially_active = FALSE;
+	}
+}
+[t:template,n:brazier_glb_blue_01]
+{
+	category_name = "lighting";
+	doc = "brazier_blue_flame";
+	specializes = base_brazier_glb;
+	[common]
+	{
+		[template_triggers]
+		{
+			[*]
+			{
+				action* = call_sfx_script("brazier_fire_blue");
+				condition* = receive_world_message("WE_ENTERED_WORLD");
+			}
+		}
+	}
+}
+
+[t:template,n:brazier_glb_blue_02]
+{
+	category_name = "lighting";
+	doc = "brazier_blue_flame_activate";
+	specializes = base_brazier_glb;
+	[aspect]
+  	{
+  		lodfi_lower = -1;
+  		lodfi_upper = -1;
+  	}
+  	[common]
+	{
+		auto_expiration_class = immediate;
+		forced_expiration_class = immediate;
+	}
+	[generic_emitter_act]
+  	{
+  		other_effect = "brazier_fire_blue";
+  	}
+  	[light_enable]
+	{
+		initially_active = FALSE;
+	}
+}
+
+
 [t:template,n:candle_glb_01]
 {
 	category_name = "lighting";
 	doc = "candle_short";
-	specializes = non_interactive;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+//		display_cost = 0.396819813;
 		model = m_i_glb_candle-01;
 	}
 	[common]
@@ -59,11 +194,10 @@
 {
 	category_name = "lighting";
 	doc = "candle_tall";
-	specializes = non_interactive;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+//		display_cost = 0.467440563;
 		model = m_i_glb_candle-02;
 	}
 	[common]
@@ -82,11 +216,10 @@
 {
 	category_name = "lighting";
 	doc = "candle_skull_sm";
-	specializes = non_interactive;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+//		display_cost = 0.495406875;
 		model = m_i_glb_skull-candle-01;
 	}
 	[common]
@@ -105,11 +238,10 @@
 {
 	category_name = "lighting";
 	doc = "candle_skull_lg";
-	specializes = non_interactive;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+//		display_cost = 0.493285875;
 		model = m_i_glb_skull-candle-01;
 		scale_base = 2;
 	}
@@ -129,11 +261,10 @@
 {
 	category_name = "lighting";
 	doc = "candlestick_single";
-	specializes = non_interactive;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+//		display_cost = 0.51455675;
 		model = m_i_csl_candlestand-01;
 	}
 	[common]
@@ -152,11 +283,10 @@
 {
 	category_name = "lighting";
 	doc = "candlestick_floor";
-	specializes = non_interactive;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+//		display_cost = 1.21049175;
 		model = m_i_csl_candlestand-02;
 	}
 	[common]
@@ -171,15 +301,25 @@
 		}
 	}
 }
+[t:template,n:candlestand_csl_02_noflame]
+{
+	category_name = "lighting";
+	doc = "candlestick_floor_no_flame";
+	specializes = base_light;
+	[aspect]
+	{
+//		display_cost = 1.21049175;
+		model = m_i_csl_candlestand-02;
+	}
+}
 [t:template,n:candlestand_csl_03]
 {
 	category_name = "lighting";
 	doc = "candlestick_tri";
-	specializes = non_interactive;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+//		display_cost = 1.45781525;
 		model = m_i_csl_candlestand-03;
 	}
 	[common]
@@ -198,11 +338,10 @@
 {
 	category_name = "lighting";
 	doc = "Fireplace fire";
-	specializes = non_interactive;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+//		display_cost = 0.026394625;
 		model = m_i_glb_fire-01;
 	}
 }
@@ -210,32 +349,20 @@
 {
 	category_name = "lighting";
 	doc = "firepot_evil";
-	specializes = non_interactive_blocking;
+	specializes = base_fire_glb_pit_gom;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
-		model = m_i_glb_gom-fire-pit;
-		[textures]
-		{
-			0 = b_i_glb_gom-fire-pit;
-		}
+//		display_cost = 0.36853325;
 	}
 }
 [t:template,n:fire_glb_pit_gom_02]
 {
 	category_name = "lighting";
 	doc = "firepot_evil_with fire";
-	specializes = non_interactive_blocking;
+	specializes = base_fire_glb_pit_gom;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
-		model = m_i_glb_gom-fire-pit;
-		[textures]
-		{
-			0 = b_i_glb_gom-fire-pit;
-		}
+//		display_cost = 1.746847375;
 	}
 	[common]
 	{
@@ -248,28 +375,15 @@
 			}
 		}
 	}
-	[light_flicker_lightweight]
-	{
-		duration = 0;
-		flicker_frequency_max = 12;
-		flicker_frequency_min = 10;
-		magnitude = 0.15;
-	}
 }
 [t:template,n:fire_glb_pit_gom_03]
 {
 	category_name = "lighting";
 	doc = "firepot_evil_with blue fire";
-	specializes = non_interactive_blocking;
+	specializes = base_fire_glb_pit_gom;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
-		model = m_i_glb_gom-fire-pit;
-		[textures]
-		{
-			0 = b_i_glb_gom-fire-pit;
-		}
+//		display_cost = 1.438180313;
 	}
 	[common]
 	{
@@ -282,23 +396,16 @@
 			}
 		}
 	}
-	[light_flicker_lightweight]
-	{
-		duration = 0;
-		flicker_frequency_max = 12;
-		flicker_frequency_min = 10;
-		magnitude = 0.15;
-	}
 }
 [t:template,n:fire_grs_campfire]
 {
 	category_name = "lighting";
 	doc = "campfire";
-	specializes = non_interactive_blocking;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+//		display_cost = 1.053256063;
+		does_block_path = true;
 		model = m_i_grs_campfire;
 	}
 	[common]
@@ -312,23 +419,15 @@
 			}
 		}
 	}
-	[light_flicker_lightweight]
-	{
-		duration = 0;
-		flicker_frequency_max = 12;
-		flicker_frequency_min = 10;
-		magnitude = 0.15;
-	}
 }
 [t:template,n:firepit_des_dragon]
 {
 	category_name = "lighting";
 	doc = "torch_dragon claw";
-	specializes = non_interactive;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+//		display_cost = 1.097128188;
 		model = m_i_des_firepit-dragon;
 	}
 	[common]
@@ -342,23 +441,16 @@
 			}
 		}
 	}
-	[light_flicker_lightweight]
-	{
-		duration = 0;
-		flicker_frequency_max = 12;
-		flicker_frequency_min = 10;
-		magnitude = 0.15;
-	}
 }
 [t:template,n:firepit_glb]
 {
 	category_name = "lighting";
 	doc = "firepit_empty";
-	specializes = non_interactive_blocking;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+//		display_cost = 0.773089438;
+		does_block_path = true;
 		model = m_i_glb_firepit02;
 	}
 	[common]
@@ -377,11 +469,11 @@
 {
 	category_name = "lighting";
 	doc = "firepit with rocks";
-	specializes = non_interactive_blocking;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = -1;
-		lodfi_upper = -1;
+//		display_cost = 0.934844813;
+		does_block_path = true;
 		model = m_i_glb_firepit-03;
 		[textures]
 		{
@@ -399,23 +491,16 @@
 			}
 		}
 	}
-	[light_flicker_lightweight]
-	{
-		duration = 0;
-		flicker_frequency_max = 12;
-		flicker_frequency_min = 10;
-		magnitude = 0.15;
-	}
 }
 [t:template,n:firepit_glb_04]
 {
 	category_name = "lighting";
 	doc = "fire_pit_fire";
-	specializes = non_interactive_blocking;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+//		display_cost = 1.982507063;
+		does_block_path = true;
 		model = m_i_grs_campfire;
 		scale_base = 1.6;
 	}
@@ -430,31 +515,33 @@
 			}
 		}
 	}
-	[light_flicker_lightweight]
+}
+[t:template,n:firepit_glb_04_unlit]
+{
+	category_name = "lighting";
+	doc = "fire_pit_no_fire";
+	specializes = base_light;
+	[aspect]
 	{
-		duration = 0;
-		flicker_frequency_max = 12;
-		flicker_frequency_min = 10;
-		magnitude = 0.15;
+//		display_cost = 1.982507063;
+		does_block_path = true;
+		model = m_i_grs_campfire;
+		scale_base = 1.6;
 	}
 }
 [t:template,n:lamp_csl_01]
 {
 	category_name = "lighting";
 	doc = "lantern_hanging";
-	specializes = non_interactive;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+//		display_cost = 0.462664688;
 		model = m_i_csl_lantern-01;
 	}
 	[common]
 	{
 		screen_name = "Lantern";
-	}
-	[common]
-	{
 		[template_triggers]
 		{
 			[*]
@@ -469,19 +556,15 @@
 {
 	category_name = "lighting";
 	doc = "lamp_table_stone";
-	specializes = non_interactive;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+//		display_cost = 0.987267875;
 		model = m_i_csl_lantern-02;
 	}
 	[common]
 	{
 		screen_name = "Lamp";
-	}
-	[common]
-	{
 		[template_triggers]
 		{
 			[*]
@@ -491,23 +574,16 @@
 			}
 		}
 	}
-	[light_flicker_lightweight]
-	{
-		duration = 0;
-		flicker_frequency_max = 12;
-		flicker_frequency_min = 10;
-		magnitude = 0.15;
-	}
 }
 [t:template,n:lamp_glb_gom_01]
 {
 	category_name = "lighting";
 	doc = "lamp_evil";
-	specializes = non_interactive_blocking;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+//		display_cost = 0.44541925;
+		does_block_path = true;
 		model = m_i_glb_gom-lamp-01;
 		[textures]
 		{
@@ -519,11 +595,11 @@
 {
 	category_name = "lighting";
 	doc = "lamp_evil_with fire";
-	specializes = non_interactive_blocking;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+//		display_cost = 1.394454688;
+		does_block_path = true;
 		model = m_i_glb_gom-lamp-01;
 		[textures]
 		{
@@ -541,31 +617,20 @@
 			}
 		}
 	}
-	[light_flicker_lightweight]
-	{
-		duration = 0;
-		flicker_frequency_max = 12;
-		flicker_frequency_min = 10;
-		magnitude = 0.15;
-	}
 }
 [t:template,n:lamp_glb_oil_01]
 {
 	category_name = "lighting";
 	doc = "lamp_wall_oil";
-	specializes = non_interactive;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+//		display_cost = 0.865875188;
 		model = m_i_glb_lamp-oil-01;
 	}
 	[common]
 	{
 		screen_name = "Oil Lamp";
-	}
-	[common]
-	{
 		[template_triggers]
 		{
 			[*]
@@ -575,31 +640,20 @@
 			}
 		}
 	}
-	[light_flicker_lightweight]
-	{
-		duration = 0;
-		flicker_frequency_max = 12;
-		flicker_frequency_min = 10;
-		magnitude = 0.15;
-	}
 }
 [t:template,n:lamp_glb_oil_02]
 {
 	category_name = "lighting";
 	doc = "lamp_wall_oil_ornate";
-	specializes = non_interactive;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+//		display_cost = 0.621926813;
 		model = m_i_glb_lamp-oil-02;
 	}
 	[common]
 	{
 		screen_name = "Oil Lamp";
-	}
-	[common]
-	{
 		[template_triggers]
 		{
 			[*]
@@ -609,31 +663,20 @@
 			}
 		}
 	}
-	[light_flicker_lightweight]
-	{
-		duration = 0;
-		flicker_frequency_max = 12;
-		flicker_frequency_min = 10;
-		magnitude = 0.15;
-	}
 }
 [t:template,n:lamp_glb_oil_03]
 {
 	category_name = "lighting";
 	doc = "lamp_floor_oil";
-	specializes = non_interactive;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+//		display_cost = 0.741073563;
 		model = m_i_glb_lamp-oil-03;
 	}
 	[common]
 	{
 		screen_name = "Oil Lamp";
-	}
-	[common]
-	{
 		[template_triggers]
 		{
 			[*]
@@ -643,32 +686,21 @@
 			}
 		}
 	}
-	[light_flicker_lightweight]
-	{
-		duration = 0;
-		flicker_frequency_max = 12;
-		flicker_frequency_min = 10;
-		magnitude = 0.15;
-	}
 }
 [t:template,n:lamp_glb_post]
 {
 	category_name = "lighting";
 	doc = "lamp post";
-	specializes = non_interactive;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+//		display_cost = 0.702840938;
 		model = m_i_glb_lamp-post;
 		scale_base = 2;
 	}
 	[common]
 	{
 		screen_name = "Lamp Post";
-	}
-	[common]
-	{
 		[template_triggers]
 		{
 			[*]
@@ -678,23 +710,15 @@
 			}
 		}
 	}
-	[light_flicker_lightweight]
-	{
-		duration = 0;
-		flicker_frequency_max = 12;
-		flicker_frequency_min = 10;
-		magnitude = 0.15;
-	}
 }
 [t:template,n:lamp_glb_post_03]
 {
 	category_name = "lighting";
 	doc = "lamppost_ornate";
-	specializes = non_interactive;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+//		display_cost = 0.535140938;
 		model = m_i_glb_lamp-post-03;
 		scale_base = 2;
 		[textures]
@@ -705,9 +729,6 @@
 	[common]
 	{
 		screen_name = "Lamp Post";
-	}
-	[common]
-	{
 		[template_triggers]
 		{
 			[*]
@@ -722,19 +743,15 @@
 {
 	category_name = "lighting";
 	doc = "lamp table";
-	specializes = non_interactive;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+//		display_cost = 0.497967375;
 		model = m_i_glb_lamp-table;
 	}
 	[common]
 	{
 		screen_name = "Table Lamp";
-	}
-	[common]
-	{
 		[template_triggers]
 		{
 			[*]
@@ -749,19 +766,15 @@
 {
 	category_name = "lighting";
 	doc = "lamp wall";
-	specializes = non_interactive;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+//		display_cost = 0.539880125;
 		model = m_i_glb_lamp-wall;
 	}
 	[common]
 	{
 		screen_name = "Lamp";
-	}
-	[common]
-	{
 		[template_triggers]
 		{
 			[*]
@@ -776,19 +789,15 @@
 {
 	category_name = "lighting";
 	doc = "lamp_wall_mono";
-	specializes = non_interactive;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+		//display_cost = 0.735360688;
 		model = m_i_glb_wall-lamp-01;
 	}
 	[common]
 	{
 		screen_name = "Lamp";
-	}
-	[common]
-	{
 		[template_triggers]
 		{
 			[*]
@@ -803,19 +812,16 @@
 {
 	category_name = "lighting";
 	doc = "lamp_floor_gobinv";
-	specializes = non_interactive_blocking;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+		//display_cost = 1.5474485;
+		does_block_path = true;
 		model = m_i_gob_floor-lamp-01;
 	}
 	[common]
 	{
 		screen_name = "Goblin floor lamp";
-	}
-	[common]
-	{
 		[template_triggers]
 		{
 			[*]
@@ -830,19 +836,15 @@
 {
 	category_name = "lighting";
 	doc = "lamp_wall_gobinv";
-	specializes = non_interactive;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+		//display_cost = 0.702291625;
 		model = m_i_gob_wall-lamp-01;
 	}
 	[common]
 	{
 		screen_name = "Goblin wall lamp 1";
-	}
-	[common]
-	{
 		[template_triggers]
 		{
 			[*]
@@ -857,19 +859,15 @@
 {
 	category_name = "lighting";
 	doc = "lamp_wall_gobinv";
-	specializes = non_interactive;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+		//display_cost = 0.7035185;
 		model = m_i_gob_wall-lamp-01;
 	}
 	[common]
 	{
 		screen_name = "Goblin wall lamp 2";
-	}
-	[common]
-	{
 		[template_triggers]
 		{
 			[*]
@@ -884,21 +882,11 @@
 {
 	category_name = "lighting";
 	doc = "lamppost_bracketed_wood_ice";
-	specializes = non_interactive;
+	specializes = base_lamp_ice;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+		//display_cost = 0.407690313;
 		model = m_i_glb_lamp-post-01;
-		scale_base = 2;
-		[textures]
-		{
-			0 = b_i_ice_lamp-posts;
-		}
-	}
-	[common]
-	{
-		screen_name = "Lamp";
 	}
 	[common]
 	{
@@ -916,21 +904,11 @@
 {
 	category_name = "lighting";
 	doc = "lamppost_bracketed_metal_ice";
-	specializes = non_interactive;
+	specializes = base_lamp_ice;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+		//display_cost = 0.449179063;
 		model = m_i_glb_lamp-post-02;
-		scale_base = 2;
-		[textures]
-		{
-			0 = b_i_ice_lamp-posts;
-		}
-	}
-	[common]
-	{
-		screen_name = "Lamp";
 	}
 	[common]
 	{
@@ -948,22 +926,12 @@
 {
 	category_name = "lighting";
 	doc = "lamppost_metal_ice";
-	specializes = non_interactive;
+	specializes = base_lamp_ice;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+		//display_cost = 0.53955675;
 		model = m_i_glb_lamp-post-03;
-		scale_base = 2;
-		[textures]
-		{
-			0 = b_i_ice_lamp-posts;
-		}
-	}
-	[common]
-	{
-		screen_name = "Lamp";
-	}
+	}	
 	[common]
 	{
 		[template_triggers]
@@ -976,6 +944,7 @@
 		}
 	}
 }
+
 [t:template,n:lightstand_lightable]
 {
 	category_name = "lighting";
@@ -983,6 +952,7 @@
 	specializes = interactive;
 	[aspect]
 	{
+		//display_cost = 0.12879325;
 		does_block_path = TRUE;
 		draw_selection_indicator = FALSE;
 		is_selectable = TRUE;
@@ -1022,6 +992,7 @@
 	{
 	}
 }
+
 [t:template,n:torch_activate]
 {
 	category_name = "lighting";
@@ -1029,6 +1000,7 @@
 	specializes = non_interactive;
 	[aspect]
 	{
+		//display_cost = 0.121475188;
 		does_block_path = TRUE;
 		lodfi_lower = -1;
 		lodfi_upper = -1;
@@ -1060,15 +1032,15 @@
 		magnitude = 0.15;
 	}
 }
+
 [t:template,n:torch_csl_sconce]
 {
 	category_name = "lighting";
 	doc = "sconce_gld_ornate";
-	specializes = non_interactive;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+		//display_cost = 0.567007313;
 		model = m_i_glb_light-sconce;
 	}
 	[common]
@@ -1082,14 +1054,8 @@
 			}
 		}
 	}
-	[light_flicker_lightweight]
-	{
-		duration = 0;
-		flicker_frequency_max = 12;
-		flicker_frequency_min = 10;
-		magnitude = 0.15;
-	}
 }
+
 [t:template,n:torch_glb_hands]
 {
 	category_name = "lighting";
@@ -1097,6 +1063,7 @@
 	specializes = non_interactive;
 	[aspect]
 	{
+		//display_cost = 0.219982875;
 		lodfi_lower = -1;
 		lodfi_upper = -1;
 		model = m_i_glb_hand-torch;
@@ -1106,14 +1073,11 @@
 		auto_expiration_class = normal;
 		forced_expiration_class = normal;
 	}
-	[effect_manager_server]
-	{
-		effect_name = "torch_hands";
-		repeat = FALSE;
-		start_msg = we_req_activate;
-		stop_msg = we_req_deactivate;
-	}
-	[light_enable]
+	[generic_emitter_act]
+  	{
+  		other_effect = "torch_hands";
+  	}
+  	[light_enable]
 	{
 		initially_active = FALSE;
 	}
@@ -1126,15 +1090,15 @@
 		magnitude = 0.15;
 	}
 }
+
 [t:template,n:torch_glb_holder_01]
 {
 	category_name = "lighting";
 	doc = "torch_wall_bracketed_lit";
-	specializes = non_interactive_nonblocking;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+		//display_cost = 0.568414125;
 		model = m_i_glb_light-torch-01;
 		[textures]
 		{
@@ -1152,23 +1116,15 @@
 			}
 		}
 	}
-	[light_flicker_lightweight]
-	{
-		duration = 0;
-		flicker_frequency_max = 12;
-		flicker_frequency_min = 10;
-		magnitude = 0.15;
-	}
 }
 [t:template,n:torch_glb_holder_02]
 {
 	category_name = "lighting";
 	doc = "torch_wall_bracketed_unlit";
-	specializes = non_interactive;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+		//display_cost = 0.122024438;
 		model = m_i_glb_light-torch-01;
 		[textures]
 		{
@@ -1180,11 +1136,10 @@
 {
 	category_name = "lighting";
 	doc = "torch_wall_spiked";
-	specializes = non_interactive_nonblocking;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+		//display_cost = 0.565835438;
 		model = m_i_glb_light-torch-02;
 	}
 	[common]
@@ -1198,23 +1153,30 @@
 			}
 		}
 	}
-	[light_flicker_lightweight]
+}
+[t:template,n:torch_glb_holder_04]
+{
+	category_name = "lighting";
+	doc = "torch_unlit";
+	specializes = base_light;
+	[aspect]
 	{
-		duration = 0;
-		flicker_frequency_max = 12;
-		flicker_frequency_min = 10;
-		magnitude = 0.15;
+		//display_cost = 0.122024438;
+		model = m_i_glb_light-torch-unlit;
+		[textures]
+		{
+			0 = b_i_glb_torch-05;
+		}
 	}
 }
 [t:template,n:torch_glb_skull_01]
 {
 	category_name = "lighting";
 	doc = "torch_skull";
-	specializes = non_interactive;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+		//display_cost = 0.807705625;
 		model = m_i_glb_torch-skull-01;
 	}
 	[common]
@@ -1228,23 +1190,15 @@
 			}
 		}
 	}
-	[light_flicker_lightweight]
-	{
-		duration = 0;
-		flicker_frequency_max = 12;
-		flicker_frequency_min = 10;
-		magnitude = 0.15;
-	}
 }
 [t:template,n:torch_glb_stand_01]
 {
 	category_name = "lighting";
 	doc = "torch_stand_ornate_gld";
-	specializes = non_interactive;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+		//display_cost = 0.633560125;
 		model = m_i_glb_light-torch-stand-01;
 		[textures]
 		{
@@ -1262,23 +1216,15 @@
 			}
 		}
 	}
-	[light_flicker_lightweight]
-	{
-		duration = 0;
-		flicker_frequency_max = 12;
-		flicker_frequency_min = 10;
-		magnitude = 0.15;
-	}
 }
 [t:template,n:torch_glb_stand_02]
 {
 	category_name = "lighting";
 	doc = "torch_stand_unlit";
-	specializes = non_interactive;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+		//display_cost = 0.172469938;
 		model = m_i_glb_light-torch-stand-01;
 	}
 }
@@ -1286,11 +1232,10 @@
 {
 	category_name = "lighting";
 	doc = "torch_stand_ornate_blk";
-	specializes = non_interactive;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+		//display_cost = 0.631732063;
 		model = m_i_glb_light-torch-stand-01;
 		[textures]
 		{
@@ -1308,23 +1253,37 @@
 			}
 		}
 	}
-	[light_flicker_lightweight]
+}
+[t:template,n:dsx_torch_lavacave_lit]
+{
+	category_name = "lighting";
+	doc = "dsx_torch_lavacave_lit";
+	specializes = base_light;
+	[aspect]
 	{
-		duration = 0;
-		flicker_frequency_max = 12;
-		flicker_frequency_min = 10;
-		magnitude = 0.15;
+		does_block_path = true;
+		model = m_i_glb_torch-lavacave;
+	}
+	[common]
+	{
+		[template_triggers]
+		{
+			[*]
+			{
+				action* = call_sfx_script("torch_firews");
+				condition* = receive_world_message("WE_ENTERED_WORLD");
+			}
+		}
 	}
 }
 [t:template,n:torch_glb_stand_04]
 {
 	category_name = "lighting";
 	doc = "torch_stand_blck";
-	specializes = non_interactive;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+		//display_cost = 0.63357225;
 		model = m_i_glb_light-torch-stand-01;
 	}
 	[common]
@@ -1338,23 +1297,15 @@
 			}
 		}
 	}
-	[light_flicker_lightweight]
-	{
-		duration = 0;
-		flicker_frequency_max = 12;
-		flicker_frequency_min = 10;
-		magnitude = 0.15;
-	}
 }
 [t:template,n:torch_glb_stick]
 {
 	category_name = "lighting";
 	doc = "torch_tiki";
-	specializes = non_interactive;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+		//display_cost = 0.539822188;
 		model = m_i_glb_torch-stick;
 	}
 	[common]
@@ -1368,23 +1319,15 @@
 			}
 		}
 	}
-	[light_flicker_lightweight]
-	{
-		duration = 0;
-		flicker_frequency_max = 12;
-		flicker_frequency_min = 10;
-		magnitude = 0.15;
-	}
 }
 [t:template,n:torch_swp_stick_01]
 {
 	category_name = "lighting";
 	doc = "torch_tiki_yllw";
-	specializes = non_interactive;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+		//display_cost = 0.593807813;
 		model = m_i_swp_torch-01;
 	}
 	[common]
@@ -1398,23 +1341,15 @@
 			}
 		}
 	}
-	[light_flicker_lightweight]
-	{
-		duration = 0;
-		flicker_frequency_max = 12;
-		flicker_frequency_min = 10;
-		magnitude = 0.15;
-	}
 }
 [t:template,n:torch_swp_stick_02]
 {
 	category_name = "lighting";
 	doc = "torch_tiki_white";
-	specializes = non_interactive;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+		//display_cost = 0.5914275;
 		model = m_i_swp_torch-02;
 	}
 	[common]
@@ -1428,23 +1363,16 @@
 			}
 		}
 	}
-	[light_flicker_lightweight]
-	{
-		duration = 0;
-		flicker_frequency_max = 12;
-		flicker_frequency_min = 10;
-		magnitude = 0.15;
-	}
 }
 [t:template,n:wood_glb_pile_fireplace_burnt]
 {
 	category_name = "lighting";
 	doc = "fireplace_logs_burning";
-	specializes = non_interactive_blocking;
+	specializes = base_light;
 	[aspect]
 	{
-		lodfi_lower = 0;
-		lodfi_upper = 0;
+		//display_cost = 0.774133188;
+		does_block_path = true;
 		model = m_i_glb_woodpile-02;
 		[textures]
 		{
@@ -1462,11 +1390,109 @@
 			}
 		}
 	}
-	[light_flicker_lightweight]
+}
+[t:template,n:shroom_cav_glow_01]
+{
+	category_name = "mushrooms";
+	doc = "shroom_cyan_glow";
+	specializes = base_light;
+	[aspect]
 	{
-		duration = 0;
-		flicker_frequency_max = 12;
-		flicker_frequency_min = 10;
-		magnitude = 0.15;
+		model = m_i_cav_shroom-01;
+		scale_base = 0.33;
+	}
+	[common]
+	{
+		[template_triggers]
+		{
+			[*]
+			{
+				action* = call_sfx_script("shroom_glow_01");
+				condition* = receive_world_message("WE_ENTERED_WORLD");
+			}
+		}
+	}
+}
+[t:template,n:shroom_cav_glow_02]
+{
+	category_name = "mushrooms";
+	doc = "shroom_violet_glow";
+	specializes = base_light;
+	[aspect]
+	{
+		model = m_i_cav_shroom-02;
+		scale_base = 0.66;
+	}
+	[common]
+	{
+		[template_triggers]
+		{
+			[*]
+			{
+				action* = call_sfx_script("shroom_glow_02");
+				condition* = receive_world_message("WE_ENTERED_WORLD");
+			}
+		}
+	}
+}
+[t:template,n:shroom_cav_glow_03]
+{
+	category_name = "mushrooms";
+	doc = "shroom_blue_glow";
+	specializes = base_light;
+	[aspect]
+	{
+		model = m_i_cav_shroom-03;
+		scale_base = 0.33;
+	}
+	[common]
+	{
+		[template_triggers]
+		{
+			[*]
+			{
+				action* = call_sfx_script("shroom_glow_03");
+				condition* = receive_world_message("WE_ENTERED_WORLD");
+			}
+		}
+	}
+}
+[t:template,n:shroom_cav_glow_05]
+{
+	category_name = "mushrooms";
+	doc = "shroom_orange_glow";
+	specializes = base_light;
+	[aspect]
+	{
+		model = m_i_cav_shroom-05;
+		scale_base = 0.45;
+	}
+	[common]
+	{
+		[template_triggers]
+		{
+			[*]
+			{
+				action* = call_sfx_script("shroom_glow_05");
+				condition* = receive_world_message("WE_ENTERED_WORLD");
+			}
+		}
+	}
+}
+
+[t:template,n:dsx_lamp_disco_wall]
+{
+	category_name = "lighting";
+	doc = "lamp_wall_disco";
+	specializes = non_interactive;
+	[aspect]
+	{
+		lodfi_lower = 0;
+		lodfi_upper = 0;
+		model = m_i_glb_wall-lamp-01-gold;
+	}
+	[common]
+	{
+		screen_name = "Lamp";
 	}
 }

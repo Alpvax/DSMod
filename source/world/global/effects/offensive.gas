@@ -4889,7 +4889,7 @@
 			{
 				if ( $collision_is == #OBJECT_COLLISION )
 				{
-				get target_position $trackball target;
+				get target_position $ball target;
 				sound play s_e_spell_energy_ball_hit at #POP;
 
 				get collision target $ball target;

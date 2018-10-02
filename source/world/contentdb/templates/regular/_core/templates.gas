@@ -73,6 +73,7 @@
 
 		// $$ optimization : not all actors need every job...
 
+		jat_approach				= world\ai\jobs\common\job_approach.skrit;
 		jat_attack_object			= world\ai\jobs\common\job_attack_object.skrit;
 		jat_attack_object_melee 	= world\ai\jobs\common\job_attack_object_melee.skrit;
 		jat_attack_object_ranged	= world\ai\jobs\common\job_attack_object_ranged.skrit;
@@ -293,6 +294,7 @@
 		////////////////////////////////////////
 		//	jobs mappings
 
+		jat_approach				= jat_none;		
 		jat_attack_object			= jat_none;
 		jat_attack_object_melee 	= jat_none;
 		jat_attack_object_ranged	= jat_none;
@@ -347,6 +349,7 @@
 		////////////////////////////////////////
 		//	jobs mappings
 
+		jat_approach				= world\ai\jobs\common\job_approach.skrit;
 		jat_attack_object			= world\ai\jobs\common\job_attack_object.skrit;
 		jat_attack_object_melee 	= world\ai\jobs\common\job_attack_object_melee.skrit;
 		jat_attack_object_ranged	= world\ai\jobs\common\job_attack_object_ranged.skrit;

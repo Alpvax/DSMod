@@ -36,7 +36,7 @@ startup state Idle$
 				return;
 			}
 			
-			PackLightning$( dur$ );
+			PackLightning$( dur$, caster$ );
 			
 			Siegefx.SRunScript(effect_script$,target$,caster$,params$,owner.goid, e$ );
 			

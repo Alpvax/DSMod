@@ -76,7 +76,7 @@
 		////////////////////////////////////////
 		//	permissions
 
-		combat_orders                              = CO_LIMITED;
+		combat_orders                              = CO_FREE;
 		movement_orders                            = MO_LIMITED;
 
 		actor_auto_switches_to_magic               = false;

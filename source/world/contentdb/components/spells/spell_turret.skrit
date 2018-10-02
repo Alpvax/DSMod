@@ -128,7 +128,7 @@ startup state CastBegin$
 				// If we are attacking with lightning pack the damage into the params to send to the script;
 				if( lightning_dur$ > 0 )
 				{
-					PackLightning$( lightning_dur$ );
+					PackLightning$( lightning_dur$, caster$ );
 				}
 				
 				if( charge_effect$ != "" )

@@ -102,7 +102,7 @@
 	}
 	[common]
 	{
-		screen_name = "Dragon"s Rathe";
+		screen_name = "Dragon's Rathe";
 	}
 }
 [t:template,n:sign_des_dragon_02]
@@ -115,7 +115,7 @@
 	}
 	[common]
 	{
-		screen_name = "Dragon"s Rathe";
+		screen_name = "Dragon's Rathe";
 	}
 }
 [t:template,n:sign_glb_01]
@@ -379,5 +379,23 @@
 	[common]
 	{
 		screen_name = "Sign";
+	}
+}
+
+[t:template,n:dsx_sign_neener_store-directional]
+{
+	doc = "dsx_neener_store-directional";
+	specializes = base_sign_directional;
+	[aspect]
+	{
+		model = m_i_glb_sign-neener;
+		[textures]
+		{
+			0 = b_i_glb_sign-neener-directional;
+		}
+	}
+	[common]
+	{
+		screen_name = "Neener's Emporium";
 	}
 }

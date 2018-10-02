@@ -32,14 +32,22 @@
 	{
 		// All colors are in 0xaarrggbb ( alpha-red-green-blue ) format
 		magic = 0xff5789e9;
-        unique = 0xffcacb44;
-        rare = 0xff9b9bfb;
+        	unique = 0xffcacb44;
+        	rare = 0xff9b9bfb;
+		// JCD 5/22/03 -- set_items are greenish yellow
+		set_item = 0xff00e8e8;
+		set_item_complete = 0xff00ff00;
 		required = 0xffff0000;
-        nature_magic = 0xff43ca83;
+        	nature_magic = 0xff43ca83;
 		combat_magic = 0xffeaa935;  //cccccc  cc22aa
 		//next_skill = 0xffff44ff;
 		small_combo = 0xff5789e9;
-        negative = 0xff995422;
+        	negative = 0xff995422;
+
+		// TAT 5/1/03 - Imbued Items are now purple
+		imbued = 0xffC080FF; 
+			// green 0xff40c040;
+
 		rollover_cast = 0xff62a5c4;
 		rollover_dead = 0xffff0000;
 		rollover_unconscious = 0xffffff00;
@@ -83,6 +91,8 @@
 		grid_rollover = 0x666F6F6F;
 		grid_rollover_overlap = 0x66FFFFFF;
 		grid_magic = 0x3368acf8;
+		grid_set_item = 0x3300e8e8;
+		grid_imbued = 0x33AE00AE;
 	}
 
 	[character_panel_highlights]

@@ -21,6 +21,7 @@ property string _required_component$ = "placement";
 property 	string		child_template_name$					doc ="template name of the object to spawn";
 property	eWorldEvent spawn_event$			= WE_DROPPED	doc ="message to spawn new go on.";
 property	bool		snap_to_ground$			= true			doc ="Snap new quest objects to the ground.";
+property	bool		one_per_player$			= true		doc = "Should we generate one per player?";
 
 owner = GoSkritComponent;
 
@@ -51,7 +52,15 @@ state Spawn$
 	event OnEnterState$
 	{
 		int i$ = 0;
-		int count$ = Player.GetHumanPlayerCount;
+		
+		// how many to generate?  - start with one
+		int count$ = 1;
+		
+		// or if we're supposed to, make one per player
+		if ( one_per_player$ )
+		{
+			count$ = Player.GetHumanPlayerCount;
+		}
 		
 		while( i$ < count$ )
 		{

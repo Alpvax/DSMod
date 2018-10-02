@@ -9,22 +9,23 @@
 //----------------------------------------------------------------------------
 //////////////////////////////////////////////////////////////////////////////
 
-property string _doc$                = "A basic 3D sound emitter";
-property string _required_component$ = "placement";
-property bool	_server_only$		 = false;
+property string _doc$                	= "A basic 3D sound emitter";
+property string _required_component$	= "placement";
+property bool	_server_only$		= false;
 
 property bool	start_on_creation$	= true		doc = "Start Emitter when it enters the world";
-property bool	repeat$				= true		doc = "Will continually keep playing based on repeat rate";
+property bool	repeat$			= true		doc = "Will continually keep playing based on repeat rate";
 property float	repeat_rate$		= 2.0		doc = "Number of seconds before starting to play sound again";
 property float	max_repeat_rate$	= -1.0		doc = "Maximum Number of seconds before starting to play sound again (use to make a range), if -1 will just use repeat rate.";
-property string event_sound$					doc = "Name of voice event sound to play";
-property float  min_dist$			= 6.0		doc = "Minimum sound distance";
-property float  max_dist$			= 35.0		doc = "Maximum sound distance";
-property int 	start_hour$			= 0			doc = "Starting hour 0 - 23 inclusive";
-property int  	stop_hour$			= 23		doc = "Stoppin hour 0 - 23 inclusive, Note: stop time can be sooner then start, and it will do what you want.";
+property string event_sound$				doc = "Name of voice event sound to play";
+property float  min_dist$		= 6.0		doc = "Minimum sound distance";
+property float  max_dist$		= 35.0		doc = "Maximum sound distance";
+property int 	start_hour$		= 0		doc = "Starting hour 0 - 23 inclusive";
+property int  	stop_hour$		= 23		doc = "Stoppin hour 0 - 23 inclusive, Note: stop time can be sooner then start, and it will do what you want.";
 property bool	continual_loop$		= false		doc = "Continually loop ( ignore repeat variables )";
 property bool	stop_instantly$		= false		doc = "Stop sound instantly on De-Activation, instead of waiting for the end of the sample. !!! required to stop looping sounds !!!";
-property int	time_chunk$			= -1		doc = "1 = night(1-4), 2 = sun-rise(5-11), 3 = day(12-19), 4 = sunset(20-0), set to override start/stop hour.";
+property int	time_chunk$		= -1		doc = "1 = night(1-4), 2 = sun-rise(5-11), 3 = day(12-19), 4 = sunset(20-0), set to override start/stop hour.";
+property bool   is_global$		= false		doc = "global sound instead of positional.";	// JCD 8/28/03
 
 owner = GoSkritComponent;
 
@@ -82,7 +83,17 @@ void playsound$
 {
 	if( goodtime$ )
 	{
-		last_sound$ = owner.Go.PlayVoiceSound( event_sound$, min_dist$, max_dist$, continual_loop$ );
+		// JCD 8/28/03
+		// global sound?
+		if( is_global$ )
+		{
+			// call global PlayVoiceSound.
+			last_sound$ = owner.Go.PlayVoiceSound(event_sound$, false);
+		}
+		else
+		{
+			last_sound$ = owner.Go.PlayVoiceSound( event_sound$, min_dist$, max_dist$, continual_loop$ );
+		}
 	}
 }
 

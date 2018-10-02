@@ -19,6 +19,7 @@ property string effect_params$		= ""   	doc = "Parameters to send to SiegeFx scr
 property string description$		= ""	doc = "Description of enchantment being applied";
 property string immunity$					doc = "If the target contains this membership then it is immune to this spell.";
 property bool   dirtyInventory$		= false	doc = "Dirty Inventory when the enchantment is applied and when the spell is finished";
+property bool	pauseEffects$		= false doc = "Pause any effects on the creature that were started by we_enetered_world in a template trigger.";
 
 
 owner = GoSkritComponent;
@@ -106,6 +107,15 @@ startup state CastBegin$
 				}
 			}
 			
+			// MRC 9/12/2003 Stop effects started by WE_ENTERED_WORLD
+			#only(game) [[
+			if(pauseEffects$)
+			{
+				target$.Go.Common.SToggleTriggeredEffects("WE_ENTERED_WORLD", false);
+				target$.Go.Common.SToggleTriggeredEffects("WE_ENEMY_SPOTTED", false);
+			}
+			]];
+
 			// do the alterations and figure out how long we should stick around because of them.
 			owner.go.magic.SApplyEnchantments( target$, caster$ );
 
@@ -151,6 +161,14 @@ startup state CastBegin$
 					This.SetNewTimerSeconds( 1, unpacked_duration$ );
 				}
 			}
+		} 
+		// MRC 9/8/2003 We got a message to stop what we're doing right now and leave the caster alone.
+		else if ( e$ == WE_REQ_DEACTIVATE )
+		{
+			// Destroy the duration timer, we don't want it to go off.
+			This.DestroyTimer(1);
+			// Set our state to finished... the spell can just go away now.
+			SetState Finished$;
 		}
 		
 	}
@@ -176,9 +194,22 @@ state RestoreState$
 			{
 				target$.go.inventory.SSetInventoryDirty( true );
 			}
+
+			// MRC 9/12/2003 Stop effects started by WE_ENTERED_WORLD
+			#only(game) [[
+			if(pauseEffects$)
+			{
+				target$.Go.Common.SToggleTriggeredEffects("WE_ENTERED_WORLD", true);
+				target$.Go.Common.SToggleTriggeredEffects("WE_ENEMY_SPOTTED", true);
+			}
+			]];
 		}
 		
 		SetState( StopEffect$ );
+	}
+	trigger OnTimer$(1)
+	{
+
 	}
 }
 

@@ -28,6 +28,10 @@
 		sfx_volume = 		74;
 		ambient_volume = 	90;
 		voice_volume = 		85; // was 80 -MM 06.14.2002
+		voiceover_volume =	85; // TRJ 7/24/03
+		// TRJ 6/12/03 - moved to audio from game
+		// TAT 5/8/03 - use new VO feature
+		use_voiceovers = true;
 	}
 	[input]
 	{
@@ -51,5 +55,7 @@
 		blood = red; // red, green, disabled
 		dismemberment = true;
 		priority_boost = false;
+		// TRJ 6/13/03 - added for selection rings
+		use_selection_rings = true;
 	}
 }

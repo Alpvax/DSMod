@@ -9,7 +9,7 @@
 	  b common_control = true;
 		common_template = button_4;
 	  x draw_order = 0x00000006;
-		rect = 271,368,373,384;
+		rect = 331,368,433,384;
 		uvcoords = 0.000000,0.000000,1.000000,1.000000;
 		wrap_mode = clamp;
 		[messages]
@@ -28,6 +28,35 @@
 			justify = center;
 			rect = 307,369,373,384;
 			text = "Close";
+			uvcoords = 0.000000,0.000000,1.000000,1.000000;
+			wrap_mode = clamp;
+		}
+	}
+	[t:button,n:button_credits]
+	{
+		alpha = 1.000000;
+		common_control = true;
+		common_template = button_4;
+		draw_order = 6;
+		rect = 211,368,313,384;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+		[messages]
+		{	
+			onbuttonpress = notify(button_credits);				
+		}
+		[t:text,n:text_credits]
+		{
+		  f alpha = 1.000000;
+		  b common_control = false;
+			common_template = ;
+		  x draw_order = 0x00000008;
+		  x font_color = 0xFFFFFFFF;
+		  x font_size = 0x00000000;
+			font_type = b_gui_fnt_12p_copperplate-light;
+			justify = center;
+			rect = 307,369,373,384;
+			text = "Credits";
 			uvcoords = 0.000000,0.000000,1.000000,1.000000;
 			wrap_mode = clamp;
 		}

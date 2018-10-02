@@ -142,7 +142,10 @@ event OnJobInit$( Job job$ )
 
 	m_Target$ = job$.GoalObject;
 
-	if( m_Go$.Inventory.IsPackOnly && ( job$.GetOrigin == AO_HUMAN ) )
+	// MRC 7/9/2003 Putting this back in.  It should be IsNonAggressivePack.  Other pack
+	// animals attack.
+	#only(game) [[
+	if( m_Go$.Inventory.IsNonAggressivePack && ( job$.GetOrigin == AO_HUMAN ) )
 	{
 		SetState Exiting$;
 	} 
@@ -172,6 +175,7 @@ event OnJobInit$( Job job$ )
 		
 		SetState( RequestAction$ );
 	}
+	]];
 }
 
 
@@ -300,7 +304,8 @@ state RequestAction$
 											m_LookAhead$,
 											0,
 										   	m_RangeToTarget$,
-										   	REQFLAG_NOMOVE );
+										   	//REQFLAG_NOMOVE );
+											reqFlags$); // TRJ - 6/5/03 - hmmm...me thinks that should have used the result...
 		}
 		else
 		{

@@ -31,7 +31,7 @@
 	help_textbox = frontend_help;
 	[help]
 	{
-		button_single_player = "Enter the Kingdom of Ehb (single player campaign)";
+		button_single_player = "Adventure in the Lands of Aranna (single player campaign)";
 		button_multi_player = "Enter the Worlds of Dungeon Siege (network campaigns)";
 		button_options = "Configure the video, audio, controls, and game settings";
 		button_continue = "Resume the most recently saved single player campaign";
@@ -156,6 +156,7 @@
 		button_dismemberment = "Turn dismemberment on or off";
 		button_blood_color = "Adjust the blood settings";
 		button_priority_boost = "Sets Dungeon Siege to highest priority in Windows. See ReadMe for details.";
+		button_selection_rings = "Turn Selection Rings on or off";
 	}
 }
 
@@ -533,6 +534,8 @@
 		staging_character_ok = "Save your hero and return to the main screen";
 		staging_char_name_edit_box = "Type your hero's name";				
 		staging_character_cancel = "Return to the previous screen without saving changes";
+		staging_character_import = "Import a Dungeon Siege Single Player Character";
+		staging_character_dsx_import = "Import a Legends of Aranna Single Player Character";
 	}
 }
 
@@ -541,7 +544,8 @@
 	help_textbox = multiplayer_help;
 	[help]
 	{
-		staging_character_import = "Import a character from a saved single player game";
+		staging_character_import = "Import a Dungeon Siege Single Player Character";
+		staging_character_dsx_import = "Import a Legends of Aranna Single Player Character";
 		staging_character_create = "Create a new multiplayer character";
 		staging_character_delete = "Delete the currently selected character";
 		staging_character_ok = "Accept the selected character and return to the main screen";

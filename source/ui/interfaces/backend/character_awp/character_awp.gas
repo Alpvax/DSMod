@@ -315,6 +315,21 @@
 		texture = b_gui_ig_i_ic_c_death;
 		visible = false;		
 	}
+	
+	[t:window,n:awp_transformed_portrait_1]
+	{
+		alpha = 1.000000;
+		draw_order = 39;
+		rect = 13,6,52,52;
+		uvcoords = 0.000000,0.281250,0.609375,1.000000;
+		wrap_mode = clamp;		
+		group = character_1;
+		dock_group = dockbar_character_1;
+		index = 0;		
+		pass_through = true; 
+		texture = b_gui_ig_mnu_awp_transformed;
+		visible = false;		
+	}
 
 	[t:window,n:awp_portrait_health_warning_1]
 	{
@@ -352,6 +367,26 @@
 		dock_group = dockbar_character_1;			
 		visible = false;
 		dynamic_edge = top;		
+	}
+	[t:window,n:awp_portrait_offscreen_attack_1]
+	{
+		alpha = 0.5000000;
+		common_control = false;
+		common_template = ;			
+		rect = 13,6,52,52;
+		draw_order = 39;
+		texture = b_gui_ig_mnu_awp_orange;
+		uvcoords = 0.050781,0.226563,0.203125,0.585938;
+		wrap_mode = clamp;		
+		index = 0;
+		dock_group = dockbar_character_1;
+		group = character_1;	
+		visible = false;
+		
+		[messages]
+		{
+			onstartanim = flashanimation(0.5,true,0.5);			
+		}		
 	}
 
 	[t:window,n:window_expert_panel_1]
@@ -1233,6 +1268,21 @@
 		texture = b_gui_ig_i_ic_c_death;
 		visible = false;		
 	}
+	
+	[t:window,n:awp_transformed_portrait_2]
+	{
+		alpha = 1.000000;
+		draw_order = 39;
+		rect = 13,59,52,105;
+		uvcoords = 0.000000,0.281250,0.609375,1.000000;
+		wrap_mode = clamp;		
+		group = character_2;
+		dock_group = dockbar_character_2;
+		index = 1;		
+		pass_through = true; 
+		texture = b_gui_ig_mnu_awp_transformed;
+		visible = false;		
+	}
 
 	[t:window,n:awp_portrait_health_warning_2]
 	{
@@ -1270,6 +1320,26 @@
 		visible = false;
 		group = character_2;	
 		dynamic_edge = top;	
+	}
+	[t:window,n:awp_portrait_offscreen_attack_2]
+	{
+		alpha = 0.5000000;
+		common_control = false;
+		common_template = ;			
+		rect = 13,59,52,105;
+		draw_order = 39;
+		texture = b_gui_ig_mnu_awp_orange;
+		uvcoords = 0.050781,0.226563,0.203125,0.585938;
+		wrap_mode = clamp;		
+		index = 0;
+		dock_group = dockbar_character_2;	
+		visible = false;
+		group = character_2;
+		
+		[messages]
+		{
+			onstartanim = flashanimation(0.5,true,0.5);			
+		}		
 	}
 
 	[t:window,n:window_expert_panel_2]
@@ -1902,6 +1972,21 @@
 		texture = b_gui_ig_i_ic_c_death;
 		visible = false;		
 	}
+	
+	[t:window,n:awp_transformed_portrait_3]
+	{
+		alpha = 1.000000;
+		draw_order = 39;
+		rect = 13,112,52,158;
+		uvcoords = 0.000000,0.281250,0.609375,1.000000;
+		wrap_mode = clamp;		
+		group = character_3;
+		dock_group = dockbar_character_3;
+		index =2;		
+		pass_through = true; 
+		texture = b_gui_ig_mnu_awp_transformed;
+		visible = false;		
+	}
 	[t:window,n:awp_portrait_health_warning_3]
 	{
 		alpha = 0.5000000;
@@ -1938,6 +2023,26 @@
 		visible = false;
 		group = character_3;
 		dynamic_edge = top;		
+	}
+	[t:window,n:awp_portrait_offscreen_attack_3]
+	{
+		alpha = 0.5000000;
+		common_control = false;
+		common_template = ;			
+		rect = 13,112,52,158;
+		draw_order = 39;
+		texture = b_gui_ig_mnu_awp_orange;
+		uvcoords = 0.050781,0.226563,0.203125,0.585938;
+		wrap_mode = clamp;		
+		index = 0;
+		dock_group = dockbar_character_3;	
+		visible = false;
+		group = character_3;
+		
+		[messages]
+		{
+			onstartanim = flashanimation(0.5,true,0.5);			
+		}		
 	}
 	[t:window,n:window_expert_panel_3]
 	{
@@ -2566,6 +2671,20 @@
 		texture = b_gui_ig_i_ic_c_death;
 		visible = false;		
 	}
+	[t:window,n:awp_transformed_portrait_4]
+	{
+		alpha = 1.000000;
+		draw_order = 39;
+		rect = 13,165,52,211;
+		uvcoords = 0.000000,0.281250,0.609375,1.000000;
+		wrap_mode = clamp;		
+		group = character_4;
+		dock_group = dockbar_character_4;
+		index = 3;		
+		pass_through = true; 
+		texture = b_gui_ig_mnu_awp_transformed;
+		visible = false;		
+	}
 	[t:window,n:awp_portrait_health_warning_4]
 	{
 		alpha = 0.5000000;
@@ -2602,6 +2721,26 @@
 		visible = false;
 		group = character_4;
 		dynamic_edge = top;		
+	}
+	[t:window,n:awp_portrait_offscreen_attack_4]
+	{
+		alpha = 0.5000000;
+		common_control = false;
+		common_template = ;			
+		rect = 13,165,52,211;
+		draw_order = 39;
+		texture = b_gui_ig_mnu_awp_orange;
+		uvcoords = 0.050781,0.226563,0.203125,0.585938;
+		wrap_mode = clamp;		
+		index = 0;
+		dock_group = dockbar_character_4;	
+		visible = false;
+		group = character_4;
+		
+		[messages]
+		{
+			onstartanim = flashanimation(0.5,true,0.5);			
+		}		
 	}
 	[t:window,n:window_expert_panel_4]
 	{
@@ -3235,6 +3374,20 @@
 		texture = b_gui_ig_i_ic_c_death;
 		visible = false;		
 	}
+	[t:window,n:awp_transformed_portrait_5]
+	{
+		alpha = 1.000000;
+		draw_order = 39;
+		rect = 13,218,52,264;
+		uvcoords = 0.000000,0.281250,0.609375,1.000000;
+		wrap_mode = clamp;		
+		group = character_5;
+		dock_group = dockbar_character_5;
+		index = 4;		
+		pass_through = true; 
+		texture = b_gui_ig_mnu_awp_transformed;
+		visible = false;		
+	}
 	[t:window,n:awp_portrait_health_warning_5]
 	{
 		alpha = 0.5000000;
@@ -3243,6 +3396,26 @@
 		rect = 13,218,52,264;
 		draw_order = 39;
 		texture = b_gui_ig_mnu_awp_yellow;
+		uvcoords = 0.050781,0.226563,0.203125,0.585938;
+		wrap_mode = clamp;		
+		index = 0;
+		dock_group = dockbar_character_5;	
+		visible = false;
+		group = character_5;
+		
+		[messages]
+		{
+			onstartanim = flashanimation(0.5,true,0.5);			
+		}		
+	}
+	[t:window,n:awp_portrait_offscreen_attack_5]
+	{
+		alpha = 0.5000000;
+		common_control = false;
+		common_template = ;			
+		rect = 13,218,52,264;
+		draw_order = 39;
+		texture = b_gui_ig_mnu_awp_orange;
 		uvcoords = 0.050781,0.226563,0.203125,0.585938;
 		wrap_mode = clamp;		
 		index = 0;
@@ -3903,6 +4076,20 @@
 		texture = b_gui_ig_i_ic_c_death;
 		visible = false;		
 	}
+	[t:window,n:awp_transformed_portrait_6]
+	{
+		alpha = 1.000000;
+		draw_order = 39;
+		rect = 13,271,52,317;
+		uvcoords = 0.000000,0.281250,0.609375,1.000000;
+		wrap_mode = clamp;		
+		group = character_6;
+		dock_group = dockbar_character_6;
+		index = 5;		
+		pass_through = true; 
+		texture = b_gui_ig_mnu_awp_transformed;
+		visible = false;		
+	}
 	[t:window,n:awp_portrait_health_warning_6]
 	{
 		alpha = 0.5000000;
@@ -3923,7 +4110,7 @@
 			onstartanim = flashanimation(0.5,true,0.5);			
 		}		
 	}
-
+	
 	[t:status_bar,n:awp_portrait_unconscious_6]
 	{
 		alpha = 0.5000000;
@@ -3939,6 +4126,26 @@
 		visible = false;
 		group = character_6;		
 		dynamic_edge = top;
+	}
+	[t:window,n:awp_portrait_offscreen_attack_6]
+	{
+		alpha = 0.5000000;
+		common_control = false;
+		common_template = ;			
+		rect = 13,271,52,317;
+		draw_order = 39;
+		texture = b_gui_ig_mnu_awp_orange;
+		uvcoords = 0.050781,0.226563,0.203125,0.585938;
+		wrap_mode = clamp;		
+		index = 0;
+		dock_group = dockbar_character_6;	
+		visible = false;
+		group = character_6;
+		
+		[messages]
+		{
+			onstartanim = flashanimation(0.5,true,0.5);			
+		}		
 	}
 	[t:window,n:window_expert_panel_6]
 	{
@@ -4570,6 +4777,20 @@
 		texture = b_gui_ig_i_ic_c_death;
 		visible = false;		
 	}
+	[t:window,n:awp_transformed_portrait_7]
+	{
+		alpha = 1.000000;
+		draw_order = 39;
+		rect = 13,324,52,370;
+		uvcoords = 0.000000,0.281250,0.609375,1.000000;
+		wrap_mode = clamp;		
+		group = character_7;
+		dock_group = dockbar_character_7;
+		index = 6;		
+		pass_through = true; 
+		texture = b_gui_ig_mnu_awp_transformed;
+		visible = false;		
+	}
 	[t:window,n:awp_portrait_health_warning_7]
 	{
 		alpha = 0.5000000;
@@ -4606,6 +4827,26 @@
 		visible = false;
 		group = character_7;	
 		dynamic_edge = top;	
+	}
+	[t:window,n:awp_portrait_offscreen_attack_7]
+	{
+		alpha = 0.5000000;
+		common_control = false;
+		common_template = ;			
+		rect = 13,324,52,370;
+		draw_order = 39;
+		texture = b_gui_ig_mnu_awp_orange;
+		uvcoords = 0.050781,0.226563,0.203125,0.585938;
+		wrap_mode = clamp;		
+		index = 0;
+		dock_group = dockbar_character_7;	
+		visible = false;
+		group = character_7;
+		
+		[messages]
+		{
+			onstartanim = flashanimation(0.5,true,0.5);			
+		}		
 	}
 	[t:window,n:window_expert_panel_7]
 	{
@@ -5234,6 +5475,20 @@
 		visible = false;	
 		rect = 13,377,52,423;	
 	}
+	[t:window,n:awp_transformed_portrait_8]
+	{
+		alpha = 1.000000;
+		draw_order = 39;
+		rect = 13,377,52,423;
+		uvcoords = 0.000000,0.281250,0.609375,1.000000;
+		wrap_mode = clamp;		
+		group = character_8;
+		dock_group = dockbar_character_8;
+		index = 7;		
+		pass_through = true; 
+		texture = b_gui_ig_mnu_awp_transformed;
+		visible = false;		
+	}
 	[t:window,n:awp_portrait_health_warning_8]
 	{
 		alpha = 0.5000000;
@@ -5242,6 +5497,26 @@
 		rect = 13,377,52,423;
 		draw_order = 39;
 		texture = b_gui_ig_mnu_awp_yellow;
+		uvcoords = 0.050781,0.226563,0.203125,0.585938;
+		wrap_mode = clamp;		
+		index = 0;
+		dock_group = dockbar_character_8;	
+		visible = false;
+		group = character_8;
+		
+		[messages]
+		{
+			onstartanim = flashanimation(0.5,true,0.5);			
+		}		
+	}
+	[t:window,n:awp_portrait_offscreen_attack_8]
+	{
+		alpha = 0.5000000;
+		common_control = false;
+		common_template = ;			
+		rect = 13,377,52,423;
+		draw_order = 39;
+		texture = b_gui_ig_mnu_awp_orange;
 		uvcoords = 0.050781,0.226563,0.203125,0.585938;
 		wrap_mode = clamp;		
 		index = 0;

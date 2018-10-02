@@ -23,6 +23,8 @@
 		spot_w		= 0.5;
 		spot_l		= 0.8;
 
+		include_pack_animals = 0;
+
 		reserved_decal        = art\bitmaps\decals\b_d_formation_spot.%img%;
 		free_decal            = art\bitmaps\decals\b_d_formation_unocc.%img%;
 		leader_decal          = art\bitmaps\decals\b_d_formation_leader.%img%;
@@ -52,6 +54,8 @@
 		spot_w		= 0.8;
 		spot_l		= 0.8;
 
+		include_pack_animals = 0;
+
 		reserved_decal        = art\bitmaps\decals\b_d_formation_spot.%img%;
 		free_decal            = art\bitmaps\decals\b_d_formation_unocc.%img%;
 		leader_decal          = art\bitmaps\decals\b_d_formation_leader.%img%;
@@ -79,6 +83,8 @@
 		center_l	= 4.0;
 		spot_w		= 0.8;
 		spot_l		= 0.5;
+
+		include_pack_animals = 0;
 
 		reserved_decal        = art\bitmaps\decals\b_d_formation_spot.%img%;
 		free_decal            = art\bitmaps\decals\b_d_formation_unocc.%img%;
@@ -109,6 +115,8 @@
 		spot_w		= 0.8;
 		spot_l		= 0.8;
 
+		include_pack_animals = 0;
+
 		reserved_decal          = art\bitmaps\decals\b_d_formation_spot.%img%;
 		free_decal            = art\bitmaps\decals\b_d_formation_unocc.%img%;
 		leader_decal          = art\bitmaps\decals\b_d_formation_leader.%img%;
@@ -137,6 +145,8 @@
 
 		spot_w		= 0.8;
 		spot_l		= 0.8;
+
+		include_pack_animals = 0;
 
 		reserved_decal        = art\bitmaps\decals\b_d_formation_spot.%img%;
 		free_decal            = art\bitmaps\decals\b_d_formation_unocc.%img%;
@@ -167,6 +177,8 @@
 		 spot_w		= 0.5;
 		 spot_l		= 0.5;
 
+		include_pack_animals = 0;
+
 		 reserved_decal        = art\bitmaps\decals\b_d_formation_spot.%img%;
 		 free_decal            = art\bitmaps\decals\b_d_formation_unocc.%img%;
 		 leader_decal          = art\bitmaps\decals\b_d_formation_leader.%img%;
@@ -195,6 +207,8 @@
 
 		 spot_w		= 0.5;
 		 spot_l		= 0.5;
+
+		include_pack_animals = 0;
 
 		 reserved_decal        = art\bitmaps\decals\b_d_formation_spot.%img%;
 		 free_decal            = art\bitmaps\decals\b_d_formation_unocc.%img%;
@@ -225,6 +239,8 @@
 		spot_w		= 1.0;
 		spot_l		= 0.5;
 
+		include_pack_animals = 0;
+
 		reserved_decal        = art\bitmaps\decals\b_d_formation_spot.%img%;
 		free_decal            = art\bitmaps\decals\b_d_formation_unocc.%img%;
 		leader_decal          = art\bitmaps\decals\b_d_formation_leader.%img%;
@@ -253,6 +269,8 @@
 
 		spot_w		= 0.5;
 		spot_l		= 1.0;
+
+		include_pack_animals = 0;
 
 		reserved_decal        = art\bitmaps\decals\b_d_formation_spot.%img%;
 		free_decal            = art\bitmaps\decals\b_d_formation_unocc.%img%;
@@ -283,6 +301,8 @@
 		spot_w		= 0.8;
 		spot_l		= 0.8;
 
+		include_pack_animals = 0;
+
 		reserved_decal        = art\bitmaps\decals\b_d_formation_spot.%img%;
 		free_decal            = art\bitmaps\decals\b_d_formation_unocc.%img%;
 		leader_decal          = art\bitmaps\decals\b_d_formation_leader.%img%;
@@ -299,6 +319,66 @@
 		-4 = 0, 0, 0, 0, 0, 0, 0, 0, 0;
 	}
 
+	[elevator]
+	{
+		initial_spacing = 0.5;  
+
+		min_spacing = 0.5;
+		max_spacing = 2.0;
+
+		center_w	= 0.0;
+		center_l	= 0.0;
+
+		spot_w		= 0.5;
+		spot_l		= 0.5;
+
+		include_pack_animals = 1;
+
+		reserved_decal        = art\bitmaps\decals\b_d_formation_spot.%img%;
+		free_decal            = art\bitmaps\decals\b_d_formation_unocc.%img%;
+		leader_decal          = art\bitmaps\decals\b_d_formation_leader.%img%;
+		terrain_blocked_decal = art\bitmaps\decals\b_d_red_x.%img%;
+
+		 4 = 0, 0, 0, 0, 0, 0, 0, 0, 0;
+		 3 = 0, 0, 0, 0, 0, 0, 0, 0, 0;
+		 2 = 0, 0, 0, 0, 0, 0, 0, 0, 0;
+		 1 = 0, 0, 0, 8, 1, 5, 0, 0, 0;
+		 0 = 0, 0, 0, 4, 0, 2, 0, 0, 0;
+		-1 = 0, 0, 0, 7, 3, 6, 0, 0, 0;
+		-2 = 0, 0, 0, 0, 0, 0, 0, 0, 0;
+		-3 = 0, 0, 0, 0, 0, 0, 0, 0, 0;
+		-4 = 0, 0, 0, 0, 0, 0, 0, 0, 0;
+	}
+	[elevatorTight]
+	{
+		initial_spacing = 0.3;  
+
+		min_spacing = 0.3;
+		max_spacing = 1.2;
+
+		center_w	= 0.0;
+		center_l	= 0.0;
+
+		spot_w		= 0.3;
+		spot_l		= 0.3;
+
+		include_pack_animals = 1;
+
+		reserved_decal        = art\bitmaps\decals\b_d_formation_spot.%img%;
+		free_decal            = art\bitmaps\decals\b_d_formation_unocc.%img%;
+		leader_decal          = art\bitmaps\decals\b_d_formation_leader.%img%;
+		terrain_blocked_decal = art\bitmaps\decals\b_d_red_x.%img%;
+
+		 4 = 0, 0, 0, 0, 0, 0, 0, 0, 0;
+		 3 = 0, 0, 0, 0, 0, 0, 0, 0, 0;
+		 2 = 0, 0, 0, 0, 0, 0, 0, 0, 0;
+		 1 = 0, 0, 0, 8, 0, 5, 0, 0, 0;
+		 0 = 0, 0, 0, 4, 1, 2, 0, 0, 0;
+		-1 = 0, 0, 0, 7, 3, 6, 0, 0, 0;
+		-2 = 0, 0, 0, 0, 0, 0, 0, 0, 0;
+		-3 = 0, 0, 0, 0, 0, 0, 0, 0, 0;
+		-4 = 0, 0, 0, 0, 0, 0, 0, 0, 0;
+	}
 	[circle]
 	{
 		initial_spacing = 0.5;  
@@ -311,6 +391,8 @@
 
 		spot_w		= 0.35;
 		spot_l		= 0.35;
+
+		include_pack_animals = 0;
 
 		reserved_decal        = art\bitmaps\decals\b_d_formation_spot.%img%;
 		free_decal            = art\bitmaps\decals\b_d_formation_unocc.%img%;
@@ -341,6 +423,8 @@
 		spot_w		= 1.0;
 		spot_l		= 1.0;
 
+		include_pack_animals = 0;
+
 		reserved_decal        = art\bitmaps\decals\b_d_formation_spot.%img%;
 		free_decal            = art\bitmaps\decals\b_d_formation_unocc.%img%;
 		leader_decal          = art\bitmaps\decals\b_d_formation_leader.%img%;
@@ -369,6 +453,8 @@
 
 		spot_w		= 1.0;
 		spot_l		= 0.5;
+
+		include_pack_animals = 0;
 
 		reserved_decal        = art\bitmaps\decals\b_d_formation_spot.%img%;
 		free_decal            = art\bitmaps\decals\b_d_formation_unocc.%img%;
@@ -399,6 +485,8 @@
 		spot_w		= 1.0;
 		spot_l		= 1.0;
 
+		include_pack_animals = 0;
+
 		reserved_decal        = art\bitmaps\decals\b_d_formation_spot.%img%;
 		free_decal            = art\bitmaps\decals\b_d_formation_unocc.%img%;
 		leader_decal          = art\bitmaps\decals\b_d_formation_leader.%img%;
@@ -428,6 +516,8 @@
 		spot_w		= 0.4;
 		spot_l		= 0.4;
 
+		include_pack_animals = 0;
+
 		reserved_decal        = art\bitmaps\decals\b_d_formation_spot.%img%;
 		free_decal            = art\bitmaps\decals\b_d_formation_unocc.%img%;
 		leader_decal          = art\bitmaps\decals\b_d_formation_leader.%img%;
@@ -455,6 +545,8 @@
 
 		spot_w		= 0.6;
 		spot_l		= 0.6;
+
+		include_pack_animals = 0;
 
 		reserved_decal        = art\bitmaps\decals\b_d_formation_spot.%img%;
 		free_decal            = art\bitmaps\decals\b_d_formation_unocc.%img%;
@@ -485,6 +577,8 @@
 		spot_w		= 0.5;
 		spot_l		= 0.6;
 
+		include_pack_animals = 0;
+
 		reserved_decal        = art\bitmaps\decals\b_d_formation_spot.%img%;
 		free_decal            = art\bitmaps\decals\b_d_formation_unocc.%img%;
 		leader_decal          = art\bitmaps\decals\b_d_formation_leader.%img%;
@@ -513,6 +607,8 @@
 
 		spot_w		= 0.6;
 		spot_l		= 0.5;
+
+		include_pack_animals = 0;
 
 		reserved_decal        = art\bitmaps\decals\b_d_formation_spot.%img%;
 		free_decal            = art\bitmaps\decals\b_d_formation_unocc.%img%;

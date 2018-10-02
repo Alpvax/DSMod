@@ -33,6 +33,7 @@ owner = GoSkritComponent;
 // globals
 int						current_num_messages$	= 0;
 bool					current_active$			= false;
+Goid					activator$			= 0;
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -58,8 +59,13 @@ EvaluateMessageCount$
 			// Send the world message
 			// SendWorldMessage( message_when_active$, send_to_scid$ );
 
+			// JCD 9/11/03
+			// we pass along the activator if there is one
+			#only(game)
+			[[
 			//changed to support delays
-			PostWorldMessage( message_when_active$, owner.Goid, send_to_scid$, num_delay$ );
+			PostWorldMessage( message_when_active$, owner.Goid, send_to_scid$, activator$, num_delay$ );
+			]]
 
 			// Set to active
 			current_active$	= true;
@@ -70,8 +76,13 @@ EvaluateMessageCount$
 		// Send the world message
 		// SendWorldMessage( message_when_inactive$, send_to_scid$ );
 
+		// JCD 9/11/03
+		// we pass along the activator if there is one
+		#only(game)
+		[[
 		//changed to support delays
-		PostWorldMessage( message_when_inactive$, owner.Goid, send_to_scid$, num_delay$ );
+		PostWorldMessage( message_when_inactive$, owner.Goid, send_to_scid$, activator$, num_delay$ );
+		]]
 
 
 		// Set to inactive
@@ -79,8 +90,16 @@ EvaluateMessageCount$
 	}
 }
 
-event OnGoHandleMessage$( eWorldEvent e$, WorldMessage )
+event OnGoHandleMessage$( eWorldEvent e$, WorldMessage msg$)
 {
+//	if( msg$.Activator != 0 )
+	{
+		#only(game)
+		[[
+		activator$ = msg$.Activator;
+		]]
+	}
+	
 	if( e$ == message_increment$ )
 	{
 		// Increment counter

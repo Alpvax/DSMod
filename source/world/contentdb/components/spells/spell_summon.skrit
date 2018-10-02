@@ -235,6 +235,20 @@ state ControlSummoned$
 		this.CreateTimer( 2, .1 );
 	}
 	
+	// JCD 7/25/03
+	// does the same as when WE_SPELL_EXPIRATION_TIMER_RESET is caught, but this allows us to
+	// kill the spell in MP when the client presses the unsummon button without errors occurring.
+	trigger OnGoHandleMessage$( WE_REQ_DEACTIVATE )
+	{
+		if( summoned_goid$.IsValidMp) 
+		{
+			if ( end_script$ != "" ) {
+				SiegeFx.SRunScript( end_script$, summoned_goid$, summoned_goid$, script_params$, owner.Goid, WE_DAMAGED );
+			}		
+		}
+		this.CreateTimer( 2, .1 );
+	}
+	
 	trigger OnTimer$ ( 1 )
 	{
 		if( summoned_goid$.IsValidMp) 
@@ -326,17 +340,38 @@ state CleanUp$
 		}
 				
 		if( summoned_goid$.isvalid) 
-		{			
+		{	
 			GoDb.StopWatching( owner.Goid, summoned_goid$);
-			
-			if( delete_inv$ )
+
+			// MRC 8/4/2003 Bug 2269 If this is an effect creature (if it's being forced
+			// not to render), then don't fade it.  Fading causes the model to be drawn
+			// during the fade process, and we don't want that to happen for effect
+			// creatures.
+			if(summoned_goid$.Go.Aspect.GetForceNoRender())
 			{
-				GoDb.SMarkGoAndChildrenForDeletion( summoned_goid$, true, true );
+				if( delete_inv$ )
+				{
+					GoDb.SMarkGoAndChildrenForDeletion( summoned_goid$, true, false );
+				}
+				else
+				{
+					GoDb.SMarkForDeletion( summoned_goid$, true, false );
+				}
 			}
+			// Otherwise, do the normal deletion with a fade.
 			else
 			{
-				GoDb.SMarkForDeletion( summoned_goid$, true, true );
+				if( delete_inv$ )
+				{
+					GoDb.SMarkGoAndChildrenForDeletion( summoned_goid$, true, true );
+				}
+				else
+				{
+					GoDb.SMarkForDeletion( summoned_goid$, true, true );
+				}
 			}
+
+			
 		}
 		this.CreateTimer( 1, 0 );
 	}

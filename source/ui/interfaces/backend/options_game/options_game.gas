@@ -828,6 +828,55 @@
 		group = options_game_redblood;
 	}
 
+	[t:text,n:text_selection_rings]
+	{
+		alpha = 1.000000;
+		common_control = false;
+		common_template = ;
+		draw_order = 70;
+		font_color = -1;
+		font_size = 14;
+		font_type = b_gui_fnt_12p_copperplate-light;
+		//font_1024x768 = b_gui_fnt_14p_copperplate-light;
+		justify = right;
+		rect = 150,160,320,176;
+		text = "Enable Selection Rings";
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+		group = options_game_selection_rings;
+	}
+	[t:button,n:button_selection_rings]
+	{
+		alpha = 1.000000;
+		common_control = true;
+		common_template = button_4;
+		draw_order = 15;
+		rect = 340,160,490,176;
+		uvcoords = 0.000000,0.000000,1.000000,1.000000;
+		wrap_mode = clamp;
+		[t:text,n:button_selection_rings_text]
+		{
+			alpha = 1.000000;
+			common_control = false;
+			common_template = ;
+			draw_order = 68;
+			font_color = -1;
+			font_size = 14;
+			font_type = b_gui_fnt_12p_copperplate-light;
+			//font_1024x768 = b_gui_fnt_14p_copperplate-light;
+			justify = center;
+			rect = 392,161,490,176;
+			text = ;
+			texture = none;
+			type = text;
+			uvcoords = 0.000000,0.000000,1.000000,1.000000;
+			wrap_mode = clamp;
+			group = options_game_selection_rings;
+		}
+		[messages] { onbuttonpress=notify(toggle_selection_rings) & playsound(s_e_frontend_tiny_button); }
+		group = options_game_selection_rings;
+	}
+
 // $ dismemberment disable for esrb
 
 	[t:text,n:text_dismemberment]
@@ -841,7 +890,7 @@
 		font_type = b_gui_fnt_12p_copperplate-light;
 		//font_1024x768 = b_gui_fnt_14p_copperplate-light;
 		justify = right;
-		rect = 150,160,320,176;
+		rect = 150,190,320,206;
 		text = "Dismemberment";
 		uvcoords = 0.000000,0.000000,1.000000,1.000000;
 		wrap_mode = clamp;
@@ -853,7 +902,7 @@
 		common_control = true;
 		common_template = button_4;
 		draw_order = 15;
-		rect = 340,160,490,176;
+		rect = 340,190,490,206;
 		uvcoords = 0.000000,0.000000,1.000000,1.000000;
 		wrap_mode = clamp;
 		[t:text,n:button_dismemberment_text]
@@ -892,7 +941,7 @@
 		font_color = 0xffffffff;
 		font_size = 12;
 		font_type = b_gui_fnt_12p_copperplate-light;
-		rect = 150,182,250,214;
+		rect = 150,212,250,244;
 		text = "Receive ZoneMatch messages from:";
 		uvcoords = 0.000000,0.000000,1.000000,1.000000;
 		group = options_game_zmmessage;
@@ -906,7 +955,7 @@
 		common_control = true;
 		common_template = button_4;
 		draw_order = 15;
-		rect = 340,190,474,206;
+		rect = 340,220,474,236;
 		uvcoords = 0.000000,0.000000,1.000000,1.000000;
 		wrap_mode = clamp;
 		group = options_game_zmmessage;
@@ -941,7 +990,7 @@
 		font_type = b_gui_fnt_12p_copperplate-light;
 		text_color = -1;
 		draw_order = 200;
-		rect = 360,191,474,206;
+		rect = 360,221,474,236;
 		uvcoords = 0.000000,0.000000,1.000000,1.000000;
 		wrap_mode = clamp;
 		has_background = true;
@@ -953,7 +1002,7 @@
 			common_control = true;
 			common_template = down;
 			draw_order = 32;
-			rect = 474,190,490,206;
+			rect = 474,220,490,236;
 			texture = b_gui_cmn_button_down_up;
 			uvcoords = 0.000000,0.000000,1.000000,1.000000;
 			wrap_mode = clamp;
@@ -970,7 +1019,7 @@
 			common_template = ;
 			draw_order = 600;
 			font_type = b_gui_fnt_12p_copperplate-light;
-			rect = 340,207,490,310;
+			rect = 340,237,490,340;
 			text_color = 0xffffffff;
 			uvcoords = 0.000000,0.000000,1.000000,1.000000;
 			wrap_mode = clamp;

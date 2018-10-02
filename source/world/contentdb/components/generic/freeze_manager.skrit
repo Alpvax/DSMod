@@ -61,7 +61,9 @@ startup state Main$
 						
 						SiegeFx.SRunScript( "ice_explosion_large", attacked$, attacked$, "", owner.Goid, e$ );
 			
-						GoDb.SMarkForDeletion( attacked$, true, true );
+						// MRC 8/4/2003 Need to mark children for deletion in case this is a caster
+						// with a special spellbook
+						GoDb.SMarkGoAndChildrenForDeletion( attacked$, true, true );
 					}
 				}
 			}
@@ -74,6 +76,8 @@ startup state Main$
 		
 		if( e$ == WE_KILLED && frozen_guy$.IsValidMp() ) {
 			
+//			report.generic("frozen guy died, so blow him up!!\n");
+
 			GoDb.StopWatching( owner.Goid, frozen_guy$);
 				
 			frozen_guy$.Go.Aspect.SSetFreezeMeshFlag( false );
@@ -86,7 +90,9 @@ startup state Main$
 			
 			SiegeFx.SRunScript( "ice_explosion_large", frozen_guy$, frozen_guy$, "", owner.Goid, e$ );
 			
-			GoDb.SMarkForDeletion( frozen_guy$, true, true );
+			// MRC 8/4/2003 Need to mark children for deletion in case this is a caster
+			// with a special spellbook
+			GoDb.SMarkGoAndChildrenForDeletion( frozen_guy$, true, true );
 		}
 	}
 	

@@ -57,6 +57,9 @@
 
 	difficulty_hard_player	 	=	0.85;
 	difficulty_hard_computer 	=	1.45;
+
+	// variables dealing with attack area.
+	attack_area_radius  		=	6.0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -332,6 +335,8 @@
 		property float out_monster_high$ = 1.0		doc = "seconds between splash checks not in water with monster Max LODFI";
 		property float out_monster_low$	= 2.0		doc = "seconds between splash checks not in water with monster Min LODFI";
 		
+		property int skill_type$ = 0			doc = "Which skill type to check for damage lookup, 0 = melee, 1 = ranged, 2 = combat, 3 = nature";
+		
 		bool should_spawn_broken_container$
 		{
 			// $ yo, this is just test stuff i added, needs tweaking. -sb
@@ -420,7 +425,60 @@
 
    			return result$;
 		}
+		
+		// TAT 5/28/03 - damage formulas
+		float damage_blocked_amount$
+		{
+			//0 = melee, 1 = ranged, 2 = combat, 3 = nature
+			if (skill_type$ == 0)
+			{
+				// melee
+				return (melee$+1.552)*4.059;
+			}
+			else if (skill_type$ == 1)
+			{
+				// ranged
+				return (ranged$+1.949)*3.232;
+				
+			}
+			else if (skill_type$ == 2)
+			{
+				// combat
+				return (cmagic$+2.177) * 2.894;				
+			}
+			else
+			{
+				// nature
+				return (nmagic$+2.177) * 2.894;				
+			}
+
+			return 0;
+		}		
 	]];
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+// set item constants
+//	any constants dealing with set items are located here.
+
+[set_items]
+{
+	// this is an integer value from 0 -> 100 where 0 will result in never
+	// dropping set item for unique calls and 100 will only drop set
+	// items.
+	unique_drops_set	=	20;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// game end information
+//
+
+[end_game_timer]
+{
+	// the timer that counts down after a player has beaten the game will
+	// go for this length of time i want a 60 second timer, but if i set
+	// it to 60 seconds it won't appear until only 10 seconds are left, so
+	// i just added on a 1 second buffer.  this way it will appear when it
+	// hits 60 seconds
+	timer_length = 61;
+}

@@ -92,6 +92,20 @@
 		texture = b_gui_ig_i_ic_c_death;
 		visible = false;		
 	}
+	[t:window,n:awp_transformed_portrait_2]
+	{
+		alpha = 1.000000;
+		draw_order = 39;
+		rect = 13,59,52,105;
+		uvcoords = 0.000000,0.281250,0.609375,1.000000;
+		wrap_mode = clamp;		
+		group = character_2_mp;
+		dock_group = dockbar_character_2;
+		index = 1;		
+		pass_through = true; 
+		texture = b_gui_ig_mnu_awp_transformed;
+		visible = false;		
+	}
 	[t:window,n:awp_portrait_health_warning_2]
 	{
 		alpha = 0.5000000;
@@ -271,6 +285,20 @@
 		texture = b_gui_ig_i_ic_c_death;
 		visible = false;		
 	}
+	[t:window,n:awp_transformed_portrait_3]
+	{
+		alpha = 1.000000;
+		draw_order = 39;
+		rect = 13,112,52,158;
+		uvcoords = 0.000000,0.281250,0.609375,1.000000;
+		wrap_mode = clamp;		
+		group = character_3_mp;
+		dock_group = dockbar_character_3;
+		index = 2;		
+		pass_through = true; 
+		texture = b_gui_ig_mnu_awp_transformed;
+		visible = false;		
+	}
 	[t:window,n:awp_portrait_health_warning_3]
 	{
 		alpha = 0.5000000;
@@ -448,6 +476,20 @@
 		index = 3;		
 		pass_through = true; 
 		texture = b_gui_ig_i_ic_c_death;
+		visible = false;		
+	}
+	[t:window,n:awp_transformed_portrait_4]
+	{
+		alpha = 1.000000;
+		draw_order = 39;
+		rect = 13,165,52,211;
+		uvcoords = 0.000000,0.281250,0.609375,1.000000;
+		wrap_mode = clamp;		
+		group = character_4_mp;
+		dock_group = dockbar_character_4;
+		index = 3;		
+		pass_through = true; 
+		texture = b_gui_ig_mnu_awp_transformed;
 		visible = false;		
 	}
 	[t:window,n:awp_portrait_health_warning_4]
@@ -630,6 +672,20 @@
 		texture = b_gui_ig_i_ic_c_death;
 		visible = false;		
 	}
+	[t:window,n:awp_transformed_portrait_5]
+	{
+		alpha = 1.000000;
+		draw_order = 39;
+		rect = 13,218,52,264;
+		uvcoords = 0.000000,0.281250,0.609375,1.000000;
+		wrap_mode = clamp;		
+		group = character_5_mp;
+		dock_group = dockbar_character_5;
+		index = 4;		
+		pass_through = true; 
+		texture = b_gui_ig_mnu_awp_transformed;
+		visible = false;		
+	}
 	[t:window,n:awp_portrait_health_warning_5]
 	{
 		alpha = 0.5000000;
@@ -810,6 +866,20 @@
 		texture = b_gui_ig_i_ic_c_death;
 		visible = false;		
 	}
+	[t:window,n:awp_transformed_portrait_6]
+	{
+		alpha = 1.000000;
+		draw_order = 39;
+		rect = 13,271,52,317;
+		uvcoords = 0.000000,0.281250,0.609375,1.000000;
+		wrap_mode = clamp;		
+		group = character_6_mp;
+		dock_group = dockbar_character_6;
+		index = 5;		
+		pass_through = true; 
+		texture = b_gui_ig_mnu_awp_transformed;
+		visible = false;		
+	}
 	[t:window,n:awp_portrait_health_warning_6]
 	{
 		alpha = 0.5000000;
@@ -987,6 +1057,20 @@
 		index = 6;		
 		pass_through = true; 
 		texture = b_gui_ig_i_ic_c_death;
+		visible = false;		
+	}
+	[t:window,n:awp_transformed_portrait_7]
+	{
+		alpha = 1.000000;
+		draw_order = 39;
+		rect = 13,324,52,370;
+		uvcoords = 0.000000,0.281250,0.609375,1.000000;
+		wrap_mode = clamp;		
+		group = character_7_mp;
+		dock_group = dockbar_character_7;
+		index = 6;		
+		pass_through = true; 
+		texture = b_gui_ig_mnu_awp_transformed;
 		visible = false;		
 	}
 	[t:window,n:awp_portrait_health_warning_7]
@@ -1169,6 +1253,20 @@
 		texture = b_gui_ig_i_ic_c_death;
 		visible = false;	
 		rect = 13,377,52,423;	
+	}
+	[t:window,n:awp_transformed_portrait_8]
+	{
+		alpha = 1.000000;
+		draw_order = 39;
+		rect = 13,377,52,423;
+		uvcoords = 0.000000,0.281250,0.609375,1.000000;
+		wrap_mode = clamp;		
+		group = character_8_mp;
+		dock_group = dockbar_character_8;
+		index = 7;		
+		pass_through = true; 
+		texture = b_gui_ig_mnu_awp_transformed;
+		visible = false;		
 	}
 	[t:window,n:awp_portrait_health_warning_8]
 	{
