@@ -1,1 +1,1 @@
-git diff -w --filter=d origin/logic
+git diff -w --diff-filter=d origin/logic -- source/
