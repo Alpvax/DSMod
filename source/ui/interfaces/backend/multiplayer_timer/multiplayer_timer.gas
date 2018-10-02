@@ -1,0 +1,92 @@
+// $Edited_by: Lokiswaq
+// $Mod: BufUI
+// $Revision: 0.97
+// $Date: 6/4/2004
+
+[multiplayer_timer]
+{
+  intended_resolution_height = 600;
+  intended_resolution_width = 800;
+  interface = true;
+
+  // Lokiswaq_BufUI change -- start
+  skrit=
+  [[
+    owner = UIWindow;
+
+    // If SHIFT was pressed along with the timer's hotkey, the BufUI is toggled
+    // along with the timer. If SHIFT was not pressed, only the timer will toggle.
+    // For this to work, one must configure the key bindings for the timer and
+    // add SHIFT-<key> as a secondary hotkey (where <key> is the primary binding).
+    void mytoggle$( void )
+    {
+      if ( AppModule.ShiftKey == true )
+      {
+        if ( UIShell.IsInterfaceVisible( "Lokiswaq_BufUI" ) )
+        {
+          UIShell.HideInterface( "Lokiswaq_BufUI" );
+        }
+        else
+        {
+          UIShell.ShowInterface( "Lokiswaq_BufUI" );
+        }
+      }
+    }
+  ]];
+  // Lokiswaq_BufUI change -- end (more follow)
+
+  [t:text,n:text_game_timer]
+  {
+    f alpha = 1.000000;
+    b common_control = false;
+    common_template = ;
+    i draw_order = 10;
+    i font_color = -1;
+    i font_size = 0;
+    font_type = b_gui_fnt_12p_copperplate-light;
+    justify = center;
+    rect = 520,125,637,138;
+    text = "00:00:00";
+    uvcoords = 0.000000,0.000000,1.000000,1.000000;
+    wrap_mode = clamp;
+    is_right_anchor = true;
+    right_anchor = 120;
+    group = timer;
+    [messages]
+    {
+      onshow = call( mytoggle$ );   // added for Lokiswaq_BufUI
+      onhidden = call( mytoggle$ ); // added for Lokiswaq_BufUI
+    }
+  }
+  [t:text,n:text_time_remaining_elapsed]
+  {
+    f alpha = 1.000000;
+    b common_control = false;
+    common_template = ;
+    i draw_order = 9;
+    i font_color = -1;
+    i font_size = 0;
+    font_type = b_gui_fnt_12p_copperplate-light;
+    justify = center;
+    rect = 520,112,635,125;
+    text = "Time Remaining:";
+    uvcoords = 0.000000,0.000000,1.000000,1.000000;
+    wrap_mode = clamp;
+    is_right_anchor = true;
+    right_anchor = 120;
+    group = timer;
+  }
+  [t:dialog_box,n:timer_bg]
+  {
+    f alpha = 1.000000;
+    b common_control = true;
+    common_template = cpbox;
+    x draw_order = 1;
+    is_right_anchor = true;
+    right_anchor = 122;
+    rect = 518,110,639,141;
+    uvcoords = 0.000000,0.000000,1.000000,1.000000;
+    wrap_mode = clamp;
+    group = timer;
+  }
+}

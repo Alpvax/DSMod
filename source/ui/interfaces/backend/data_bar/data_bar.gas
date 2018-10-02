@@ -1,0 +1,615 @@
+// $Edited_by: Lokiswaq
+// $Mod: BufUI_LoA
+// $Revision: 2.00
+// $Date: 5/12/2004
+// $Comments: 0.98: Fixed bug that left timers on after exiting the game.
+// $Comments: 0.99: Put toggle button in here to move along with the dockbar
+// $Comments: 0.99: Toggle icon moves right when potion distribution icon is visible
+// $Comments: 1.00: Removed hidden dockbar and moved toggle functionality to button which is always visible now
+// $Comments: 1.00: Swapped left and right click functionality of the button (show/hide and icons/text respectively)
+// $Comments: 2.00: Added BufUI_Manager "deamon"
+// $Comments: 2.00: Added support for restored games that were saved without BufUI in place
+
+[data_bar]
+{
+  intended_resolution_height = 480;
+  intended_resolution_width = 640;
+  b interface = true;
+
+  // Lokiswaq_BufUI change -- start
+  skrit =
+  [[
+    property bool _server_only$ = false;
+    owner = UIWindow;
+
+    //
+    // This function is called when the dockbar is created and it
+    // creates the ui manager "deamon" go that refreshes the BufUI panel.
+    // Based on the "ui manager" idea of Jason 'Ikkyo' Gripp.
+    //
+    void Create_BufUI_Manager$( void )
+    {
+      GoCloneReq cloneReq$ = MakeGoCloneReq( "lokiswaq_bufui_manager" );
+      cloneReq$.Omni = true;
+      GoID bufui_manager$ = GoDb.CloneLocalGo( cloneReq$ );
+      GameAuditor.GetDB.SetInt( "Lokiswaq_BufUI_Manager", MakeInt(bufui_manager$) );
+    }
+
+    //
+    // Moves the swap button depending on SP/MP because of the potion auto-distribute button
+    //
+    void move_button_Lokiswaq_BufUI$( void )
+    {
+      if ( World.IsSinglePlayer )
+      {
+        UIWindow w$ = UIShell.FindUIWindow( "Lokiswaq_BufUI_button", "data_bar" );
+        w$.SetRect( 133, 151, UIShell.ScreenHeight-480+437, UIShell.ScreenHeight-480+472, false );
+      }
+    }
+
+    //
+    // The BufUI button calls this function when it's created. All interfaces must be activated
+    // before they can be displayed and should be deactivated when the game is exited.
+    //
+    void activate_interface_Lokiswaq_BufUI$( void )
+    {
+      // you need the full path to the interface gas file. The boolean indicates
+      // whether or not the interface should be displayed when it's activated.
+      UIShell.ActivateInterface( "ui:interfaces:backend:lokiswaq_bufui:Lokiswaq_BufUI", false );
+      // place the button correctly
+      move_button_Lokiswaq_BufUI$();
+    }
+
+    //
+    // The BufUI_button calls this function when it's destroyed.
+    //
+    void deactivate_interface_Lokiswaq_BufUI$( void )
+    {
+      // You only need the interface name to deactivate
+      UIShell.DeactivateInterface( "Lokiswaq_BufUI" );
+    }
+
+    //
+    // This is called when the BufUI_button itself gets hidden (like when exiting the game).
+    //
+    void hide_interface_Lokiswaq_BufUI$( void )
+    {
+      UIShell.HideInterface( "Lokiswaq_BufUI" );
+    }
+
+    //
+    // The BufUI_button calls this function when you click on it.
+    //
+    void toggle_interface_Lokiswaq_BufUI$( void )
+    {
+      if ( UIShell.IsInterfaceVisible( "Lokiswaq_BufUI" ) )
+      {
+        UIShell.HideInterface( "Lokiswaq_BufUI" );
+        GameAuditor.GetDB.SetBool( "Lokiswaq_BufUI_Visible", false );
+      }
+      else
+      {
+        UIShell.ShowInterface( "Lokiswaq_BufUI" );
+        GameAuditor.GetDB.SetBool( "Lokiswaq_BufUI_Visible", true );
+        // create a new ui manager if game was saved without bufui... a little crude, I know, but it works :-)
+        GoID bufui_manager$ = MakeGoid(GameAuditor.GetDB.GetInt("Lokiswaq_BufUI_Manager"));
+        if ( ! bufui_manager$.IsValid() )
+        {
+          Create_BufUI_Manager$();
+        }
+      }
+    }
+
+    //
+    // This is called when the button is right-clicked
+    //
+    void swap_view_Lokiswaq_BufUI$( void )
+    {
+      if ( UIShell.IsInterfaceVisible( "Lokiswaq_BufUI" ) )
+      {
+        if ( UIShell.FindUIWindow( "t_background", "Lokiswaq_BufUI" ).Visible == true )
+        {
+          UIShell.ShowGroup( "Lokiswaq_BufUI_text", false, true, "Lokiswaq_BufUI");
+          UIShell.ShowGroup( "Lokiswaq_BufUI_icons", true, true, "Lokiswaq_BufUI");
+          GameAuditor.GetDB.SetBool( "Lokiswaq_BufUI_Text", false );
+        }
+        else
+        {
+          UIShell.ShowGroup( "Lokiswaq_BufUI_text", true, true, "Lokiswaq_BufUI");
+          UIShell.ShowGroup( "Lokiswaq_BufUI_icons", false, true, "Lokiswaq_BufUI");
+          GameAuditor.GetDB.SetBool( "Lokiswaq_BufUI_Text", true );
+        }
+      }
+    }
+
+  ]];
+
+  // GUI twin toggle button
+  [t:checkbox,n:Lokiswaq_BufUI_button]
+  {
+    f alpha = 0.800000;
+    b common_control = false;
+    common_template = ;
+    dock_group = information_dockbar;
+    i draw_order = 2;
+    group = information_dockbar;
+    is_bottom_anchor = true;
+    bottom_anchor = 43;
+    rect = 97,437,115,472;
+    //texture = b_gui_ig_i_it_amulet_039;
+    texture = b_gui_ig_i_it_magic-book-17;
+    uvcoords = 0.000000,0.000000,1.000000,1.000000;
+    wrap_mode = clamp;
+    rollover_help = lokiswaq_bufui_button;
+    leftright_button = true;
+    [messages]
+    {
+      oncreated = call( activate_interface_Lokiswaq_BufUI$ );
+      ondestroyed = call( deactivate_interface_Lokiswaq_BufUI$ );
+      onhidden = call( hide_interface_Lokiswaq_BufUI$ ); // to take the timers off when exiting
+      oncheck = call(toggle_interface_Lokiswaq_BufUI$);
+      onuncheck = call(toggle_interface_Lokiswaq_BufUI$);
+      onrbuttondown = setalpha(0.8) & call(swap_view_Lokiswaq_BufUI$);
+      onrbuttonup = setalpha(1.0);
+      //oncheck = loadtexture(b_gui_ig_i_it_amulet_037) & call(gotext$);
+      //onuncheck = loadtexture(b_gui_ig_i_it_amulet_039) & call(goicons$);
+      onlbuttondown = setalpha(0.8);
+      onlbuttonup = setalpha(1.0);
+      onlbuttondownchecked = setalpha(0.8);
+      onlbuttonupchecked = setalpha(1.0);
+      onrolloff = setalpha(0.8);
+      onrollover = setalpha(1.0);
+      onrolloffchecked = setalpha(0.8);
+      onrolloverchecked = setalpha(1.0);
+    }
+  }
+  // Lokiswaq_BufUI change -- end (more follow)
+
+  [t:button,n:button_health_potions]
+  {
+    f alpha = 1.000000;
+    bottom_anchor = 41;
+    b common_control = false;
+    common_template = ;
+    disable_color = 0xff5f5f5f;
+    dock_group = information_dockbar;
+    i draw_order = 4;
+    group = information_dockbar;
+    is_bottom_anchor = true;
+    rect = 45,439,67,471;
+    rollover_help = button_health_potions;
+    texture = b_gui_ig_mnu_icon_health_up;
+    uvcoords = 0.000000,0.000000,0.687500,1.000000;
+    wrap_mode = clamp;
+    leftright_button = true;
+    [messages]
+    {
+      onbuttonpress = notify(drink_health_potions);
+      onlbuttondown = loadtexture(b_gui_ig_mnu_icon_health_dwn);
+      onlbuttonup = loadtexture(b_gui_ig_mnu_icon_health_up);
+      onrolloff = loadtexture(b_gui_ig_mnu_icon_health_up);
+      onrollover = loadtexture(b_gui_ig_mnu_icon_health_hov);
+    }
+  }
+  [t:button,n:button_mana_potions]
+  {
+    f alpha = 1.000000;
+    bottom_anchor = 41;
+    b common_control = false;
+    common_template = ;
+    disable_color = 0xff5f5f5f;
+    dock_group = information_dockbar;
+    i draw_order = 5;
+    group = information_dockbar;
+    is_bottom_anchor = true;
+    rect = 71,439,93,471;
+    rollover_help = button_mana_potions;
+    texture = b_gui_ig_mnu_icon_mana_up;
+    uvcoords = 0.000000,0.000000,0.687500,1.000000;
+    wrap_mode = clamp;
+    leftright_button = true;
+    [messages]
+    {
+      onbuttonpress = notify(drink_mana_potions);
+      onlbuttondown = loadtexture(b_gui_ig_mnu_icon_mana_dwn);
+      onlbuttonup = loadtexture(b_gui_ig_mnu_icon_mana_up);
+      onrolloff = loadtexture(b_gui_ig_mnu_icon_mana_up);
+      onrollover = loadtexture(b_gui_ig_mnu_icon_mana_hov);
+    }
+  }
+  [t:button,n:button_redistribute_potions]
+  {
+    f alpha = 1.000000;
+    bottom_anchor = 41;
+    b common_control = false;
+    common_template = ;
+    disable_color = 0xff5f5f5f;
+    dock_group = information_dockbar;
+    i draw_order = 6;
+    is_bottom_anchor = true;
+    rect = 97,439,129,471;
+    rollover_help = button_redistribute_potions;
+    group = sp_potion_distribution;
+    texture = b_gui_ig_mnu_icon_redistribute_up;
+    uvcoords = 0.000000,0.000000,1.000000,1.000000;
+    wrap_mode = clamp;
+    leftright_button = true;
+    [messages]
+    {
+      onbuttonpress = notify(redistribute_potions);
+      onlbuttondown = loadtexture(b_gui_ig_mnu_icon_redistribute_dwn);
+      onlbuttonup = loadtexture(b_gui_ig_mnu_icon_redistribute_up);
+      onrolloff = loadtexture(b_gui_ig_mnu_icon_redistribute_up);
+      onrollover = loadtexture(b_gui_ig_mnu_icon_redistribute_hov);
+    }
+  }
+
+  [t:checkbox,n:window_labels]
+  {
+    f alpha = 1.000000;
+    bottom_anchor = 39;
+    b common_control = false;
+    common_template = ;
+    dock_group = information_dockbar;
+    i draw_order = 42;
+    is_bottom_anchor = true;
+    is_right_anchor = true;
+    right_anchor = 166;
+    rect = 474,439,506,471;
+    rollover_help = labels_indicator_on;
+    texture = b_gui_ig_mnu_label_up;
+    uvcoords = 0.000000,0.000000,1.000000,1.000000;
+    wrap_mode = clamp;
+    group = information_dockbar;
+    [messages]
+    {
+      oncheck = notify(labels_on) & setrolloverhelp(labels_indicator_on) & loadtexture(b_gui_ig_mnu_label_up);
+
+      onlbuttondown = loadtexture(b_gui_ig_mnu_label_off_down);
+      onlbuttonup  = loadtexture(b_gui_ig_mnu_label_off_up);
+      onbuttonpress =  playsound(s_e_gui_element_button_SED);
+      onrolloff = loadtexture(b_gui_ig_mnu_label_off_up);
+      onrollover = loadtexture(b_gui_ig_mnu_label_off_hov);
+
+      onlbuttondownchecked = loadtexture(b_gui_ig_mnu_label_down);
+      onlbuttonupchecked  = loadtexture(b_gui_ig_mnu_label_up);
+      onrolloffchecked  = loadtexture(b_gui_ig_mnu_label_up);
+      onrolloverchecked  = loadtexture(b_gui_ig_mnu_label_hov);
+
+      onuncheck = notify(labels_off) & setrolloverhelp(labels_indicator_off) & loadtexture(b_gui_ig_mnu_label_off_up);
+    }
+  }
+  [t:button,n:button_world_map]
+  {
+    f alpha = 1.000000;
+    bottom_anchor = 41;
+    b common_control = false;
+    common_template = ;
+    disable_color = 0xff5f5f5f;
+    dock_group = information_dockbar;
+    i draw_order = 7;
+    group = information_dockbar;
+    is_bottom_anchor = true;
+    is_right_anchor = true;
+    rect = 508,439,535,470;
+    right_anchor = 130;
+    rollover_help = button_world_map;
+    texture = b_gui_ig_mnu_icon_world_map_up;
+    uvcoords = 0.000000,0.031250,0.843750,1.000000;
+    wrap_mode = clamp;
+    [messages]
+    {
+      onbuttonpress = notify(activate_world_map) & playsound(s_e_gui_spell_book);
+      onlbuttondown = loadtexture(b_gui_ig_mnu_icon_world_map_dwn);
+      onlbuttonup = loadtexture(b_gui_ig_mnu_icon_world_map_up);
+      onrolloff = loadtexture(b_gui_ig_mnu_icon_world_map_up);
+      onrollover = loadtexture(b_gui_ig_mnu_icon_world_map_hov);
+    }
+    leftright_button = true;
+  }
+  // TAT - flashing indicator when there's new stuff in the world map
+  [t:window,n:window_worldmap_indicator]
+  {
+    is_bottom_anchor = true;
+    is_right_anchor = true;
+    f alpha = 1.000000;
+    b common_control = false;
+    common_template = ;
+    i draw_order = 6;
+    rect = 490,423,554,487;
+    right_anchor = 148;
+    bottom_anchor = 57;
+    texture = b_gui_ig_mnu_icon_world_map_red;
+    uvcoords = 0.000000,0.000000,1.000000,1.000000;
+    wrap_mode = clamp;
+    visible = false;
+    dock_group = information_dockbar;
+    group = information_dockbar;
+
+    [messages]
+    {
+      onstartanim = flashanimation(0.2,true,1);
+    }
+  }
+  [t:checkbox,n:button_mega_map]
+  {
+    f alpha = 1.000000;
+    bottom_anchor = 41;
+    b common_control = false;
+    common_template = ;
+    dock_group = information_dockbar;
+    i draw_order = 7;
+    group = information_dockbar;
+    is_bottom_anchor = true;
+    is_right_anchor = true;
+    rect = 541,439,568,470;
+    right_anchor = 99;
+    rollover_help = button_mega_map_on;
+    texture = b_gui_ig_mnu_icon_map_up;
+    uvcoords = 0.000000,0.031250,0.843750,1.000000;
+    wrap_mode = clamp;
+    [messages]
+    {
+      onlbuttondown = loadtexture(b_gui_ig_mnu_icon_map_dwn);
+      onlbuttonup = loadtexture(b_gui_ig_mnu_icon_map_up);
+      onrolloff = loadtexture(b_gui_ig_mnu_icon_map_up);
+      onrollover = loadtexture(b_gui_ig_mnu_icon_map_hov);
+
+      oncheck = setrolloverhelp(button_mega_map_off) & notify(activate_mini_map) & playsound(s_e_gui_spell_book);
+
+      onlbuttondownchecked = loadtexture(b_gui_ig_mnu_icon_map_dwn);
+      onlbuttonupchecked = loadtexture(b_gui_ig_mnu_icon_map_up);
+      onrolloffchecked = loadtexture(b_gui_ig_mnu_icon_map_up);
+      onrolloverchecked = loadtexture(b_gui_ig_mnu_icon_map_hov);
+
+      onuncheck = setrolloverhelp(button_mega_map_on) & notify(activate_mini_map) & playsound(s_e_gui_spell_book);
+    }
+    leftright_button = true;
+  }
+  [t:button,n:button_menu]
+  {
+    f alpha = 1.000000;
+    bottom_anchor = 41;
+    b common_control = false;
+    common_template = ;
+    dock_group = information_dockbar;
+    i draw_order = 8;
+    group = information_dockbar;
+    is_bottom_anchor = true;
+    is_right_anchor = true;
+    rect = 611,439,635,471;
+    right_anchor = 29;
+    rollover_help = button_menu;
+    texture = b_gui_ig_mnu_icon_door_up;
+    uvcoords = 0.000000,0.000000,0.750000,1.000000;
+    wrap_mode = clamp;
+    visible = true;
+    [messages]
+    {
+      onbuttonpress = notify(options_menu) & playsound(s_e_frontend_tiny_button);
+      onlbuttondown = loadtexture(b_gui_ig_mnu_icon_door_dwn);
+      onlbuttonup = loadtexture(b_gui_ig_mnu_icon_door_up);
+      onrolloff = loadtexture(b_gui_ig_mnu_icon_door_up);
+      onrollover = loadtexture(b_gui_ig_mnu_icon_door_hov);
+    }
+    leftright_button = true;
+  }
+  [t:button,n:button_pause]
+  {
+    is_bottom_anchor = true;
+    f alpha = 1.000000;
+    b common_control = false;
+    common_template = ;
+    i draw_order = 91;
+    rect = 10,441,37,469;
+    texture = b_gui_ig_mnu_icon_pause_up;
+    uvcoords = 0.000000,0.125000,0.843750,1.000000;
+    wrap_mode = clamp;
+    visible = true;
+    dock_group = information_dockbar;
+    group = information_dockbar;
+    bottom_anchor = 39;
+    rollover_help = button_play;
+
+    [messages]
+    {
+      onbuttonpress = notify(toggle_pause) & playsound(s_e_gui_element_button_SED);
+      onlbuttondown = loadtexture(b_gui_ig_mnu_icon_pause_down);
+      onlbuttonup = loadtexture(b_gui_ig_mnu_icon_pause_up);
+      onrolloff = loadtexture(b_gui_ig_mnu_icon_pause_up);
+      onrollover = loadtexture(b_gui_ig_mnu_icon_pause_hov);
+      onstartanim = flashanimation(0.35,true);
+    }
+
+    leftright_button = true;
+  }
+  [t:button,n:button_play]
+  {
+    is_bottom_anchor = true;
+    f alpha = 1.000000;
+    b common_control = false;
+    common_template = ;
+    i draw_order = 46;
+    rect = 10,441,37,469;
+    texture = b_gui_ig_mnu_icon_play_up;
+    uvcoords = 0.000000,0.125000,0.843750,1.000000;
+    wrap_mode = clamp;
+    dock_group = information_dockbar;
+    group = information_dockbar;
+    bottom_anchor = 39;
+    visible = false;
+
+    [messages]
+    {
+      onbuttonpress = notify(toggle_pause) & playsound(s_e_gui_element_button_SED);
+      onlbuttondown = loadtexture(b_gui_ig_mnu_icon_play_down);
+      onlbuttonup = loadtexture(b_gui_ig_mnu_icon_play_up);
+      onrolloff = loadtexture(b_gui_ig_mnu_icon_play_up);
+      onrollover = loadtexture(b_gui_ig_mnu_icon_play_hov);
+      onstartanim = flashanimation(0.35,true);
+    }
+
+    rollover_help = button_pause;
+    leftright_button = true;
+  }
+
+  [t:checkbox,n:button_quest_log]
+  {
+    f alpha = 1.000000;
+    bottom_anchor = 41;
+    b common_control = false;
+    common_template = ;
+    dock_group = information_dockbar;
+    i draw_order = 9;
+    group = information_dockbar;
+    is_bottom_anchor = true;
+    is_right_anchor = true;
+    rect = 575,439,603,471;
+    right_anchor = 65;
+    rollover_help = button_quest_log_open;
+    texture = b_gui_ig_mnu_icon_book_up;
+    uvcoords = 0.000000,0.000000,0.875000,1.000000;
+    wrap_mode = clamp;
+    [messages]
+    {
+      oncheck      = notify(toggle_quest_log) & setrolloverhelp(button_quest_log_close);
+      onlbuttondown  = loadtexture(b_gui_ig_mnu_icon_book_dwn);
+      onlbuttonup    = loadtexture(b_gui_ig_mnu_icon_book_up);
+      onrolloff    = loadtexture(b_gui_ig_mnu_icon_book_up);
+      onrollover    = loadtexture(b_gui_ig_mnu_icon_book_hov);
+
+      onuncheck      = notify(toggle_quest_log) & setrolloverhelp(button_quest_log_open);
+      onlbuttondownchecked= loadtexture(b_gui_ig_mnu_icon_book_dwn);
+      onlbuttonupchecked  = loadtexture(b_gui_ig_mnu_icon_book_up);
+      onrolloffchecked  = loadtexture(b_gui_ig_mnu_icon_book_up);
+      onrolloverchecked  = loadtexture(b_gui_ig_mnu_icon_book_hov);
+    }
+  }
+  [t:window,n:window_quest_indicator]
+  {
+    is_bottom_anchor = true;
+    is_right_anchor = true;
+    f alpha = 1.000000;
+    b common_control = false;
+    common_template = ;
+    i draw_order = 8;
+    rect = 556,423,620,487;
+    right_anchor = 84;
+    bottom_anchor = 57;
+    texture = b_gui_ig_mnu_icon_book_red;
+    uvcoords = 0.000000,0.000000,1.000000,1.000000;
+    wrap_mode = clamp;
+    visible = false;
+    dock_group = information_dockbar;
+    group = information_dockbar;
+
+    [messages]
+    {
+      onstartanim = flashanimation(0.2,true,1);
+    }
+  }
+  [t:dockbar,n:data_bar]
+  {
+    f alpha = 1.000000;
+    i bottom_anchor = 31;
+    b common_control = false;
+    common_template = ;
+    dock_group = information_dockbar;
+    dockbar_type = dockbar_screen_y;
+    i draw_order = 1;
+    group = information_dockbar;
+    b is_bottom_anchor = true;
+    pass_through = true;
+    rect = 0,449,640,480;
+    b stretch_x = true;
+    texture = b_gui_ig_mnu_statusbar;
+    uvcoords = 0.000000,0.000000,1.000000,0.861111;
+    wrap_mode = clamp;
+    // Lokiswaq BufUI change -- start
+    [messages]
+    {
+      oncreated = call( Create_BufUI_Manager$ );
+    }
+    // Lokiswaq BufUI change -- end
+  }
+  [t:text,n:defeated_escape]
+  {
+    f alpha = 1.000000;
+    bottom_anchor = 150;
+    center_x = true;
+    b common_control = false;
+    common_template = ;
+    x draw_order = 40;
+    x font_color = -1;
+    x font_size = 0;
+    font_type = b_gui_fnt_12p_copperplate-light;
+    is_bottom_anchor = true;
+    justify = center;
+    rect = 70,330,570,348;
+    text = "Press escape for options.";
+    uvcoords = 0.000000,0.000000,1.000000,1.000000;
+    visible = false;
+    wrap_mode = clamp;
+  }
+  [t:text_box,n:text_box_info]
+  {
+    f alpha = 1.000000;
+    i bottom_anchor = 30;
+    b center_height = false;
+    b common_control = false;
+    common_template = ;
+    dock_group = information_dockbar;
+    i draw_order = 12;
+    b fixed_location = true;
+    font_type = b_gui_fnt_12p_copperplate-light;
+    group = information_dockbar;
+    b has_slider = false;
+    b is_bottom_anchor = true;
+    justify = center;
+    i max_height = 240;
+    i max_width = 320;
+    b pass_through = true;
+    rect = 132,450,474,479;
+    f scroll_rate = 0.000000;
+    b stretch_x = true;
+    uvcoords = 0.000000,0.000000,1.000000,1.000000;
+    wrap_mode = clamp;
+  }
+
+  [t:window,n:window_lag]
+  {
+    f alpha = 1.000000;
+    bottom_anchor = 72;
+    b common_control = false;
+    common_template = ;
+    dock_group = information_dockbar;
+    i draw_order = 93;
+    group = information_dockbar;
+    is_bottom_anchor = true;
+    rect = 324,409,356,441;
+    texture = b_gui_ig_mnu_deadnet;
+    uvcoords = 0.000000,0.000000,1.000000,1.000000;
+    wrap_mode = clamp;
+    visible = false;
+    center_x = true;
+    rollover_help = slow_network;
+  }
+  [t:window,n:window_slownet]
+  {
+    f alpha = 1.000000;
+    bottom_anchor = 72;
+    b common_control = false;
+    common_template = ;
+    dock_group = information_dockbar;
+    i draw_order = 93;
+    group = information_dockbar;
+    is_bottom_anchor = true;
+    rect = 286,409,318,441;
+    rollover_help = slow_network;
+    texture = b_gui_ig_mnu_slownet;
+    uvcoords = 0.000000,0.000000,1.000000,1.000000;
+    wrap_mode = clamp;
+    visible = false;
+    center_x = true;
+  }
+}

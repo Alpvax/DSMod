@@ -1,0 +1,78 @@
+// $Created_by: Lokiswaq
+// $Mod: BufUI
+// $Revision: 2.00
+// $Date: 4/12/2004
+// $Comments: 0.99: Added support for active buffs count
+// $Comments: 2.00: Just some minor code tweaks (MakeInt of GoIDs)
+
+// Included by spell_effect type skrits for various spells
+//
+// Used for storing active buffs info into global variables (slots)
+// that will be retrieved later, when displaying the GUI.
+// I take advantage of the ability to store different types of variables
+// with the same name, although GameAuditor.RCSet only supports int and
+// bool types. And I can't use GameAuditor.DB.SetString for example
+// because I found out that it won't work for clients in MP.
+//
+// The variable names used are of the form: "Lokiswaq_BufUI_heroGoID_An"
+// where n is the slot number (starting from 0). Each player has his
+// own set of variables (slots) up to a maximum of <see below>.
+//
+// Three things are stored for each buff:
+// 1. An active/inactive flag (bool)
+// 2. The spell GoID (int)
+// 3. The spell expiration moment (int) <- float * 100 to store precision
+
+void Set_ActBuff_List$( string myAction$, GoID myTarget$, GoID mySpell$, float myExpireTime$ )
+{
+  string myVarPrefix$ = "Lokiswaq_BufUI";
+  string myVarCount$ = "";  // buff counter
+  string myVarA$ = "";      // on/off AND spell_GoID
+  string myVarB$ = "";      // expire time
+  int max_slots$ = 20;      // this is how many states are saved
+  int mySpellInt$ = 0;
+  int iter$ = 0;
+
+  // append hero's goID to variables' prefix
+  StringTool.AppendF( myVarPrefix$, "_%d", MakeInt(myTarget$) );
+  myVarCount$ = myVarPrefix$;
+
+  // search for an empty slot to fill, or an existing to update/delete
+  mySpellInt$ = MakeInt( mySpell$ );
+  while ( iter$ < max_slots$ )
+  {
+    myVarA$ = myVarPrefix$;
+    myVarB$ = myVarPrefix$;
+    StringTool.AppendF( myVarA$, "_A%d", iter$ );
+    StringTool.AppendF( myVarB$, "_B%d", iter$ );
+
+    // if setting a new buff
+    if ( myAction$ == "insert" && GameAuditor.GetDB.GetBool( myVarA$ ) != true )
+    {
+      GameAuditor.RCSetBool( myVarA$, true );     // on/off
+      GameAuditor.RCSet( myVarA$, mySpellInt$ );  // spell goid
+      GameAuditor.RCSet( myVarB$, Math.Round((WorldTime.Time + myExpireTime$)*100));  // expire moment
+      GameAuditor.RCSet( myVarCount$, GameAuditor.GetDB.GetInt( myVarCount$ ) + 1 );  // counter
+      iter$ = max_slots$;  // break loop
+    }
+
+    // if deleting an existing buff
+    if ( myAction$ == "delete" && GameAuditor.GetDB.GetInt( myVarA$ ) == mySpellInt$ )
+    {
+      GameAuditor.RCSetBool( myVarA$, false );
+      GameAuditor.RCSet( myVarA$, 0 );
+      GameAuditor.RCSet( myVarB$, 0 );
+      GameAuditor.RCSet( myVarCount$, GameAuditor.GetDB.GetInt( myVarCount$ ) - 1 );  // counter
+      iter$ = max_slots$;  // break loop
+    }
+
+    // if updating an existing buff
+    if ( myAction$ == "update" && GameAuditor.GetDB.GetInt( myVarA$ ) == mySpellInt$ )
+    {
+      GameAuditor.RCSet( myVarB$, Math.Round((WorldTime.Time + myExpireTime$)*100));
+      iter$ = max_slots$;  // break loop
+    }
+
+    iter$ += 1;
+  }
+}
