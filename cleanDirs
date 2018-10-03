@@ -1,0 +1,18 @@
+#!/bin/bash
+shopt -s expand_aliases
+alias cleanSrcDirs="git clean -dxe -- source"
+
+files=$(cleanSrcDirs -n)
+if [[ $files ]]; then
+  echo "$files"
+  echo "Do you wish to continue?"
+  select res in "Yes" "Interactive" "Abort"; do
+      case $res in
+          Yes ) cleanSrcDirs -f; break;;
+          Interactive) cleanSrcDirs -i; break;;
+          Abort ) exit;;
+      esac
+  done
+else
+  echo "No files or directories to remove"
+fi
