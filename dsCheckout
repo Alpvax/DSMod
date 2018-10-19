@@ -1,0 +1,2 @@
+eval set -- "$(getopt --options=b: --longoptions=branch: --name "$0" -- "$@")"; branch=origin/logic; if [[ "$1" =~ -b|--branch ]]; then branch="$2"; shift 2; fi; shift; if [[ $# -gt 0 ]]; then refs=""; for ref in "$@"; do refs="$refs source/**/$ref"; done; fi; echo "Checking out files:"; git diff --name-only $branch -- $refs | tee /dev/tty | xargs git checkout $branch --
+

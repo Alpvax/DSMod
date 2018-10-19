@@ -3,5 +3,6 @@ diffalias=${1:-dsdiff}
 git config alias.${diffalias} "!f() { base=\${1:-origin/logic}; git diff -w --diff-filter=d \$base -- source/; }; f"
 
 coalias=${2:-dsccheckout}
-git config alias.${coalias} "!f() { eval set -- "$(getopt --options=b: --longoptions=branch: --name "$0" -- "$@")"; branch=origin/logic; if [[ "$1" =~ -b|--branch ]]; then branch="$2"; shift 2; fi; shift; if [[ $# -gt 0 ]]; then refs=""; for ref in "$@"; do refs="$refs source/**/$ref"; done; fi; echo "Checking out files:"; git diff --name-only $branch -- $refs | tee /dev/tty | xargs git checkout $branch --; }; f"
+#git config alias.${coalias} "!f() { eval set -- \"\$(getopt --options=b: --longoptions=branch: --name \"\$0\" -- \"\$@\")\"; branch=origin/logic; if [[ \"\$1\" =~ -b|--branch ]]; then branch=\"\$2\"; shift 2; fi; shift; if [[ \$# -gt 0 ]]; then refs=\"\"; for ref in \"\$@\"; do refs=\"\$refs source/**/\$ref\"; done; fi; echo 'Checking out files:'; git diff --name-only \$branch -- \$refs | tee /dev/tty | xargs git checkout \$branch --; }; f"
+git config alias.${coalias} "!f() { eval set -- \"\$(getopt --options=b: --longoptions=branch: --name \"\$0\" -- \"\$@\")\"; branch=origin/logic; if [[ \"\$1\" =~ -b|--branch ]]; then branch=\"\$2\"; shift 2; fi; shift; if [[ \$# -gt 0 ]]; then refs=\"\"; for ref in \"\$@\"; do refs=\"\$refs source/**/\$ref\"; done; fi; echo 'Checking out files:'; git diff --name-only \$branch -- \$refs | tee /dev/tty | cat; }; f"
 
