@@ -1,3 +1,7 @@
 **.lqd20
 lqd_dictionary.ldc6
+*.patch
+
+#ignore vim files
+**~
 
